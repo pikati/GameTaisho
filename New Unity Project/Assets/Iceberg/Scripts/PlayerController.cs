@@ -91,14 +91,12 @@ public class PlayerController : MonoBehaviour
             gameObject.transform.position = newPos;
             rb.velocity = Vector3.zero;
             rb.AddForce(new Vector3(0, 0, 0), ForceMode.Acceleration);
-            time += Time.deltaTime;
-            if(time >= 5.0f)
-            {
+           
                 Vector3 resetPos = start.transform.position;
-                resetPos.y += 2.0f;
+                resetPos.y += 0.5f;
                 gameObject.transform.position = resetPos;
                 time = 0;
-            }
+            
             targetPos = gameObject.transform.position;
             SetEnemysTarget();
         }
