@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerControllerKuri : MonoBehaviour {
 
     public float speed = 15f;
     public GameObject centerpoint;

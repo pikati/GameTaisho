@@ -36,6 +36,19 @@ public class Height : MonoBehaviour
                 Vector3 newPos = obj.transform.position;
                 newPos.y = hegiht;
                 obj.transform.position = newPos;
+                var g = obj.GetComponent<Gravity>();
+                if (g)
+                {
+                    g.DisableGravity();
+                }
+            }
+            else
+            {
+                var g = obj.GetComponent<Gravity>();
+                if (g)
+                {
+                    g.EnableGravity();
+                }
             }
         }
     }

@@ -5,8 +5,9 @@ using UnityEngine;
 public class Gravity : MonoBehaviour
 {
     [SerializeField]
-    private float gravity = Physics.gravity.y;
+    private float gravity = -4.91f;
     private Vector3 velocity;
+    private bool enable;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,9 +17,26 @@ public class Gravity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        velocity.y += gravity * Time.deltaTime;
-        Vector3 pos = transform.position;
-        pos.y += velocity.y * Time.deltaTime;
-        transform.position = pos;
+        if(enable)
+        {
+            velocity.y += gravity * Time.deltaTime;
+            Vector3 pos = transform.position;
+            pos.y += velocity.y * Time.deltaTime;
+            transform.position = pos;
+        }
+        else
+        {
+            velocity.y = 0;
+        }
+    }
+
+    public void EnableGravity()
+    {
+        enable = true;
+    }
+
+    public void DisableGravity()
+    {
+        enable = false;
     }
 }
