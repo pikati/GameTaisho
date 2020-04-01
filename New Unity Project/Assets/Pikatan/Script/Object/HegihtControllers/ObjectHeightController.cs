@@ -16,6 +16,7 @@ public class ObjectHeightController : MonoBehaviour
 
     protected void UpdatePosition()
     {
+        position = transform.position;
         position.y = contoller.waterHeight;
         transform.position = position;
     }

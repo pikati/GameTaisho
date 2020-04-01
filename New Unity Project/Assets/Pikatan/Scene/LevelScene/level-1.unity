@@ -452,6 +452,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5151900467658806949, guid: 30a97bfc158931844a00dfc1ea1ad564,
+        type: 3}
+      propertyPath: maxHeight
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5151900467658806949, guid: 30a97bfc158931844a00dfc1ea1ad564,
+        type: 3}
+      propertyPath: startHegiht
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5151900467658806949, guid: 30a97bfc158931844a00dfc1ea1ad564,
+        type: 3}
+      propertyPath: upwardSpeed
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 5651757056363100099, guid: 30a97bfc158931844a00dfc1ea1ad564,
         type: 3}
       propertyPath: maxHeight

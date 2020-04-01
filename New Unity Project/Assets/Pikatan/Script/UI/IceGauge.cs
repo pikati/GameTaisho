@@ -9,17 +9,22 @@ public class IceGauge : MonoBehaviour
 
     private Image iceGauge; //アタッチされているオブジェクトのイメージコンポーネント
     private GeneratableIceCounter ctrl;
+    private GameStateController gCtrl;
     [SerializeField]
     private float increaseQuantity; //ゲージの1秒当たりの増加量
 
     void Start()
     {
         iceGauge = GetComponent<Image>();
+        gCtrl = GameObject.Find("GameStateController").GetComponent<GameStateController>();
         iceGauge.fillAmount = 0;
+        ctrl = GameObject.Find("GeneratableIceController").GetComponent<GeneratableIceCounter>();
     }
 
     void Update()
     {
+        if (!gCtrl.isProgressed) return;
+
         GaugeUp();
     }
 
