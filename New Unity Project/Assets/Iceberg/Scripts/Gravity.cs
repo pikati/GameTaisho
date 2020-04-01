@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//これはちゃんとできてる
 public class Gravity : MonoBehaviour
 {
     [SerializeField]

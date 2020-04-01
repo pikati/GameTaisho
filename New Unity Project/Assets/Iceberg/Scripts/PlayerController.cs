@@ -7,12 +7,12 @@ public class PlayerController : MonoBehaviour
 {
     private Vector2 move;
     private Rigidbody rb;
-    private GameObject start;
+    private GameObject start;//リスポーン処理に分割「
     private bool isMove = true;
     private WaterSurface waterSurface;
-    private float time;
-    private Vector3 targetPos;
-    private GameObject[] enemys;
+    private float time;//いらない
+    private Vector3 targetPos;//現状いらない
+    private GameObject[] enemys;//なんで持ってんのw
 
     // Start is called before the first frame update
     void Start()
