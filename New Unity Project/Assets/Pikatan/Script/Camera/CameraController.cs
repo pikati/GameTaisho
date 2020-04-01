@@ -5,10 +5,21 @@ using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
+    enum CameraDir 
+    { 
+        UP,
+        DOWN,
+        RIGHT,
+        LEFT,
+        NON
+    }
+
+
     private GameObject player;  //プレイヤーのオブジェクト
     private Vector3 position;   //カメラの座標
     private bool isUp;  //カメラが上昇するか
     private bool isDown;//カメラが下降するか
+    private CameraDir dir;
     private float max = 3.0f;
     private float min = -3.0f;
 
@@ -20,8 +31,7 @@ public class CameraController : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         position = new Vector3(0.0f, CAMERA_Y, CAMERA_Z);
-        isUp = false;
-        isDown = false;
+        dir = CameraDir.NON;
     }
 
     void Update()
@@ -37,18 +47,33 @@ public class CameraController : MonoBehaviour
         position.x = Mathf.Lerp(position.x, player.transform.position.x, Time.deltaTime);
 
         //カメラの高さ変更箇所
-        if (isUp)
+        if (dir == CameraDir.UP)
         {
             float maxY = max + player.transform.position.y + CAMERA_Y;
             position.y = Mathf.Lerp(position.y, maxY, Time.deltaTime * CAMERA_MOVE_RAITO);
+            position.x = Mathf.Lerp(position.x, player.transform.position.x, Time.deltaTime * CAMERA_MOVE_RAITO);
         }
-        else if (isDown)
+        else if (dir == CameraDir.DOWN)
         {
             float minY = min + player.transform.position.y + CAMERA_Y;
             position.y = Mathf.Lerp(position.y, minY, Time.deltaTime * CAMERA_MOVE_RAITO);
+            position.x = Mathf.Lerp(position.x, player.transform.position.x, Time.deltaTime * CAMERA_MOVE_RAITO);
+        }
+        else if (dir == CameraDir.RIGHT)
+        {
+            float maxX = max + player.transform.position.x;
+            position.x = Mathf.Lerp(position.x, maxX, Time.deltaTime * CAMERA_MOVE_RAITO);
+            position.y = Mathf.Lerp(position.y, player.transform.position.y + CAMERA_Y, Time.deltaTime * CAMERA_MOVE_RAITO);
+        }
+        else if (dir == CameraDir.LEFT)
+        {
+            float minX = min + player.transform.position.x;
+            position.x = Mathf.Lerp(position.x, minX, Time.deltaTime * CAMERA_MOVE_RAITO);
+            position.y = Mathf.Lerp(position.y, player.transform.position.y + CAMERA_Y, Time.deltaTime * CAMERA_MOVE_RAITO);
         }
         else
         {
+            position.x = Mathf.Lerp(position.x, player.transform.position.x, Time.deltaTime * CAMERA_MOVE_RAITO);
             position.y = Mathf.Lerp(position.y, player.transform.position.y + CAMERA_Y, Time.deltaTime * CAMERA_MOVE_RAITO);
         }
 
@@ -57,20 +82,25 @@ public class CameraController : MonoBehaviour
 
     private void InputCamera()
     {
-        if (Keyboard.current.upArrowKey.isPressed || Keyboard.current.wKey.isPressed)
+        if ((Keyboard.current.upArrowKey.isPressed || Keyboard.current.wKey.isPressed) && Keyboard.current.leftShiftKey.isPressed)
         {
-            isUp = true;
-            isDown = false;
+            dir = CameraDir.UP;
         }
-        else if (Keyboard.current.downArrowKey.isPressed || Keyboard.current.sKey.isPressed)
+        else if ((Keyboard.current.downArrowKey.isPressed || Keyboard.current.sKey.isPressed) && Keyboard.current.leftShiftKey.isPressed)
         {
-            isUp = false;
-            isDown = true;
+            dir = CameraDir.DOWN;
+        }
+        else if ((Keyboard.current.rightArrowKey.isPressed || Keyboard.current.aKey.isPressed) && Keyboard.current.leftShiftKey.isPressed)
+        {
+            dir = CameraDir.RIGHT;
+        }
+        else if ((Keyboard.current.leftArrowKey.isPressed || Keyboard.current.dKey.isPressed) && Keyboard.current.leftShiftKey.isPressed)
+        {
+            dir = CameraDir.LEFT;
         }
         else
         {
-            isUp = false;
-            isDown = false;
+            dir = CameraDir.NON;
         }
     }
 }

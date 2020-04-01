@@ -11,21 +11,23 @@ public class WaterHeightController : MonoBehaviour
     private float maxHeight;    //上限位置 この高さまで上がったらgameover
     [SerializeField]
     private float upwardSpeed;  //水の1秒の上昇速度
+    private GameStateController ctrl;
     #endregion
 
     #region propaty
     public float waterHeight { get; private set; }
     #endregion
 
-    // Start is called before the first frame update
     void Start()
     {
+        ctrl = GameObject.Find("GameStateController").GetComponent<GameStateController>();
         waterHeight = startHegiht;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        if (!ctrl.isProgressed) return;
+
         Vector3 pos = new Vector3(transform.position.x, waterHeight, transform.position.z);
         transform.position = pos;
         waterHeight += upwardSpeed * Time.deltaTime;

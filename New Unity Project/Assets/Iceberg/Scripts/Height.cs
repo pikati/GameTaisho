@@ -8,9 +8,6 @@ using UnityEngine.InputSystem;
 public class Height : MonoBehaviour
 {
     private static List<GameObject> gameObjectList;
-    private float hegiht = 0;
-    private bool up = false;
-    private bool down = false;
     private WaterSurface waterSurface;
     // Start is called before the first frame update
     void Start()

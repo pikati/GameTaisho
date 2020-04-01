@@ -29,7 +29,7 @@ public class PlayerInputController : MonoBehaviour
     #region collback
     public void OnMove(InputAction.CallbackContext context)
     {
-        Debug.Log(context.ReadValue<Vector2>());
+        //Debug.Log(context.ReadValue<Vector2>());
         direction = context.ReadValue<Vector2>();
     }
     #endregion

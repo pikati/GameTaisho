@@ -7,8 +7,6 @@ public class IceObjectGenerator : MonoBehaviour
 {
     enum IceDirection
     { 
-        UP,
-        DOWN,
         RIGHT,
         LEFT,
         NON
@@ -23,45 +21,43 @@ public class IceObjectGenerator : MonoBehaviour
     private GameObject player;
     private GameObject moveObject;
     private IceDirection dir;
+    private GeneratableIceCounter gCtrl;
+    private WaterHeightController wCtrl;
+    private bool isCreate;
     // Start is called before the first frame update
     void Start()
     {
         ctrl = GameObject.Find("GameStateController").GetComponent<GameStateController>();
+        gCtrl = GameObject.Find("GeneratableIceController").GetComponent<GeneratableIceCounter>();
+        wCtrl = GameObject.Find("WaterHeightController").GetComponent<WaterHeightController>();
         player = GameObject.FindGameObjectWithTag("Player");
         dir = IceDirection.NON;
+        isCreate = false;
+        CheckMiss();
     }
 
     // Update is called once per frame
     void Update()
     {
         Input();
-        
+        Create();
+        MoveIce();
     }
 
     private void Input()
     {
-        if(Keyboard.current.spaceKey.isPressed)
+        if(Keyboard.current.spaceKey.isPressed && ctrl.isProgressed)
         {
-            ctrl.isProgressed = false;
-            moveObject = Instantiate(ice, player.transform);
+            isCreate = true;
         }
 
-        if(!ctrl.isProgressed)
+        if (!ctrl.isProgressed)
         {
-            if (Keyboard.current.leftArrowKey.isPressed || Keyboard.current.aKey.isPressed)
-            {
-                dir = IceDirection.UP;
-                
-            }
-            else if (Keyboard.current.rightArrowKey.isPressed || Keyboard.current.dKey.isPressed)
-            {
-                dir = IceDirection.DOWN;
-            }
-            else if (Keyboard.current.upArrowKey.isPressed || Keyboard.current.wKey.isPressed)
+            if ((Keyboard.current.rightArrowKey.isPressed || Keyboard.current.dKey.isPressed) && !Keyboard.current.leftShiftKey.isPressed)
             {
                 dir = IceDirection.RIGHT;
             }
-            else if (Keyboard.current.downArrowKey.isPressed || Keyboard.current.sKey.isPressed)
+            else if ((Keyboard.current.leftArrowKey.isPressed || Keyboard.current.aKey.isPressed) && !Keyboard.current.leftShiftKey.isPressed)
             {
                 dir = IceDirection.LEFT;
             }
@@ -78,27 +74,39 @@ public class IceObjectGenerator : MonoBehaviour
         }
     }
 
+    private void Create()
+    {
+        if (!isCreate) return;
+        if (gCtrl.generatableIceQuantity <= 0) return;
+
+        gCtrl.generatableIceQuantity--;
+        ctrl.isProgressed = false;
+        moveObject = Instantiate(ice, new Vector3(player.transform.position.x, wCtrl.waterHeight, player.transform.position.z), Quaternion.Euler(0.0f, 0.0f, 0.0f));
+        isCreate = false;
+    }
+
     private void MoveIce()
     {
-        float moveValueX = 0;
-        float moveValueY = 0;
-        if (dir == IceDirection.UP)
+        if (!ctrl.isProgressed)
         {
-            moveValueY = speed * Time.deltaTime;
+            float moveValueX = 0;
+            if (dir == IceDirection.RIGHT)
+            {
+                moveValueX = speed * Time.deltaTime;
+            }
+            else if (dir == IceDirection.LEFT)
+            {
+                moveValueX = speed * Time.deltaTime * -1;
+            }
+            moveObject.transform.position += new Vector3(moveValueX, 0, 0);
         }
-        else if(dir == IceDirection.DOWN)
-        {
-            moveValueY = speed * Time.deltaTime * -1;
-        }
-        else if(dir == IceDirection.RIGHT)
-        {
-            moveValueX = speed * Time.deltaTime;
-        }
-        else if(dir == IceDirection.LEFT)
-        {
-            moveValueX = speed * Time.deltaTime * -1;
-        }
+    }
 
-        moveObject.transform.position += new Vector3(moveObject.transform.position.x + moveValueX, moveObject.transform.position.y + moveValueY, moveObject.transform.position.z);
+    private void CheckMiss()
+    {
+        if(speed == 0)
+        {
+            Debug.LogError("speed is 0");
+        }
     }
 }
