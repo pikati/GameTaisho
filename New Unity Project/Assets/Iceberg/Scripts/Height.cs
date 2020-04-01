@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 //浮かぶオブジェクトの高さを管理しているよ
+//FlowObjectPreserverとか名前
 public class Height : MonoBehaviour
 {
     private static List<GameObject> gameObjectList;

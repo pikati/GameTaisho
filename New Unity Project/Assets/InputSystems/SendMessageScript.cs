@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 public class SendMessageScript : MonoBehaviour
 {
 
+
     public void OnMove(InputValue inputValue)
     {
         Debug.Log("Move" + inputValue.Get<Vector2>());

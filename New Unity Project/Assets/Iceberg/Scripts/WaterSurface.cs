@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
+//高さを管理するクラスと水面のクラスで別にする
 public class WaterSurface : MonoBehaviour
 {
     // Start is called before the first frame update

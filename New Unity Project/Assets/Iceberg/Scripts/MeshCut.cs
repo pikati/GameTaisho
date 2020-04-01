@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
+//コピペ君
+//呼ぶ奴と同じところに置かないとだめだゾ
 namespace BLINDED_AM_ME
 {
     public class MeshCut
