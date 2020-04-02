@@ -4,7 +4,19 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Pikatan/Scene/RoadTest.unity
+    guid: 55d7bc189765ca24eb600882c6b94dea
+  - enabled: 1
+    path: Assets/Pikatan/Scene/LevelScene/level-1.unity
+    guid: 122ca695b19c64246afc23aae703fb65
+  - enabled: 1
+    path: Assets/Pikatan/Scene/LevelScene/level-2.unity
+    guid: ac61742a762c35d47ac51b4002f8c2fc
+  - enabled: 1
+    path: Assets/Pikatan/Scene/LevelScene/level-3.unity
+    guid: 57aaa8858594f784dbf29e3190da8abc
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: c79d7aa44bcccd640a03bbe3228eae54,
       type: 2}

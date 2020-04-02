@@ -10,6 +10,7 @@ public class IceGauge : MonoBehaviour
     private Image iceGauge; //アタッチされているオブジェクトのイメージコンポーネント
     private GeneratableIceCounter ctrl;
     private GameStateController gCtrl;
+    private StageEndJudge sEnd;
     [SerializeField]
     private float increaseQuantity; //ゲージの1秒当たりの増加量
 
@@ -18,12 +19,13 @@ public class IceGauge : MonoBehaviour
         iceGauge = GetComponent<Image>();
         gCtrl = GameObject.Find("GameStateController").GetComponent<GameStateController>();
         iceGauge.fillAmount = 0;
-        ctrl = GameObject.Find("GeneratableIceController").GetComponent<GeneratableIceCounter>();
+        ctrl = GameObject.Find("GeneratableIceCounter").GetComponent<GeneratableIceCounter>();
+        sEnd = GameObject.FindGameObjectWithTag("Goal").GetComponent<StageEndJudge>();
     }
 
     void Update()
     {
-        if (!gCtrl.isProgressed) return;
+        if (!gCtrl.isProgressed || sEnd.isGameClear || sEnd.isGameOver) return;
 
         GaugeUp();
     }

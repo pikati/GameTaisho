@@ -18,6 +18,7 @@ public class PlayerManager : MonoBehaviour
     //private PlayerInputController playerInputController;    //プレイヤーの入力管理クラス
     private PlayerInputTest pTest;
     private GameStateController gameCtrl;
+    private StageEndJudge sEnd;
     #endregion
 
     #region propaty
@@ -30,11 +31,17 @@ public class PlayerManager : MonoBehaviour
         //playerInputController = GetComponent<PlayerInputController>();
         pTest = GetComponent<PlayerInputTest>();
         gameCtrl = GameObject.Find("GameStateController").GetComponent<GameStateController>();
+        sEnd = GameObject.FindGameObjectWithTag("Goal").GetComponent<StageEndJudge>();
     }
 
     void Update()
     {
-        if (!gameCtrl.isProgressed) return;
+        
+        if (!gameCtrl.isProgressed || sEnd.isGameClear || sEnd.isGameOver)
+        {
+            rb.velocity = Vector3.zero;
+            return;
+        }
         Move();
     }
 

@@ -17,6 +17,8 @@ public class IceObjectGenerator : MonoBehaviour
     private GameObject ice;
     [SerializeField]
     private float speed;    //1秒に動かせる距離
+    [SerializeField]
+    private float decreaseWater; //足場を作ったときに減る水の高さ
     private GameStateController ctrl;
     private GameObject player;
     private GameObject moveObject;
@@ -28,7 +30,7 @@ public class IceObjectGenerator : MonoBehaviour
     void Start()
     {
         ctrl = GameObject.Find("GameStateController").GetComponent<GameStateController>();
-        gCtrl = GameObject.Find("GeneratableIceController").GetComponent<GeneratableIceCounter>();
+        gCtrl = GameObject.Find("GeneratableIceCounter").GetComponent<GeneratableIceCounter>();
         wCtrl = GameObject.Find("WaterHeightController").GetComponent<WaterHeightController>();
         player = GameObject.FindGameObjectWithTag("Player");
         dir = IceDirection.NON;
@@ -83,6 +85,7 @@ public class IceObjectGenerator : MonoBehaviour
         ctrl.isProgressed = false;
         moveObject = Instantiate(ice, new Vector3(player.transform.position.x, wCtrl.waterHeight, player.transform.position.z), Quaternion.Euler(0.0f, 0.0f, 0.0f));
         isCreate = false;
+        wCtrl.waterHeight -= decreaseWater;
     }
 
     private void MoveIce()
