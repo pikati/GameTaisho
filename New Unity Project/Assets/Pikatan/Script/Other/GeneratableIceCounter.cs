@@ -4,5 +4,12 @@ using UnityEngine;
 
 public class GeneratableIceCounter : MonoBehaviour
 {
-    public int generatableIceQuantity { get; set; } = 0; //足場を作れる量
+    [SerializeField]
+    private int iceNum;
+    public int generatableIceQuantity { get; set; } //足場を作れる量
+
+    private void Start()
+    {
+        generatableIceQuantity = iceNum;
+    }
 }

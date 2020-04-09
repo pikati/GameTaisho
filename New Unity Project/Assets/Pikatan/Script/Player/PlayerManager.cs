@@ -19,6 +19,7 @@ public class PlayerManager : MonoBehaviour
     private PlayerInputTest pTest;
     private GameStateController gameCtrl;
     private StageEndJudge sEnd;
+    private PlayerInputManager pManager;
     #endregion
 
     #region propaty
@@ -32,6 +33,7 @@ public class PlayerManager : MonoBehaviour
         pTest = GetComponent<PlayerInputTest>();
         gameCtrl = GameObject.Find("GameStateController").GetComponent<GameStateController>();
         sEnd = GameObject.FindGameObjectWithTag("Goal").GetComponent<StageEndJudge>();
+        pManager = GetComponent<PlayerInputManager>();
     }
 
     void Update()
@@ -47,7 +49,8 @@ public class PlayerManager : MonoBehaviour
 
     private void Move()
     {
-        moveDirection = new Vector2(pTest.moveDirection, rb.velocity.y / speed);
+        //moveDirection = new Vector2(pTest.moveDirection, rb.velocity.y / speed);
+        moveDirection = new Vector2(pManager.direction.x, rb.velocity.y / speed);
         //入力があるとき
         if (moveDirection.magnitude >= 0.05f)
         {
@@ -65,10 +68,10 @@ public class PlayerManager : MonoBehaviour
     }
 
     #region Input
-    public void OnMove(InputValue inputValue)
-    {
-        //moveDirection = inputValue.Get<Vector2>();
-        Debug.Log("Move" + inputValue.Get<Vector2>());
-    }
+    //public void OnMove(InputValue inputValue)
+    //{
+    //    //moveDirection = inputValue.Get<Vector2>();
+    //    Debug.Log("Move" + inputValue.Get<Vector2>());
+    //}
     #endregion
 }

@@ -9,25 +9,28 @@ public class SceneChanger : MonoBehaviour
     [SerializeField]
     private string nextSceneName;
     private StageEndJudge sEnd;
+    private PlayerInputManager pManager;
     // Start is called before the first frame update
     void Start()
     {
         sEnd = GameObject.FindGameObjectWithTag("Goal").GetComponent<StageEndJudge>();
+        pManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInputManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Keyboard.current.rightCtrlKey.isPressed)
+        if(Keyboard.current.rKey.isPressed) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        if (!sEnd.isGameClear) return;
+        if(pManager.isDecide)
         {
-            if (sEnd.isGameClear)
-            {
-                SceneManager.LoadScene(nextSceneName);
-            }
-            if (sEnd.isGameOver)
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            }
+            SceneManager.LoadScene(nextSceneName);
+            pManager.SwitchActionMap("Player");
+            //if (sEnd.isGameOver)
+            //{
+            //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //}
         }
         if (Keyboard.current.escapeKey.isPressed)
         {

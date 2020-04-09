@@ -12,6 +12,6 @@ public class SceneController : MonoBehaviour
 
     public void ChengeScene(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
+        
     }
 }

@@ -6,7 +6,7 @@ public class ObjectHeightController : MonoBehaviour
 {
 
     protected WaterHeightController contoller;    //水面の高さコントローラー
-    protected Vector3 position;   //オブジェクトの座標
+    private Vector3 position;   //オブジェクトの座標
 
     protected void Init()
     {
@@ -14,7 +14,7 @@ public class ObjectHeightController : MonoBehaviour
         position = transform.position;
     }
 
-    protected void UpdatePosition()
+    protected virtual void UpdatePosition()
     {
         position = transform.position;
         position.y = contoller.waterHeight;
