@@ -20,16 +20,18 @@ public class CameraController : MonoBehaviour
     private bool isUp;  //カメラが上昇するか
     private bool isDown;//カメラが下降するか
     private CameraDir dir;
-    private float max = 3.0f;
-    private float min = -3.0f;
+    private float max = 5.0f;
+    private float min = -5.0f;
 
     private const float CAMERA_Y = 4.0f;
     private const float CAMERA_Z = -25.0f;
     private const float CAMERA_MOVE_RAITO = 5.0f;
+    private PlayerInputManager pManager;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        pManager = player.GetComponent<PlayerInputManager>();
         position = new Vector3(0.0f, CAMERA_Y, CAMERA_Z);
         dir = CameraDir.NON;
     }
@@ -82,19 +84,35 @@ public class CameraController : MonoBehaviour
 
     private void InputCamera()
     {
-        if ((Keyboard.current.upArrowKey.isPressed || Keyboard.current.wKey.isPressed) && Keyboard.current.leftShiftKey.isPressed)
+        //if ((Keyboard.current.upArrowKey.isPressed || Keyboard.current.wKey.isPressed) && Keyboard.current.leftShiftKey.isPressed)
+        //{
+        //    dir = CameraDir.UP;
+        //}
+        //else if ((Keyboard.current.downArrowKey.isPressed || Keyboard.current.sKey.isPressed) && Keyboard.current.leftShiftKey.isPressed)
+        //{
+        //    dir = CameraDir.DOWN;
+        //}
+        //else if ((Keyboard.current.rightArrowKey.isPressed || Keyboard.current.aKey.isPressed) && Keyboard.current.leftShiftKey.isPressed)
+        //{
+        //    dir = CameraDir.RIGHT;
+        //}
+        //else if ((Keyboard.current.leftArrowKey.isPressed || Keyboard.current.dKey.isPressed) && Keyboard.current.leftShiftKey.isPressed)
+        //{
+        //    dir = CameraDir.LEFT;
+        //}
+        if(pManager.cameraDirection.y >= 0.3)
         {
             dir = CameraDir.UP;
         }
-        else if ((Keyboard.current.downArrowKey.isPressed || Keyboard.current.sKey.isPressed) && Keyboard.current.leftShiftKey.isPressed)
+        else if(pManager.cameraDirection.y <= -0.3)
         {
             dir = CameraDir.DOWN;
         }
-        else if ((Keyboard.current.rightArrowKey.isPressed || Keyboard.current.aKey.isPressed) && Keyboard.current.leftShiftKey.isPressed)
+        else if(pManager.cameraDirection.x >= 0.3)
         {
             dir = CameraDir.RIGHT;
         }
-        else if ((Keyboard.current.leftArrowKey.isPressed || Keyboard.current.dKey.isPressed) && Keyboard.current.leftShiftKey.isPressed)
+        else if(pManager.cameraDirection.x <= -0.3)
         {
             dir = CameraDir.LEFT;
         }

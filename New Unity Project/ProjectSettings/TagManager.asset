@@ -9,6 +9,9 @@ TagManager:
   - Start
   - Enemy
   - Stage
+  - StageEdge
+  - StageUp
+  - StageDown
   layers:
   - Default
   - TransparentFX

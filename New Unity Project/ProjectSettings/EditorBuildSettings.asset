@@ -17,6 +17,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Pikatan/Scene/LevelScene/level-3.unity
     guid: 57aaa8858594f784dbf29e3190da8abc
+  - enabled: 1
+    path: Assets/Pikatan/Scene/LevelScene/level-4.unity
+    guid: 846b089a7f2b8ce4ea56b2847d94ddc6
+  - enabled: 1
+    path: Assets/Pikatan/Scene/LevelScene/level-5.unity
+    guid: 77d689fc1d91ae4469e0166dd235f3a6
+  - enabled: 1
+    path: Assets/Pikatan/Scene/LevelScene/level-6.unity
+    guid: a2aebb5b216396c49bff1eab149cad8c
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: c79d7aa44bcccd640a03bbe3228eae54,
       type: 2}

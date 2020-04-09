@@ -17,8 +17,6 @@ public class IceObjectGenerator : MonoBehaviour
     private GameObject ice;
     [SerializeField]
     private float speed;    //1秒に動かせる距離
-    [SerializeField]
-    private float decreaseWater; //足場を作ったときに減る水の高さ
     private GameStateController ctrl;
     private GameObject player;
     private GameObject moveObject;
@@ -26,6 +24,8 @@ public class IceObjectGenerator : MonoBehaviour
     private GeneratableIceCounter gCtrl;
     private WaterHeightController wCtrl;
     private bool isCreate;
+    private PlayerInputManager pManager;
+    private BoxCollider[] bCollider;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +33,7 @@ public class IceObjectGenerator : MonoBehaviour
         gCtrl = GameObject.Find("GeneratableIceCounter").GetComponent<GeneratableIceCounter>();
         wCtrl = GameObject.Find("WaterHeightController").GetComponent<WaterHeightController>();
         player = GameObject.FindGameObjectWithTag("Player");
+        pManager = player.GetComponent<PlayerInputManager>();
         dir = IceDirection.NON;
         isCreate = false;
         CheckMiss();
@@ -48,18 +49,22 @@ public class IceObjectGenerator : MonoBehaviour
 
     private void Input()
     {
-        if(Keyboard.current.spaceKey.isPressed && ctrl.isProgressed)
+        
+
+        if (pManager.isCreate && ctrl.isProgressed)
         {
+            if (gCtrl.generatableIceQuantity <= 0) return;
             isCreate = true;
+            pManager.SwitchActionMap("Ice");
         }
 
         if (!ctrl.isProgressed)
         {
-            if ((Keyboard.current.rightArrowKey.isPressed || Keyboard.current.dKey.isPressed) && !Keyboard.current.leftShiftKey.isPressed)
+            if (pManager.iceDirection.x >= 0.01)
             {
                 dir = IceDirection.RIGHT;
             }
-            else if ((Keyboard.current.leftArrowKey.isPressed || Keyboard.current.aKey.isPressed) && !Keyboard.current.leftShiftKey.isPressed)
+            else if (pManager.iceDirection.x <= -0.01)
             {
                 dir = IceDirection.LEFT;
             }
@@ -68,10 +73,14 @@ public class IceObjectGenerator : MonoBehaviour
                 dir = IceDirection.NON;
             }
 
-            if(Keyboard.current.enterKey.isPressed)
+            if(pManager.isIceDecide)
             {
                 ctrl.isProgressed = true;
+                bCollider[1].enabled = true;
+                bCollider[0].enabled = true;
+                bCollider = null;
                 moveObject = null;
+                pManager.SwitchActionMap("Player");
             }
         }
     }
@@ -79,13 +88,15 @@ public class IceObjectGenerator : MonoBehaviour
     private void Create()
     {
         if (!isCreate) return;
-        if (gCtrl.generatableIceQuantity <= 0) return;
+        
 
         gCtrl.generatableIceQuantity--;
         ctrl.isProgressed = false;
         moveObject = Instantiate(ice, new Vector3(player.transform.position.x, wCtrl.waterHeight, player.transform.position.z), Quaternion.Euler(0.0f, 0.0f, 0.0f));
+        bCollider = moveObject.GetComponents<BoxCollider>();
+        bCollider[0].enabled = false;
+        bCollider[1].enabled = false;
         isCreate = false;
-        wCtrl.waterHeight -= decreaseWater;
     }
 
     private void MoveIce()

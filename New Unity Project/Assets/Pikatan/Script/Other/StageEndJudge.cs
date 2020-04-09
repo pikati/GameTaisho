@@ -19,15 +19,15 @@ public class StageEndJudge : MonoBehaviour
         endText = GameObject.Find("EndText").GetComponent<EndText>();
     }
 
-    private void Update()
-    {
-        if(ctrl.waterHeight >= player.transform.position.y + PLAYER_HEGIHT)
-        {
-            isGameOver = true;
-            endText.DisplayGameOver();
-            Debug.Log("GameOver");
-        }
-    }
+    //private void Update()
+    //{
+    //    if(ctrl.waterHeight >= player.transform.position.y + PLAYER_HEGIHT)
+    //    {
+    //        isGameOver = true;
+    //        endText.DisplayGameOver();
+    //        Debug.Log("GameOver");
+    //    }
+    //}
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -36,6 +36,7 @@ public class StageEndJudge : MonoBehaviour
             isGameClear = true;
             Debug.Log("Goal");
             endText.DisplayGameClear();
+            player.GetComponent<PlayerInputManager>().SwitchActionMap("UI");
         }
     }
 }
