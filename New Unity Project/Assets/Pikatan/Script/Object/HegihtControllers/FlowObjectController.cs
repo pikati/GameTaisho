@@ -11,17 +11,33 @@ public class FlowObjectController : ObjectHeightController
     private float angle = 0;
     private Vector3 collisionPosition;
     private DayNightChanger dnChanger;
+    private GameStateController gameCtrl;
     private bool oldIsDay;  //前フレームが昼か夜かを記憶しておく（昼夜を切り替えたときに足場とステージをほんの少し遠ざけるため）
+    enum FlowingDir
+    {
+        UP,
+        DOWN,
+        RIGHT,
+        LEFT,
+        NON
+    }
+
+    private float speed;
+    private FlowingDir flowDir;
     private void Start()
     {
         Init();
         collisionPosition = new Vector3(0.0f, 0.0f, 0.0f);
         dnChanger = GameObject.Find("DayNightChanger").GetComponent<DayNightChanger>();
+        gameCtrl = GameObject.Find("GameStateController").GetComponent<GameStateController>();
         oldIsDay = true;
+        flowDir = FlowingDir.NON;
+        speed = 1.0f;
     }
 
     private void Update()
     {
+        if (!gameCtrl.isProgressed) return;
         UpdatePosition();
     }
 
@@ -30,75 +46,123 @@ public class FlowObjectController : ObjectHeightController
         isCollisionStage = isCollisionStageDown | isCollisionStageUp;
         float y = transform.position.y;
         //なににもぶつかっていないときは親のアップデート実行
-        if (!isCollisionStage && !isCollisionStageEdge)
+        if (!isCollisionStage && !isCollisionStageEdge && flowDir == FlowingDir.NON)
         {
             base.UpdatePosition();
         }
         //ステージにぶつかってその角度がアレなときは停止
-        else if(isCollisionStage && (int)angle % 90 == 0)
+        else if (isCollisionStage && (int)angle % 90 == 0)
         {
-            transform.position = collisionPosition;
-
-            //下側にぶつかったとき
-            if(isCollisionStageDown)
-            {
-                //水の高さが自身よりも低くなったらそっちに合わせる
-                if (transform.position.y >= contoller.waterHeight)
-                {
-                    transform.position = new Vector3(transform.position.x, contoller.waterHeight, transform.position.z);
-                }
-            }
-            //上側にぶつかったとき
-            if(isCollisionStageUp)
-            {
-                //水の高さが自身よりも高くなったらそっちに合わせる
-                if (contoller.waterHeight >= transform.position.y)
-                {
-                    transform.position = new Vector3(transform.position.x, contoller.waterHeight, transform.position.z);
-                }
-            }
+            MoveStop();
         }
         //ステージの側面にぶつかったときも停止
-        else if(isCollisionStageEdge)
+        else if (isCollisionStageEdge)
         {
-            transform.position = collisionPosition;
-            //水の高さが自身よりも低くなったらそっちに合わせる
-            if (transform.position.y >= contoller.waterHeight)
-            {
-                transform.position = new Vector3(transform.position.x, contoller.waterHeight, transform.position.z);
-            }
+            LowerSideStop();
         }
         //ステージにぶつかってそのステージが傾いていた時はいい感じに移動
-        else if(isCollisionStage && (int)angle % 90 != 0)
+        else if (isCollisionStage && (int)angle % 90 != 0)
         {
-            bool isDay = dnChanger.isDay;
-            int n = 1;
-            if(!isDay)
-            {
-                n = -1;
-            }
-            float dTime = Time.deltaTime;
-            float X = Mathf.Cos(Mathf.Deg2Rad * angle) / Mathf.Sin(Mathf.Deg2Rad * angle);
-            float speed = contoller.GetUpwardSpeed();
-            float a = 0;
-            //昼夜が切り替わったとき
-            if (oldIsDay != isDay)
-            {
-                //昼になったら足場をほんの少し上げてステージと当たらないようにする
-                if (isDay)
-                {
-                    a = 0.05f;
-                }
-                //夜になったら足場をほんの少し下げてステージと当たらないようにする
-                else
-                {
-                    a = -0.05f;
-                }
-            }
-            transform.position += new Vector3(X * speed * dTime * n, speed * dTime * n + a, 0);
-           
+            SlideMove();
+        }
+        //水流にぶつかっているとき
+        else if (IsEnterFlowing())
+        {
+            FlowingMove();
         }
         oldIsDay = dnChanger.isDay;
+    }
+
+    private void MoveStop()
+    {
+        //下側にぶつかったとき
+        if (isCollisionStageDown)
+        {
+            UpperSideStop();
+        }
+        //上側にぶつかったとき
+        if (isCollisionStageUp)
+        {
+            LowerSideStop();
+        }
+    }
+
+    private void UpperSideStop()
+    {
+        transform.position = collisionPosition;
+        //水の高さが自身よりも高くなったらそっちに合わせる
+        if (contoller.waterHeight >= transform.position.y)
+        {
+            transform.position = new Vector3(transform.position.x, contoller.waterHeight, transform.position.z);
+        }
+    }
+
+    private void LowerSideStop()
+    {
+        transform.position = collisionPosition;
+        //水の高さが自身よりも低くなったらそっちに合わせる
+        if (transform.position.y >= contoller.waterHeight)
+        {
+            transform.position = new Vector3(transform.position.x, contoller.waterHeight, transform.position.z);
+        }
+    }
+
+    private void SlideMove()
+    {
+        bool isDay = dnChanger.isDay;
+        int n = 1;
+        if (!isDay)
+        {
+            n = -1;
+        }
+        float dTime = Time.deltaTime;
+        float X = Mathf.Cos(Mathf.Deg2Rad * angle) / Mathf.Sin(Mathf.Deg2Rad * angle);
+        float speed = contoller.GetUpwardSpeed();
+        float a = 0;
+        //昼夜が切り替わったとき
+        if (oldIsDay != isDay)
+        {
+            //昼になったら足場をほんの少し上げてステージと当たらないようにする
+            if (isDay)
+            {
+                a = 0.05f;
+            }
+            //夜になったら足場をほんの少し下げてステージと当たらないようにする
+            else
+            {
+                a = -0.05f;
+            }
+        }
+        transform.position += new Vector3(X * speed * dTime * n, speed * dTime * n + a, 0);
+    }
+
+    private void FlowingMove()
+    {
+        Vector3 deltaMove = Vector3.zero;
+        switch (flowDir)
+        {
+            case FlowingDir.UP:
+                deltaMove = new Vector3(0.0f, speed * Time.deltaTime, 0.0f);
+                break;
+            case FlowingDir.DOWN:
+                deltaMove = new Vector3(0.0f, speed * Time.deltaTime * -1, 0.0f);
+                break;
+            case FlowingDir.RIGHT:
+                deltaMove = new Vector3(speed * Time.deltaTime, 0.0f, 0.0f);
+                break;
+            case FlowingDir.LEFT:
+                deltaMove = new Vector3(speed * Time.deltaTime * -1, 0.0f, 0.0f);
+                break;
+            default:
+                break;
+        }
+
+        transform.position += deltaMove;
+    }
+
+    private bool IsEnterFlowing()
+    {
+        return flowDir == FlowingDir.UP || flowDir == FlowingDir.DOWN || flowDir == FlowingDir.RIGHT || flowDir == FlowingDir.LEFT;
     }
 
     #region Collision
@@ -146,6 +210,28 @@ public class FlowObjectController : ObjectHeightController
             angle = other.transform.rotation.eulerAngles.z;
             isCollisionStageDown = true;
         }
+
+        switch (other.tag)
+        {
+            case "FlowUp":
+                flowDir = FlowingDir.UP;
+                speed = other.gameObject.GetComponent<FlowingWater>().speed;
+                break;
+            case "FlowDown":
+                flowDir = FlowingDir.DOWN;
+                speed = other.gameObject.GetComponent<FlowingWater>().speed;
+                break;
+            case "FlowRight":
+                flowDir = FlowingDir.RIGHT;
+                speed = other.gameObject.GetComponent<FlowingWater>().speed;
+                break;
+            case "FlowLeft":
+                flowDir = FlowingDir.LEFT;
+                speed = other.gameObject.GetComponent<FlowingWater>().speed;
+                break;
+            default:
+                break;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -169,6 +255,8 @@ public class FlowObjectController : ObjectHeightController
             isCollisionStageDown = false;
             angle = 0;
         }
+        //if (other.CompareTag("FlowUp") || other.CompareTag("FlowDown") || other.CompareTag("FlowRight") || other.CompareTag("FlowLeft"))
+        //    flowDir = FlowingDir.NON;
     }
     #endregion
 }

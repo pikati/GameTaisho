@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7980247825481654241}
   - component: {fileID: 2845139065673807494}
   - component: {fileID: 8899154085909193286}
+  - component: {fileID: 4824068490130268269}
   m_Layer: 0
   m_Name: Flow
   m_TagString: Move
@@ -120,3 +121,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4824068490130268269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 823101332496470142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21814d1ee6b1f242b7818018dbcda76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
