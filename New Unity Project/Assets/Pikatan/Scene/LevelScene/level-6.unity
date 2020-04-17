@@ -987,7 +987,7 @@ PrefabInstance:
     - target: {fileID: 7534473236809825830, guid: 30a97bfc158931844a00dfc1ea1ad564,
         type: 3}
       propertyPath: nextSceneName
-      value: RoadTest
+      value: level-7
       objectReference: {fileID: 0}
     - target: {fileID: 7534473236975149541, guid: 30a97bfc158931844a00dfc1ea1ad564,
         type: 3}
