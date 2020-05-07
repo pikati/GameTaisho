@@ -9,12 +9,14 @@ public class DayNightChanger : MonoBehaviour
     private PlayerInputManager pManager;
     private DisplayDayNight ddn;
     private DayNightLighting dnLight;
+    private FlowingWaterManager fwm;
 
     private void Start()
     {
         pManager = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInputManager>();
         ddn = GetComponent<DisplayDayNight>();
         dnLight = GetComponent<DayNightLighting>();
+        fwm = GameObject.Find("FlowingWaterManager").GetComponent<FlowingWaterManager>();
     }
     void Update()
     {
@@ -23,6 +25,7 @@ public class DayNightChanger : MonoBehaviour
             isDay = !isDay;
             ddn.ChangeSky(isDay);
             dnLight.ChangeLight(isDay);
+            fwm.SetVisibleFlowingWaters();
         }
     }
 }

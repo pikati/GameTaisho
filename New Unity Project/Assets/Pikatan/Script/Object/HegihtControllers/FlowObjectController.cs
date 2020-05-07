@@ -13,17 +13,9 @@ public class FlowObjectController : ObjectHeightController
     private DayNightChanger dnChanger;
     private GameStateController gameCtrl;
     private bool oldIsDay;  //前フレームが昼か夜かを記憶しておく（昼夜を切り替えたときに足場とステージをほんの少し遠ざけるため）
-    enum FlowingDir
-    {
-        UP,
-        DOWN,
-        RIGHT,
-        LEFT,
-        NON
-    }
 
     private float speed;
-    private FlowingDir flowDir;
+    private FlowDir flowDir;
     private void Start()
     {
         Init();
@@ -31,7 +23,7 @@ public class FlowObjectController : ObjectHeightController
         dnChanger = GameObject.Find("DayNightChanger").GetComponent<DayNightChanger>();
         gameCtrl = GameObject.Find("GameStateController").GetComponent<GameStateController>();
         oldIsDay = true;
-        flowDir = FlowingDir.NON;
+        flowDir = FlowDir.NON;
         speed = 1.0f;
     }
 
@@ -46,7 +38,7 @@ public class FlowObjectController : ObjectHeightController
         isCollisionStage = isCollisionStageDown | isCollisionStageUp;
         float y = transform.position.y;
         //なににもぶつかっていないときは親のアップデート実行
-        if (!isCollisionStage && !isCollisionStageEdge && flowDir == FlowingDir.NON)
+        if (!isCollisionStage && !isCollisionStageEdge && flowDir == FlowDir.NON)
         {
             base.UpdatePosition();
         }
@@ -138,31 +130,40 @@ public class FlowObjectController : ObjectHeightController
 
     private void FlowingMove()
     {
+        bool isDay = dnChanger.isDay;
         Vector3 deltaMove = Vector3.zero;
         switch (flowDir)
         {
-            case FlowingDir.UP:
+            case FlowDir.UP:
                 deltaMove = new Vector3(0.0f, speed * Time.deltaTime, 0.0f);
                 break;
-            case FlowingDir.DOWN:
+            case FlowDir.DOWN:
                 deltaMove = new Vector3(0.0f, speed * Time.deltaTime * -1, 0.0f);
                 break;
-            case FlowingDir.RIGHT:
+            case FlowDir.RIGHT:
                 deltaMove = new Vector3(speed * Time.deltaTime, 0.0f, 0.0f);
                 break;
-            case FlowingDir.LEFT:
+            case FlowDir.LEFT:
                 deltaMove = new Vector3(speed * Time.deltaTime * -1, 0.0f, 0.0f);
                 break;
             default:
                 break;
         }
-
+        if (oldIsDay != isDay)
+        {
+            ResetDirection();
+        }
         transform.position += deltaMove;
     }
 
     private bool IsEnterFlowing()
     {
-        return flowDir == FlowingDir.UP || flowDir == FlowingDir.DOWN || flowDir == FlowingDir.RIGHT || flowDir == FlowingDir.LEFT;
+        return flowDir == FlowDir.UP || flowDir == FlowDir.DOWN || flowDir == FlowDir.RIGHT || flowDir == FlowDir.LEFT;
+    }
+
+    private void ResetDirection()
+    {
+        flowDir = FlowDir.NON;
     }
 
     #region Collision
@@ -211,26 +212,11 @@ public class FlowObjectController : ObjectHeightController
             isCollisionStageDown = true;
         }
 
-        switch (other.tag)
+        if(other.CompareTag("FlowUp") || other.CompareTag("FlowDown") || other.CompareTag("FlowRight") || other.CompareTag("FlowLeft"))
         {
-            case "FlowUp":
-                flowDir = FlowingDir.UP;
-                speed = other.gameObject.GetComponent<FlowingWater>().speed;
-                break;
-            case "FlowDown":
-                flowDir = FlowingDir.DOWN;
-                speed = other.gameObject.GetComponent<FlowingWater>().speed;
-                break;
-            case "FlowRight":
-                flowDir = FlowingDir.RIGHT;
-                speed = other.gameObject.GetComponent<FlowingWater>().speed;
-                break;
-            case "FlowLeft":
-                flowDir = FlowingDir.LEFT;
-                speed = other.gameObject.GetComponent<FlowingWater>().speed;
-                break;
-            default:
-                break;
+            FlowingWater fw = other.GetComponent<FlowingWater>();
+            flowDir = fw.dir;
+            speed = fw.speed;
         }
     }
 
@@ -256,7 +242,7 @@ public class FlowObjectController : ObjectHeightController
             angle = 0;
         }
         //if (other.CompareTag("FlowUp") || other.CompareTag("FlowDown") || other.CompareTag("FlowRight") || other.CompareTag("FlowLeft"))
-        //    flowDir = FlowingDir.NON;
+        //    flowDir = FlowDir.NON;
     }
     #endregion
 }
