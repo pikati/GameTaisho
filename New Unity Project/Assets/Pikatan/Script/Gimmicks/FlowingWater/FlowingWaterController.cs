@@ -72,7 +72,7 @@ public class FlowingWaterController : MonoBehaviour
 
         for (int i = 0; i < WATER_NUM; i++)
         {
-            arrows[i].transform.Find("Arrow").gameObject.SetActive(false);
+            arrows[i].SetActive(false);
         }
     }
 

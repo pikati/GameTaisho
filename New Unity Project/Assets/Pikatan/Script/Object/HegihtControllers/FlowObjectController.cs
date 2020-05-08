@@ -12,16 +12,21 @@ public class FlowObjectController : ObjectHeightController
     private Vector3 collisionPosition;
     private DayNightChanger dnChanger;
     private GameStateController gameCtrl;
+    private Buoyancy b;
     private bool oldIsDay;  //前フレームが昼か夜かを記憶しておく（昼夜を切り替えたときに足場とステージをほんの少し遠ざけるため）
 
     private float speed;
     private FlowDir flowDir;
+    private Vector3 velocity;
+
     private void Start()
     {
         Init();
         collisionPosition = new Vector3(0.0f, 0.0f, 0.0f);
+        velocity = new Vector3(0.0f, 0.0f, 0.0f);
         dnChanger = GameObject.Find("DayNightChanger").GetComponent<DayNightChanger>();
         gameCtrl = GameObject.Find("GameStateController").GetComponent<GameStateController>();
+        b = GetComponent<Buoyancy>();
         oldIsDay = true;
         flowDir = FlowDir.NON;
         speed = 1.0f;
@@ -40,7 +45,7 @@ public class FlowObjectController : ObjectHeightController
         //なににもぶつかっていないときは親のアップデート実行
         if (!isCollisionStage && !isCollisionStageEdge && flowDir == FlowDir.NON)
         {
-            base.UpdatePosition();
+            FlowObjUpdate();
         }
         //ステージにぶつかってその角度がアレなときは停止
         else if (isCollisionStage && (int)angle % 90 == 0)
@@ -63,6 +68,28 @@ public class FlowObjectController : ObjectHeightController
             FlowingMove();
         }
         oldIsDay = dnChanger.isDay;
+    }
+
+    private void FlowObjUpdate()
+    {
+        float time = Time.deltaTime;
+        float t = time * b.buoyancy * 9.8f;
+        float t2 = time * b.GetPro() * 9.8f;
+        Vector3 upVelocity = new Vector3(0.0f, t * 0.997f, 0.0f);
+        Vector3 downVeelocity = new Vector3(0.0f, -t2 * 0.91f, 0.0f);
+        Debug.Log("Flow:" + upVelocity);
+        Debug.Log("Grav:" + downVeelocity);
+        velocity += upVelocity + downVeelocity;
+        if(velocity.y > 3.0f)
+        {
+            velocity = new Vector3(0.0f, 3.0f, 0.0f);
+        }
+        else if(velocity.y < -1.5f)
+        {
+            velocity = new Vector3(0.0f, -1.5f, 0.0f);
+        }
+        transform.position += velocity * Time.deltaTime;
+
     }
 
     private void MoveStop()
