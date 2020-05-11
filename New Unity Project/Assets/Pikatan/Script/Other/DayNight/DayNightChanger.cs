@@ -17,15 +17,20 @@ public class DayNightChanger : MonoBehaviour
         ddn = GetComponent<DisplayDayNight>();
         dnLight = GetComponent<DayNightLighting>();
         fwm = GameObject.Find("FlowingWaterManager").GetComponent<FlowingWaterManager>();
+        DayNightFade.OnEndFade += ChangeDayNight;
     }
     void Update()
     {
         if (pManager.isChange)
         {
-            isDay = !isDay;
-            ddn.ChangeSky(isDay);
-            dnLight.ChangeLight(isDay);
-            fwm.SetVisibleFlowingWaters();
+            DayNightFade.FadeIn();
         }
+    }
+
+    private void ChangeDayNight()
+    {
+        isDay = !isDay;
+        ddn.ChangeSky(isDay);
+        dnLight.ChangeLight(isDay);
     }
 }

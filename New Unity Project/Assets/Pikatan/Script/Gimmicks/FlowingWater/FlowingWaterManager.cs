@@ -7,6 +7,7 @@ public class FlowingWaterManager : MonoBehaviour
 {
     private GameObject[] flowingWaters;
     private FlowingWaterController[] fwc;
+    private WaterHeightController whc;
 
     private DayNightChanger dnChanger;
 
@@ -14,7 +15,7 @@ public class FlowingWaterManager : MonoBehaviour
     {
         dnChanger = GameObject.Find("DayNightChanger").GetComponent<DayNightChanger>();
         flowingWaters = GameObject.FindGameObjectsWithTag("FlowingWater");
-
+        whc = GameObject.Find("WaterHeightController").GetComponent<WaterHeightController>();
         fwc = new FlowingWaterController[flowingWaters.Length];
 
         int count = 0;
@@ -24,19 +25,35 @@ public class FlowingWaterManager : MonoBehaviour
             fwc[count] = obj.GetComponent<FlowingWaterController>();
             count++;
         }
-
-        SetVisibleFlowingWaters();
     }
 
-    public void SetVisibleFlowingWaters()
+    private void Update()
     {
+        float[] pos = new float[flowingWaters.Length];
+        GetFWHeight(ref pos);
+        SetActiveFW(pos);
+    }
+
+    private void GetFWHeight(ref float[] pos)
+    {
+        for(int i = 0; i < flowingWaters.Length; i++)
+        {
+            pos[i] = flowingWaters[i].transform.position.y;
+        }
+    }
+
+    private void SetActiveFW(float[] pos)
+    {
+        float h = whc.waterHeight;
+        bool day = dnChanger.isDay;
         for (int i = 0; i < flowingWaters.Length; i++)
         {
-            if(dnChanger.isDay)
+            if(h - 2 >= flowingWaters[i].transform.position.y)
             {
-                if(fwc[i].IsVisibleDay())
+                if(day == fwc[i].IsVisibleDay())
                 {
                     flowingWaters[i].SetActive(true);
+
                 }
                 else
                 {
@@ -45,14 +62,7 @@ public class FlowingWaterManager : MonoBehaviour
             }
             else
             {
-                if (fwc[i].IsVisibleDay())
-                {
                     flowingWaters[i].SetActive(false);
-                }
-                else
-                {
-                    flowingWaters[i].SetActive(true);
-                }
             }
         }
     }

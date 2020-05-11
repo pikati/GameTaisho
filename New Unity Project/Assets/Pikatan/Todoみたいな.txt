@@ -1,7 +1,8 @@
 StageEndJadgeがゴールについてるのはおかしいのでどっかふさわしい場所に移す
 足場のやり直し機能
 StageのRightLeftに上から当たったときの挙動が設定できていないので設定する
-FlowingWaterの親が子のActiveを管理するSpeedもできるとなおよし
+
+FlowingWaterと浮かぶ足場が開始直後に同じところにあると予期せぬ方向に動いちゃうよ～～～
 
 
 

@@ -36,6 +36,7 @@ public class FlowObjectController : ObjectHeightController
     {
         if (!gameCtrl.isProgressed) return;
         UpdatePosition();
+        Debug.Log("Dir:" + flowDir);
     }
 
     protected override void UpdatePosition()
@@ -77,8 +78,6 @@ public class FlowObjectController : ObjectHeightController
         float t2 = time * b.GetPro() * 9.8f;
         Vector3 upVelocity = new Vector3(0.0f, t * 0.997f, 0.0f);
         Vector3 downVeelocity = new Vector3(0.0f, -t2 * 0.91f, 0.0f);
-        Debug.Log("Flow:" + upVelocity);
-        Debug.Log("Grav:" + downVeelocity);
         velocity += upVelocity + downVeelocity;
         if(velocity.y > 3.0f)
         {
