@@ -16,6 +16,7 @@ TagManager:
   - FlowDown
   - FlowRight
   - FlowLeft
+  - Button
   layers:
   - Default
   - TransparentFX
