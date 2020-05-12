@@ -41,13 +41,13 @@ public class WaterHeightController : MonoBehaviour
         int n = isDay ? 1 : -1;   //昼なら-1夜なら1をかけて上昇下降をコントロールする
         if(isDay != oldIsDay)
         {
-            if (isDay == true)
+            if (isDay)
             {
-                waterHeight += 0.05f;
+                waterHeight += 0.5f;
             }
             else
             {
-                waterHeight += -0.05f;
+                waterHeight += -0.5f;
             }
         }
         waterHeight += upwardSpeed * Time.deltaTime * n;

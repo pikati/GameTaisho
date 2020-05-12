@@ -195,6 +195,17 @@
                 },
                 {
                     "name": "",
+                    "id": "f71e1967-3ee7-4d71-b7d2-e89922a2e615",
+                    "path": "<XInputController>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeDayNight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "3a2b4b69-6610-41bf-b2a7-62f295442df7",
                     "path": "<Keyboard>/space",
                     "interactions": "",

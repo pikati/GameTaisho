@@ -13,6 +13,10 @@ public class DayNightLighting : MonoBehaviour
 
     public void ChangeLight(bool isDay)
     {
+        if(myLight == null)
+        {
+            myLight = GameObject.Find("Directional Light").GetComponent<Light>();
+        }
         myLight.color = isDay ? new Color(1, 1, 1) : new Color(0.4f, 0.4f, 0.4f);
     }
 }

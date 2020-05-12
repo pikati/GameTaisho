@@ -36,7 +36,7 @@ public class FlowObjectController : ObjectHeightController
     {
         if (!gameCtrl.isProgressed) return;
         UpdatePosition();
-        Debug.Log("Dir:" + flowDir);
+        //Debug.Log("Dir:" + flowDir);
     }
 
     protected override void UpdatePosition()
@@ -83,9 +83,9 @@ public class FlowObjectController : ObjectHeightController
         {
             velocity = new Vector3(0.0f, 3.0f, 0.0f);
         }
-        else if(velocity.y < -1.5f)
+        else if(velocity.y < -3.0f)
         {
-            velocity = new Vector3(0.0f, -1.5f, 0.0f);
+            velocity = new Vector3(0.0f, -3.0f, 0.0f);
         }
         transform.position += velocity * Time.deltaTime;
 
@@ -93,13 +93,13 @@ public class FlowObjectController : ObjectHeightController
 
     private void MoveStop()
     {
-        //下側にぶつかったとき
-        if (isCollisionStageDown)
+        //上側にぶつかったとき
+        if (isCollisionStageUp)
         {
             UpperSideStop();
         }
-        //上側にぶつかったとき
-        if (isCollisionStageUp)
+        //下側にぶつかったとき
+        if (isCollisionStageDown)
         {
             LowerSideStop();
         }
@@ -143,12 +143,12 @@ public class FlowObjectController : ObjectHeightController
             //昼になったら足場をほんの少し上げてステージと当たらないようにする
             if (isDay)
             {
-                a = 0.05f;
+                a = 0.5f;
             }
             //夜になったら足場をほんの少し下げてステージと当たらないようにする
             else
             {
-                a = -0.05f;
+                a = -0.5f;
             }
         }
         transform.position += new Vector3(X * speed * dTime * n, speed * dTime * n + a, 0);
