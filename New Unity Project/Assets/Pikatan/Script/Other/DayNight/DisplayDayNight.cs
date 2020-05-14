@@ -9,10 +9,6 @@ public class DisplayDayNight : MonoBehaviour
     private Material day;
     [SerializeField]
     private Material night;
-    void Start()
-    {
-        RenderSettings.skybox = day;
-    }
 
     public void ChangeSky(bool isDay)
     {

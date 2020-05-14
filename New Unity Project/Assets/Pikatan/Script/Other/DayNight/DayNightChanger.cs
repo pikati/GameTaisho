@@ -10,6 +10,10 @@ public class DayNightChanger : MonoBehaviour
     private DisplayDayNight ddn;
     private DayNightLighting dnLight;
     private FlowingWaterManager fwm;
+    [SerializeField]
+    private bool isEnable;
+    [SerializeField]
+    private bool isDayTime;
 
     private void Start()
     {
@@ -18,9 +22,12 @@ public class DayNightChanger : MonoBehaviour
         dnLight = GetComponent<DayNightLighting>();
         fwm = GameObject.Find("FlowingWaterManager").GetComponent<FlowingWaterManager>();
         DayNightFade.OnEndFade += ChangeDayNight;
+        isDay = isDayTime;
+        ddn.ChangeSky(isDay);
     }
     void Update()
     {
+        if (!isEnable) return;
         if (pManager.isChange)
         {
             DayNightFade.FadeIn();
