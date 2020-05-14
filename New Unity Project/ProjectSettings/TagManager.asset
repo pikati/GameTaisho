@@ -17,6 +17,8 @@ TagManager:
   - FlowRight
   - FlowLeft
   - Button
+  - FlowingWater
+  - pool
   layers:
   - Default
   - TransparentFX
