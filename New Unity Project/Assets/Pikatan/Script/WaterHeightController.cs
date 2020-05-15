@@ -56,6 +56,21 @@ public class WaterHeightController : MonoBehaviour
         oldIsDay = isDay;
     }
 
+    public float GetMinHeight()
+    {
+        return minHeight;
+    }
+
+    public float GetMaxHeight()
+    {
+        return maxHeight;
+    }
+
+    public float GetStartHeight()
+    {
+        return startHegiht;
+    }
+
     public float GetUpwardSpeed()
     {
         return upwardSpeed;
