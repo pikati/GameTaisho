@@ -99,7 +99,7 @@ public class PlayerManager : MonoBehaviour
             rx = rotationX;
         }
 
-        transform.rotation = Quaternion.Euler(rx, rotationY, 0.0f);
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, rotationY, 0.0f);
     }
 
     private void OnCollisionEnter(Collision collision)
