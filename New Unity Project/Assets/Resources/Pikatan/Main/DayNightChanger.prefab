@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEnable: 1
+  isDayTime: 1
 --- !u!114 &1369817178432278746
 MonoBehaviour:
   m_ObjectHideFlags: 0

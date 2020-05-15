@@ -16,6 +16,8 @@ public class FlowingWater : MonoBehaviour
     public FlowDir dir { get; private set; }
 
     public float speed { get; private set; }
+
+    public bool reverse { get; private set; }
     void Start()
     {
         speed = flowSpeed;
@@ -28,7 +30,7 @@ public class FlowingWater : MonoBehaviour
 
     private void SetDir()
     {
-        bool reverse = fw.IsReverse();
+        reverse = fw.IsReverse();
         if(tag == "FlowUp")
         {
             if(!reverse)
