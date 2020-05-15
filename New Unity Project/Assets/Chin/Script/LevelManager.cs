@@ -23,8 +23,19 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //DeleteAll();
         FillList();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            DeleteAll();
+
+            Scene loadScene = SceneManager.GetActiveScene();
+
+            SceneManager.LoadScene(loadScene.name);
+        }
     }
 
     void FillList()
