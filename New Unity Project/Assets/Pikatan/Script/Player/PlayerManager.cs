@@ -83,6 +83,7 @@ public class PlayerManager : MonoBehaviour
         {
             transform.localScale = new Vector3(15.0f, 15.0f, 15.0f);
         }
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
     }
 
     private void Turn()
