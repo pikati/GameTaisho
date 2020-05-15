@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private PlayerManager pm;
+
     void Start()
     {
-        
+        pm = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
+        Vector3 position = pm.position;
     }
 
     // Update is called once per frame
