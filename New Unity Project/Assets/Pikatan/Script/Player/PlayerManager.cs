@@ -10,6 +10,10 @@ using UnityEngine.InputSystem;
 //水面の高さ管理クラス
 public class PlayerManager : MonoBehaviour
 {
+    private const float RIGHT_ANGLE = 90.0f;
+    private const float LEFT_ANGLE = 270.0f;
+    private const float X_ANGLE_LIMIT = 30.0f;
+
     #region field
     [SerializeField]
     private float speed;    //速度
@@ -20,6 +24,10 @@ public class PlayerManager : MonoBehaviour
     private GameStateController gameCtrl;
     private StageEndJudge sEnd;
     private PlayerInputManager pManager;
+    private float rotationX;
+    private float rotationY;
+    private float rx;
+    public Vector3 position { get; private set; }
     #endregion
 
     #region propaty
@@ -38,7 +46,7 @@ public class PlayerManager : MonoBehaviour
 
     void Update()
     {
-        
+        position = transform.position;
         if (!gameCtrl.isProgressed || sEnd.isGameClear || sEnd.isGameOver)
         {
             rb.velocity = Vector3.zero;
@@ -56,6 +64,7 @@ public class PlayerManager : MonoBehaviour
         {
             //rb.AddForce(moveDirection);
             rb.velocity = moveDirection * speed;
+            Turn();
         }
         //入力がないとき
         else
@@ -67,6 +76,53 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    private void Turn()
+    {
+        if (moveDirection.x > 0.1f)
+        {
+            rotationY = Mathf.Lerp(transform.localEulerAngles.y, RIGHT_ANGLE, 0.1f); 
+            rx = -rotationX;
+        }
+        else if(moveDirection.x < -0.1f)
+        {
+            rotationY = Mathf.Lerp(transform.localEulerAngles.y, LEFT_ANGLE, 0.1f);
+            rx = rotationX;
+        }
+
+        transform.rotation = Quaternion.Euler(rx, rotationY, 0.0f);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Move"))
+        {
+            transform.parent = collision.transform;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Move"))
+        {
+            transform.parent = null;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Stage"))
+        {
+            rotationX = other.transform.localEulerAngles.z;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(other.CompareTag("Stage"))
+        {
+            rotationX = 0;
+        }
+    }
     #region Input
     //public void OnMove(InputValue inputValue)
     //{

@@ -8,8 +8,9 @@ public class FlowingWaterManager : MonoBehaviour
     private GameObject[] flowingWaters;
     private FlowingWaterController[] fwc;
     private WaterHeightController whc;
-
     private DayNightChanger dnChanger;
+
+    private const float HEIGHT_DIFF = 4.0f;
 
     void Start()
     {
@@ -48,7 +49,7 @@ public class FlowingWaterManager : MonoBehaviour
         bool day = dnChanger.isDay;
         for (int i = 0; i < flowingWaters.Length; i++)
         {
-            if(h - 2 >= flowingWaters[i].transform.position.y)
+            if(h - HEIGHT_DIFF >= flowingWaters[i].transform.position.y)
             {
                 if(day == fwc[i].IsVisibleDay())
                 {

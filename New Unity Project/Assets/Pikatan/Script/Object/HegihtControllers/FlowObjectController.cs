@@ -241,7 +241,7 @@ public class FlowObjectController : ObjectHeightController
         if(other.CompareTag("FlowUp") || other.CompareTag("FlowDown") || other.CompareTag("FlowRight") || other.CompareTag("FlowLeft"))
         {
             FlowingWater fw = other.GetComponent<FlowingWater>();
-            flowDir = fw.dir;
+            flowDir = SetDir(fw.reverse, flowDir, fw.dir);
             speed = fw.speed;
         }
     }
@@ -269,6 +269,32 @@ public class FlowObjectController : ObjectHeightController
         }
         //if (other.CompareTag("FlowUp") || other.CompareTag("FlowDown") || other.CompareTag("FlowRight") || other.CompareTag("FlowLeft"))
         //    flowDir = FlowDir.NON;
+    }
+
+    private FlowDir SetDir(bool reverse, FlowDir fd, FlowDir newFd)
+    {
+        if(reverse)
+        {
+            if(fd == FlowDir.DOWN && newFd == FlowDir.LEFT)
+            {
+                return FlowDir.DOWN;
+            }
+            else
+            {
+                return newFd;
+            }
+        }
+        else
+        {
+            if (fd == FlowDir.DOWN && newFd == FlowDir.RIGHT)
+            {
+                return FlowDir.DOWN;
+            }
+            else
+            {
+                return newFd;
+            }
+        }
     }
     #endregion
 }
