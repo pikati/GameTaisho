@@ -19,6 +19,8 @@ TagManager:
   - Button
   - FlowingWater
   - pool
+  - LevelButton
+  - Counter
   layers:
   - Default
   - TransparentFX

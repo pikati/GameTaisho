@@ -10,6 +10,15 @@ public class SceneController : MonoBehaviour
     //    DontDestroyOnLoad(gameObject);
     //}
 
+    private void Start()
+    {
+        int sID = SceneManager.GetActiveScene().buildIndex;
+
+        Debug.Log(sID);
+
+        PlayerPrefs.SetInt("level-" + sID, 1);
+    }
+
     public void ChengeScene(string sceneName)
     {
         
