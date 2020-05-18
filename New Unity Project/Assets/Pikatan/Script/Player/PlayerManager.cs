@@ -77,11 +77,11 @@ public class PlayerManager : MonoBehaviour
         }
         if(isRide)
         {
-            transform.localScale = new Vector3(0.3f, 0.15f, 0.1875f);
+            transform.localScale = new Vector3(2.0f, 1.0f, 1.25f);
         }
         else
         {
-            transform.localScale = new Vector3(15.0f, 15.0f, 15.0f);
+            transform.localScale = new Vector3(100.0f, 100.0f, 100.0f);
         }
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
     }

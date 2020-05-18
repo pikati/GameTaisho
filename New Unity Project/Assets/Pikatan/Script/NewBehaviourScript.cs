@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-    private PlayerManager pm;
+    private StageEndJudge sej;
 
     void Start()
     {
-        pm = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
-        Vector3 position = pm.position;
+        sej = GameObject.FindGameObjectWithTag("Goal").GetComponent<StageEndJudge>();
+        bool b = sej.isGameClear;
     }
 
     // Update is called once per frame
