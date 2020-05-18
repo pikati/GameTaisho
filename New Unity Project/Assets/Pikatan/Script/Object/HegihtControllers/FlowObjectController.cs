@@ -197,6 +197,9 @@ public class FlowObjectController : ObjectHeightController
             case FlowDir.LEFT:
                 deltaMove = new Vector3(speed * Time.deltaTime * -1, 0.0f, 0.0f);
                 break;
+            case FlowDir.STRAIGHT:
+                deltaMove = new Vector3(speed * Time.deltaTime * -Mathf.Cos(Mathf.Deg2Rad * (angle - 90.0f)), speed * Time.deltaTime * -Mathf.Sin(Mathf.Deg2Rad * (angle - 90.0f)), 0.0f);
+                break;
             default:
                 break;
         }
@@ -209,7 +212,7 @@ public class FlowObjectController : ObjectHeightController
 
     private bool IsEnterFlowing()
     {
-        return flowDir == FlowDir.UP || flowDir == FlowDir.DOWN || flowDir == FlowDir.RIGHT || flowDir == FlowDir.LEFT;
+        return flowDir == FlowDir.UP || flowDir == FlowDir.DOWN || flowDir == FlowDir.RIGHT || flowDir == FlowDir.LEFT || flowDir == FlowDir.STRAIGHT;
     }
 
     private void ResetDirection()
@@ -273,6 +276,13 @@ public class FlowObjectController : ObjectHeightController
             FlowingWater fw = other.GetComponent<FlowingWater>();
             flowDir = SetDir(fw.reverse, flowDir, fw.dir);
             speed = fw.speed;
+        }
+        if(other.CompareTag("FlowStraight"))
+        {
+            StraightFlowingWater fw = other.GetComponent<StraightFlowingWater>();
+            flowDir = fw.dir;
+            speed = fw.speed;
+            angle = fw.angle;
         }
     }
 
@@ -349,6 +359,10 @@ public class FlowObjectController : ObjectHeightController
             FlowingWater fw = other.GetComponent<FlowingWater>();
             if (fw.reverse) isLeft = false;
             else            isRight = false;
+        }
+        if(other.CompareTag("FlowStraight"))
+        {
+            angle = 0;
         }
         if (!isUp && !isDown && !isLeft && !isRight) flowDir = FlowDir.NON;
     }
