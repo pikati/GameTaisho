@@ -19,6 +19,11 @@ public class FlowObjectController : ObjectHeightController
     private FlowDir flowDir;
     private Vector3 velocity;
 
+    private bool isUp = false;
+    private bool isDown = false;
+    private bool isLeft = false;
+    private bool isRight = false;
+
     private void Start()
     {
         Init();
@@ -246,6 +251,34 @@ public class FlowObjectController : ObjectHeightController
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("FlowUp"))
+        {
+            FlowingWater fw = other.GetComponent<FlowingWater>();
+            if (fw.reverse) isDown = true;
+            else            isUp = true;
+        }
+        if (other.CompareTag("FlowDown"))
+        {
+            FlowingWater fw = other.GetComponent<FlowingWater>();
+            if (fw.reverse) isUp = true;
+            else            isDown = true;
+        }
+        if (other.CompareTag("FlowLeft"))
+        {
+            FlowingWater fw = other.GetComponent<FlowingWater>();
+            if (fw.reverse) isRight = true;
+            else            isLeft = true;
+        }
+        if (other.CompareTag("FlowRight"))
+        {
+            FlowingWater fw = other.GetComponent<FlowingWater>();
+            if (fw.reverse) isLeft = true;
+            else            isRight = true;
+        }
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Stage") || other.CompareTag("Goal"))
@@ -267,34 +300,55 @@ public class FlowObjectController : ObjectHeightController
             isCollisionStageDown = false;
             angle = 0;
         }
-        //if (other.CompareTag("FlowUp") || other.CompareTag("FlowDown") || other.CompareTag("FlowRight") || other.CompareTag("FlowLeft"))
-        //    flowDir = FlowDir.NON;
+
+        if (other.CompareTag("FlowUp"))
+        {
+            FlowingWater fw = other.GetComponent<FlowingWater>();
+            if (fw.reverse) isDown = false;
+            else            isUp = false;
+        }
+        if (other.CompareTag("FlowDown"))
+        {
+            FlowingWater fw = other.GetComponent<FlowingWater>();
+            if (fw.reverse) isUp = false;
+            else            isDown = false;
+        }
+        if (other.CompareTag("FlowLeft"))
+        {
+            FlowingWater fw = other.GetComponent<FlowingWater>();
+            if (fw.reverse) isRight = false;
+            else            isLeft = false;
+        }
+        if (other.CompareTag("FlowRight"))
+        {
+            FlowingWater fw = other.GetComponent<FlowingWater>();
+            if (fw.reverse) isLeft = false;
+            else            isRight = false;
+        }
     }
 
     private FlowDir SetDir(bool reverse, FlowDir fd, FlowDir newFd)
     {
+        FlowDir re = fd;
+        //反転してるとき
         if(reverse)
         {
-            if(fd == FlowDir.DOWN && newFd == FlowDir.LEFT)
-            {
-                return FlowDir.DOWN;
-            }
-            else
-            {
-                return newFd;
-            }
+            if (fd == FlowDir.DOWN && newFd == FlowDir.LEFT)    re = fd;
+            else                                                re = newFd;
+            if (isUp == isLeft)     re = FlowDir.LEFT;
+            if (isDown && isLeft)   re = FlowDir.DOWN;
         }
+        //そのままの状態のとき
         else
         {
-            if (fd == FlowDir.DOWN && newFd == FlowDir.RIGHT)
-            {
-                return FlowDir.DOWN;
-            }
-            else
-            {
-                return newFd;
-            }
+            if (fd == FlowDir.DOWN && newFd == FlowDir.RIGHT)       re = fd;
+            else if (fd == FlowDir.LEFT && newFd == FlowDir.DOWN)   re = fd;
+            else if(fd == FlowDir.RIGHT && newFd == FlowDir.UP)     re = fd;
+            else                                                    re = newFd;
+            if (isUp && isRight)    re = FlowDir.RIGHT;
+            if (isDown && isRight)  re = FlowDir.DOWN;
         }
+        return re;
     }
     #endregion
 }

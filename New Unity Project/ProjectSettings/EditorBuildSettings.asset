@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/iso/stage/level-a.unity
+    guid: 5252ec698875b49478b2028aa5a026c7
+  - enabled: 1
+    path: Assets/Pikatan/Scene/RoadTest.unity
+    guid: 55d7bc189765ca24eb600882c6b94dea
+ - enabled: 1
     path: Assets/Chin/Scenes/LevelSelect.unity
     guid: 60cc29312778f6b49bdeb1257cf5b6f6
   - enabled: 1
