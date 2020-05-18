@@ -10,17 +10,17 @@ public class FlowingWaterController : MonoBehaviour
     private GameObject[] flows;
 
     [SerializeField]
-    private bool debug;
+    protected bool debug;
 
     [SerializeField]
     private bool reverse;
 
     [SerializeField]
-    private bool isDay;
+    protected bool isDay;
 
     [SerializeField]
-    private bool isNight;
-    void Awake()
+    protected bool isNight;
+    private void Awake()
     {
         CheckDayNgiht();
         GetFlowingWaterObject();
@@ -31,7 +31,7 @@ public class FlowingWaterController : MonoBehaviour
         SetReverseFlowEffect();
     }
 
-    private void CheckDayNgiht()
+    protected void CheckDayNgiht()
     {
         if (isDay && isNight || !isDay && !isNight)
         {

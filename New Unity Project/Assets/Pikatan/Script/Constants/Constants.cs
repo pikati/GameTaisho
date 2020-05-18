@@ -4,5 +4,6 @@
     DOWN,
     RIGHT,
     LEFT,
+    STRAIGHT,
     NON
 }

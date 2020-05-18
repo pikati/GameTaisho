@@ -21,6 +21,7 @@ TagManager:
   - pool
   - LevelButton
   - Counter
+  - FlowStraight
   layers:
   - Default
   - TransparentFX

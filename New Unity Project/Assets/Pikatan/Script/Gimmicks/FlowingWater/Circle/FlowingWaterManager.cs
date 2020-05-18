@@ -24,6 +24,7 @@ public class FlowingWaterManager : MonoBehaviour
         foreach (GameObject obj in flowingWaters)
         {
             fwc[count] = obj.GetComponent<FlowingWaterController>();
+            if (fwc[count] == null) fwc[count] = obj.GetComponent<StraightFlowController>();
             count++;
         }
     }
@@ -47,14 +48,29 @@ public class FlowingWaterManager : MonoBehaviour
     {
         float h = whc.waterHeight;
         bool day = dnChanger.isDay;
+        
         for (int i = 0; i < flowingWaters.Length; i++)
         {
-            if(h - HEIGHT_DIFF >= flowingWaters[i].transform.position.y)
+            float height = flowingWaters[i].transform.position.y;
+            GameObject s = flowingWaters[i].transform.GetChild(0).gameObject;
+            //Straightに対応するためにStartPointが含まれていたら特別な処理
+            if (s.name == "StartPoint")
             {
-                if(day == fwc[i].IsVisibleDay())
+                GameObject e = flowingWaters[i].transform.GetChild(1).gameObject;
+                float sh = s.transform.position.y;
+                float eh = s.transform.position.y;
+                height = sh < eh ? eh : sh;
+                if(h >= height)
                 {
-                    flowingWaters[i].SetActive(true);
+                    if (day == fwc[i].IsVisibleDay())
+                    {
+                        flowingWaters[i].SetActive(true);
 
+                    }
+                    else
+                    {
+                        SetFalse(i);
+                    }
                 }
                 else
                 {
@@ -63,8 +79,24 @@ public class FlowingWaterManager : MonoBehaviour
             }
             else
             {
-                SetFalse(i);
+                if (h - HEIGHT_DIFF >= height)
+                {
+                    if (day == fwc[i].IsVisibleDay())
+                    {
+                        flowingWaters[i].SetActive(true);
+
+                    }
+                    else
+                    {
+                        SetFalse(i);
+                    }
+                }
+                else
+                {
+                    SetFalse(i);
+                }
             }
+            
         }
     }
 
