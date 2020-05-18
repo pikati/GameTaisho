@@ -18,8 +18,7 @@ public class Sealevel : MonoBehaviour
     {
         //水面の下限を取得
         watermin = GameObject.Find("WaterHeightController").GetComponent<WaterHeightController>().GetMinHeight();
-        Debug.Log(watermin);
-       
+        
 
     }
 
@@ -29,16 +28,23 @@ public class Sealevel : MonoBehaviour
         //playerの高さを取得
         playerline = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>().position.y;
 
+       
+
         //水面の下限とplayerの高さの距離を取得
         waterrateMAX = playerline - watermin;
-        
+
+        if (waterrateMAX <= 0)
+        {
+            waterrateMAX = 1;
+        }
+
         //水面の高さを取得
         waterline = GameObject.Find("WaterHeightController").GetComponent<WaterHeightController>().waterHeight;
 
         //水面の高さとplayerの高さの距離を取得
         waterrateNOW = playerline - waterline;
 
-        //水の縦のサイズを計算
+        //水の縦のサイズを計算　　　　-12      -270    1    0/  -3    
         WaterHight = 90.0f * (1.0f-waterrateNOW / waterrateMAX);
 
         //サイズが100以上にならないように設定
@@ -50,10 +56,9 @@ public class Sealevel : MonoBehaviour
         //水の座標Yを計算
         posy = 136 - (100.0f - WaterHight) / 2;
 
-        Debug.Log(WaterHight);
-        Debug.Log(posy);
+        
        
-      
+      　//水の座標・サイズを設定
         panel.GetComponent<RectTransform>().sizeDelta = new Vector2(100.0f, WaterHight);
         panel.GetComponent<RectTransform>().anchoredPosition  = new Vector2(362.0f, posy);
         
