@@ -61,7 +61,7 @@ public class FlowObjectController : ObjectHeightController
         //ステージの側面にぶつかったときも停止
         else if (isCollisionStageEdge)
         {
-            LowerSideStop();
+            StageEdgeStop();
         }
         //ステージにぶつかってそのステージが傾いていた時はいい感じに移動
         else if (isCollisionStage && (int)angle % 90 != 0)
@@ -130,6 +130,26 @@ public class FlowObjectController : ObjectHeightController
         }
     }
 
+    private void StageEdgeStop()
+    {
+        //Edgeが上なら水面が下に行くとそっちに合わせる
+        if(transform.position.y < collisionPosition.y)
+        {
+            if (transform.position.y >= contoller.waterHeight)
+            {
+                transform.position = new Vector3(transform.position.x, contoller.waterHeight, transform.position.z);
+            }
+        }
+        else
+        {
+            if (contoller.waterHeight >= transform.position.y)
+            {
+                transform.position = new Vector3(transform.position.x, contoller.waterHeight, transform.position.z);
+            }
+        }
+            
+    }
+
     private void SlideMove()
     {
         bool isDay = dnChanger.isDay;
@@ -193,6 +213,11 @@ public class FlowObjectController : ObjectHeightController
     }
 
     private void ResetDirection()
+    {
+        flowDir = FlowDir.NON;
+    }
+
+    public void ResetDir()
     {
         flowDir = FlowDir.NON;
     }
@@ -325,6 +350,7 @@ public class FlowObjectController : ObjectHeightController
             if (fw.reverse) isLeft = false;
             else            isRight = false;
         }
+        if (!isUp && !isDown && !isLeft && !isRight) flowDir = FlowDir.NON;
     }
 
     private FlowDir SetDir(bool reverse, FlowDir fd, FlowDir newFd)
@@ -335,7 +361,7 @@ public class FlowObjectController : ObjectHeightController
         {
             if (fd == FlowDir.DOWN && newFd == FlowDir.LEFT)    re = fd;
             else                                                re = newFd;
-            if (isUp == isLeft)     re = FlowDir.LEFT;
+            if (isUp && isLeft)     re = FlowDir.LEFT;
             if (isDown && isLeft)   re = FlowDir.DOWN;
         }
         //そのままの状態のとき

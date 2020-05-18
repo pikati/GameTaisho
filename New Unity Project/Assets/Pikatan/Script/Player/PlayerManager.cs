@@ -28,15 +28,17 @@ public class PlayerManager : MonoBehaviour
     private float rotationY;
     private float rx;
     private bool isRide = false;
-    public Vector3 position { get; private set; }
+    private Vector3 startPos;
     #endregion
 
     #region propaty
     public bool canMove { get; set; } = true;   //プレイヤーが動けるかどうか
+    public Vector3 position { get; private set; }
     #endregion
 
     void Start()
     {
+        startPos = transform.position;
         rb = GetComponent<Rigidbody>();
         //playerInputController = GetComponent<PlayerInputController>();
         pTest = GetComponent<PlayerInputTest>();
@@ -54,6 +56,7 @@ public class PlayerManager : MonoBehaviour
             return;
         }
         Move();
+        if (transform.position.y < -30.0f) Respawn();
     }
 
     private void Move()
@@ -134,6 +137,11 @@ public class PlayerManager : MonoBehaviour
         {
             rotationX = 0;
         }
+    }
+
+    private void Respawn()
+    {
+        transform.position = startPos;
     }
     #region Input
     //public void OnMove(InputValue inputValue)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SceneChanger : MonoBehaviour
 {
@@ -23,6 +24,14 @@ public class SceneChanger : MonoBehaviour
         if(Keyboard.current.rKey.isPressed) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
         if (!sEnd.isGameClear) return;
+        if(nextSceneName == "end")
+        {
+            GameObject obj = GameObject.Find("GameClear");
+            obj.GetComponent<Text>().text = "おしまい 5秒後に終了します";
+            obj.GetComponent<Text>().fontSize = 14;
+            Invoke("Quit", 5);
+            return;
+        }
         if(pManager.isDecide)
         {
             SceneManager.LoadScene(nextSceneName);
@@ -34,11 +43,16 @@ public class SceneChanger : MonoBehaviour
         }
         if (Keyboard.current.escapeKey.isPressed)
         {
+            Quit();
+        }
+    }
+
+    private void Quit()
+    {
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
+        UnityEditor.EditorApplication.isPlaying = false;
 #elif UNITY_STANDALONE
       UnityEngine.Application.Quit();
 #endif
-        }
     }
 }

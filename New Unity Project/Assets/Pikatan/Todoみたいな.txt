@@ -3,6 +3,7 @@ StageEndJadgeがゴールについてるのはおかしいのでどっかふさ�
 StageのRightLeftに上から当たったときの挙動が設定できていないので設定する
 
 FlowingWaterと浮かぶ足場が開始直後に同じところにあると予期せぬ方向に動いちゃうよ～～～
+Goal未完成のStageEndJudgeの分割しる
 
 
 

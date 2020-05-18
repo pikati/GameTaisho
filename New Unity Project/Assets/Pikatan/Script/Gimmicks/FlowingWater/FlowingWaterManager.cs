@@ -58,12 +58,26 @@ public class FlowingWaterManager : MonoBehaviour
                 }
                 else
                 {
-                    flowingWaters[i].SetActive(false);
+                    SetFalse(i);
                 }
             }
             else
             {
-                    flowingWaters[i].SetActive(false);
+                SetFalse(i);
+            }
+        }
+    }
+
+    private void SetFalse(int i)
+    {
+        bool a = flowingWaters[i].activeSelf;
+        flowingWaters[i].SetActive(false);
+        if (a != flowingWaters[i].activeSelf)
+        {
+            GameObject[] flows = GameObject.FindGameObjectsWithTag("Move");
+            foreach (GameObject obj in flows)
+            {
+                obj.GetComponent<FlowObjectController>().ResetDir();
             }
         }
     }
