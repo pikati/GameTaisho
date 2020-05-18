@@ -28,7 +28,7 @@ public class Sealevel : MonoBehaviour
         //playerの高さを取得
         playerline = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>().position.y;
 
-        Debug.Log(playerline);
+       
 
         //水面の下限とplayerの高さの距離を取得
         waterrateMAX = playerline - watermin;
