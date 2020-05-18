@@ -44,6 +44,63 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.000567379, y: 0.0058405814, z: 0.01}
   m_Center: {x: 0.03797509, y: 0.000009499192, z: 0}
+--- !u!1 &4268318147798964901
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4674052940748189401}
+  - component: {fileID: 1733078627289652550}
+  - component: {fileID: 4198459176572151063}
+  m_Layer: 0
+  m_Name: StageEndJudge
+  m_TagString: Goal
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4674052940748189401
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4268318147798964901}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8965558063586443509}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1733078627289652550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4268318147798964901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 080d53bb463992b4ead2280adae9f921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &4198459176572151063
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4268318147798964901}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.029923867, y: 0.018772468, z: 0.01}
+  m_Center: {x: 0.021559414, y: 0.011969209, z: 0}
 --- !u!1 &4890294273602863511
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,11 +529,9 @@ GameObject:
   - component: {fileID: 8965558063586443509}
   - component: {fileID: 8965558063586443510}
   - component: {fileID: 8965558063586443511}
-  - component: {fileID: 3965423172973773403}
-  - component: {fileID: 5853320060394483384}
   m_Layer: 0
   m_Name: Goal
-  m_TagString: Goal
+  m_TagString: Stage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -503,6 +558,7 @@ Transform:
   - {fileID: 7198374635156877002}
   - {fileID: 7261963578411688412}
   - {fileID: 1955070096597618291}
+  - {fileID: 4674052940748189401}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -535,31 +591,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07915607, y: 0.008363915, z: 0.02}
   m_Center: {x: -0.00033861518, y: -0.0008180427, z: 0}
---- !u!114 &3965423172973773403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8965558063586443512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 080d53bb463992b4ead2280adae9f921, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!65 &5853320060394483384
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8965558063586443512}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.024874954, y: 0.02888166, z: 1}
-  m_Center: {x: -0.0002087593, y: 0.017272107, z: 0}
 --- !u!1 &8965558063586518384
 GameObject:
   m_ObjectHideFlags: 0
