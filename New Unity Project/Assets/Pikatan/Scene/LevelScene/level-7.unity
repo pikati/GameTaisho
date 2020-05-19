@@ -370,12 +370,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: IceGenerator
       objectReference: {fileID: 0}
-    - target: {fileID: 4529206008628101592, guid: 9687ffd60156c724c97894f096bebcd8,
-        type: 3}
-      propertyPath: ice
-      value: 
-      objectReference: {fileID: 3089825058041510835, guid: 006987410fbe62941a10609fef681b50,
-        type: 3}
     - target: {fileID: 4529206008628101593, guid: 9687ffd60156c724c97894f096bebcd8,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -27,7 +27,6 @@ public class PlayerManager : MonoBehaviour
     private float rotationX;
     private float rotationY;
     private float rx;
-    private bool isRide = false;
     private Vector3 startPos;
     #endregion
 
@@ -78,14 +77,7 @@ public class PlayerManager : MonoBehaviour
             stop.x = 0;
             rb.velocity = stop;
         }
-        if(isRide)
-        {
-            transform.localScale = new Vector3(2.0f, 1.0f, 1.25f);
-        }
-        else
-        {
-            transform.localScale = new Vector3(100.0f, 100.0f, 100.0f);
-        }
+       
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
     }
 
@@ -107,10 +99,9 @@ public class PlayerManager : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Move") || collision.gameObject.CompareTag("Goal&Move"))
+        if (collision.gameObject.CompareTag("Move"))
         {
             transform.parent = collision.transform;
-            isRide = true;
         }
     }
 
@@ -119,7 +110,6 @@ public class PlayerManager : MonoBehaviour
         if (collision.gameObject.CompareTag("Move"))
         {
             transform.parent = null;
-            isRide = false;
         }
     }
 

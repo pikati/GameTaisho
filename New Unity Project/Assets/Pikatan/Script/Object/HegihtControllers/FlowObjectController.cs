@@ -25,6 +25,8 @@ public class FlowObjectController : ObjectHeightController
     private bool isLeft = false;
     private bool isRight = false;
 
+    private List<float> straightAngle;
+
     private void Start()
     {
         Init();
@@ -36,13 +38,14 @@ public class FlowObjectController : ObjectHeightController
         oldIsDay = true;
         flowDir = FlowDir.NON;
         speed = 1.0f;
+        straightAngle = new List<float>();
     }
 
     private void Update()
     {
         if (!gameCtrl.isProgressed) return;
         UpdatePosition();
-        //Debug.Log("Dir:" + flowDir);
+        Debug.Log(straightAngle.Count);
     }
 
     protected override void UpdatePosition()
@@ -187,7 +190,7 @@ public class FlowObjectController : ObjectHeightController
 
     private void Pool()
     {
-        transform.position = collisionPosition;
+        transform.position = new Vector3(transform.position.x, collisionPosition.y, transform.position.z);
         //水の高さが自身よりも高くなったらそっちに合わせる
         if (contoller.waterHeight >= transform.position.y)
         {
@@ -230,6 +233,7 @@ public class FlowObjectController : ObjectHeightController
                 deltaMove = new Vector3(speed * Time.deltaTime * -1, 0.0f, 0.0f);
                 break;
             case FlowDir.STRAIGHT:
+                float angle = straightAngle[straightAngle.Count - 1];
                 deltaMove = new Vector3(speed * Time.deltaTime * -Mathf.Cos(Mathf.Deg2Rad * (angle - 90.0f)), speed * Time.deltaTime * -Mathf.Sin(Mathf.Deg2Rad * (angle - 90.0f)), 0.0f);
                 break;
             default:
@@ -319,9 +323,8 @@ public class FlowObjectController : ObjectHeightController
             StraightFlowingWater fw = other.GetComponent<StraightFlowingWater>();
             flowDir = fw.dir;
             speed = fw.speed;
-            angle = fw.angle;
+            straightAngle.Add(fw.angle);
         }
-        
     }
 
     private void OnTriggerStay(Collider other)
@@ -404,9 +407,10 @@ public class FlowObjectController : ObjectHeightController
         }
         if(other.CompareTag("FlowStraight"))
         {
-            angle = 0;
+            var endIndex = straightAngle.Count - 1;
+            straightAngle.RemoveAt(endIndex);
         }
-        if (!isUp && !isDown && !isLeft && !isRight) flowDir = FlowDir.NON;
+        if (!isUp && !isDown && !isLeft && !isRight && straightAngle.Count == 0) flowDir = FlowDir.NON;
     }
 
     private FlowDir SetDir(bool reverse, FlowDir fd, FlowDir newFd)
