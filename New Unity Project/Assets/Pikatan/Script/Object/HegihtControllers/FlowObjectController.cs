@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class FlowObjectController : ObjectHeightController
@@ -332,26 +333,58 @@ public class FlowObjectController : ObjectHeightController
         if (other.CompareTag("FlowUp"))
         {
             FlowingWater fw = other.GetComponent<FlowingWater>();
-            if (fw.reverse) isDown = true;
-            else            isUp = true;
+            if (fw.reverse)
+            {
+                isUp = false;
+                isDown = true;
+            }
+            else
+            {
+                isUp = true;
+                isDown = false;
+            }
         }
         if (other.CompareTag("FlowDown"))
         {
             FlowingWater fw = other.GetComponent<FlowingWater>();
-            if (fw.reverse) isUp = true;
-            else            isDown = true;
+            if (fw.reverse)
+            {
+                isUp = true;
+                isDown = false;
+            }
+            else
+            {
+                isUp = false;
+                isDown = true;
+            }
         }
         if (other.CompareTag("FlowLeft"))
         {
             FlowingWater fw = other.GetComponent<FlowingWater>();
-            if (fw.reverse) isRight = true;
-            else            isLeft = true;
+            if (fw.reverse)
+            {
+                isRight = true;
+                isLeft = false;
+            }
+            else
+            {
+                isRight = false;
+                isLeft = true;
+            }
         }
         if (other.CompareTag("FlowRight"))
         {
             FlowingWater fw = other.GetComponent<FlowingWater>();
-            if (fw.reverse) isLeft = true;
-            else            isRight = true;
+            if (fw.reverse)
+            {
+                isRight = false;
+                isLeft = true;
+            }
+            else
+            {
+                isRight = true;
+                isLeft = false;
+            }
         }
     }
 
