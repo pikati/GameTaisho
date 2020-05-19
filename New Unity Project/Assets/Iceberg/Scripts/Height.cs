@@ -20,35 +20,39 @@ public class Height : MonoBehaviour
         {
             gameObjectList.Add(obj);
         }
-        gameObjectList.Add(GameObject.FindGameObjectWithTag("Goal"));
+        GameObject a;
+        if (a = GameObject.FindGameObjectWithTag("Goal&Move"))
+            gameObjectList.Add(a);
+        else
+            gameObjectList.Add(GameObject.FindGameObjectWithTag("Goal"));
     }
 
     // Update is called once per frame
     void Update()
     {
-        var hegiht = waterSurface.GetWaterHeight();
-        foreach (GameObject obj in gameObjectList)
-        {
-            if(obj.transform.position.y <= hegiht)
-            {
-                Vector3 newPos = obj.transform.position;
-                newPos.y = hegiht;
-                obj.transform.position = newPos;
-                var g = obj.GetComponent<Gravity>();
-                if (g)
-                {
-                    g.DisableGravity();
-                }
-            }
-            else
-            {
-                var g = obj.GetComponent<Gravity>();
-                if (g)
-                {
-                    g.EnableGravity();
-                }
-            }
-        }
+        //var hegiht = waterSurface.GetWaterHeight();
+        //foreach (GameObject obj in gameObjectList)
+        //{
+        //    if(obj.transform.position.y <= hegiht)
+        //    {
+        //        Vector3 newPos = obj.transform.position;
+        //        newPos.y = hegiht;
+        //        obj.transform.position = newPos;
+        //        var g = obj.GetComponent<Gravity>();
+        //        if (g)
+        //        {
+        //            g.DisableGravity();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        var g = obj.GetComponent<Gravity>();
+        //        if (g)
+        //        {
+        //            g.EnableGravity();
+        //        }
+        //    }
+        //}
     }
 
     public static void SetFlowObject(GameObject obj)

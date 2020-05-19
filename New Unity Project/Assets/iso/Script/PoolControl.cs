@@ -19,6 +19,8 @@ public class PoolControl: MonoBehaviour
     {
         waterisover = false;//falseが初期設定
        
+        //水面の高さを取得
+        waterline = GameObject.Find("WaterHeightController").GetComponent<WaterHeightController>();
     }
 
 
@@ -27,11 +29,9 @@ public class PoolControl: MonoBehaviour
     void Update()
     {
        
-        //水面の高さを取得
-        waterline = GameObject.Find("WaterHeightController").GetComponent<WaterHeightController>();
         
         //凹の座標取得
-        pos = this.transform.position;
+        pos = transform.position;
 
        
 

@@ -8,6 +8,7 @@ public class FlowObjectController : ObjectHeightController
     private bool isCollisionStageEdge = false;
     private bool isCollisionStageUp = false;
     private bool isCollisionStageDown = false;
+    private bool isCollisionPoolWater = false;
     private float angle = 0;
     private Vector3 collisionPosition;
     private DayNightChanger dnChanger;
@@ -49,7 +50,7 @@ public class FlowObjectController : ObjectHeightController
         isCollisionStage = isCollisionStageDown | isCollisionStageUp;
         float y = transform.position.y;
         //なににもぶつかっていないときは親のアップデート実行
-        if (!isCollisionStage && !isCollisionStageEdge && flowDir == FlowDir.NON)
+        if (!isCollisionStage && !isCollisionStageEdge && !isCollisionPoolWater && flowDir == FlowDir.NON)
         {
             FlowObjUpdate();
         }
@@ -67,6 +68,11 @@ public class FlowObjectController : ObjectHeightController
         else if (isCollisionStage && (int)angle % 90 != 0)
         {
             SlideMove();
+        }
+        //へこみ水に当たったとき
+        else if(isCollisionPoolWater)
+        {
+            Pool();
         }
         //水流にぶつかっているとき
         else if (IsEnterFlowing())
@@ -179,6 +185,32 @@ public class FlowObjectController : ObjectHeightController
         transform.position += new Vector3(X * speed * dTime * n, speed * dTime * n + a, 0);
     }
 
+    private void Pool()
+    {
+        transform.position = collisionPosition;
+        //水の高さが自身よりも高くなったらそっちに合わせる
+        if (contoller.waterHeight >= transform.position.y)
+        {
+            transform.position = new Vector3(transform.position.x, contoller.waterHeight, transform.position.z);
+        }
+
+        //float time = Time.deltaTime;
+        //float t = time * b.buoyancy * 9.8f;
+        //float t2 = time * b.GetPro() * 9.8f;
+        //Vector3 upVelocity = new Vector3(0.0f, t * 0.997f, 0.0f);
+        //Vector3 downVeelocity = new Vector3(0.0f, -t2 * 0.91f, 0.0f);
+        //velocity += upVelocity + downVeelocity;
+        //if (velocity.y > 3.0f)
+        //{
+        //    velocity = new Vector3(0.0f, 3.0f, 0.0f);
+        //}
+        //else if (velocity.y < -3.0f)
+        //{
+        //    velocity = new Vector3(0.0f, -3.0f, 0.0f);
+        //}
+        //transform.position += velocity * Time.deltaTime;
+    }
+
     private void FlowingMove()
     {
         bool isDay = dnChanger.isDay;
@@ -270,8 +302,13 @@ public class FlowObjectController : ObjectHeightController
             angle = other.transform.rotation.eulerAngles.z;
             isCollisionStageDown = true;
         }
+        if (other.CompareTag("PoolWater"))
+        {
+            collisionPosition = other.GetComponent<PoolWater>().position;
+            isCollisionPoolWater = true;
+        }
 
-        if(other.CompareTag("FlowUp") || other.CompareTag("FlowDown") || other.CompareTag("FlowRight") || other.CompareTag("FlowLeft"))
+        if (other.CompareTag("FlowUp") || other.CompareTag("FlowDown") || other.CompareTag("FlowRight") || other.CompareTag("FlowLeft"))
         {
             FlowingWater fw = other.GetComponent<FlowingWater>();
             flowDir = SetDir(fw.reverse, flowDir, fw.dir);
@@ -284,6 +321,7 @@ public class FlowObjectController : ObjectHeightController
             speed = fw.speed;
             angle = fw.angle;
         }
+        
     }
 
     private void OnTriggerStay(Collider other)
@@ -334,6 +372,10 @@ public class FlowObjectController : ObjectHeightController
         {
             isCollisionStageDown = false;
             angle = 0;
+        }
+        if (other.CompareTag("PoolWater"))
+        {
+            isCollisionPoolWater = false;
         }
 
         if (other.CompareTag("FlowUp"))
