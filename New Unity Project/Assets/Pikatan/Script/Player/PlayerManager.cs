@@ -107,7 +107,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Move"))
+        if (collision.gameObject.CompareTag("Move") || collision.gameObject.CompareTag("Goal&Move"))
         {
             transform.parent = collision.transform;
             isRide = true;

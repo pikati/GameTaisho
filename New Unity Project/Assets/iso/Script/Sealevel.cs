@@ -13,20 +13,25 @@ public class Sealevel : MonoBehaviour
     private static float WaterHight;         //水のWidth,Hight
     private static float posy;               //水のposY
 
+    private WaterHeightController whc;
+    private RectTransform rectTransform;
+
     // Start is called before the first frame update
     void Start()
     {
+        whc = GameObject.Find("WaterHeightController").GetComponent<WaterHeightController>();
         //水面の下限を取得
-        watermin = GameObject.Find("WaterHeightController").GetComponent<WaterHeightController>().GetMinHeight();
-        
+        watermin = whc.GetMinHeight();
 
+        //playerの高さを取得
+        playerline = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>().position.y;
+        rectTransform = panel.GetComponent<RectTransform>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //playerの高さを取得
-        playerline = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>().position.y;
+        
 
        
 
@@ -39,7 +44,7 @@ public class Sealevel : MonoBehaviour
         }
 
         //水面の高さを取得
-        waterline = GameObject.Find("WaterHeightController").GetComponent<WaterHeightController>().waterHeight;
+        waterline = whc.waterHeight;
 
         //水面の高さとplayerの高さの距離を取得
         waterrateNOW = playerline - waterline;
@@ -56,11 +61,11 @@ public class Sealevel : MonoBehaviour
         //水の座標Yを計算
         posy = 136 - (100.0f - WaterHight) / 2;
 
-        
-       
-      　//水の座標・サイズを設定
-        panel.GetComponent<RectTransform>().sizeDelta = new Vector2(100.0f, WaterHight);
-        panel.GetComponent<RectTransform>().anchoredPosition  = new Vector2(362.0f, posy);
+
+
+        //水の座標・サイズを設定
+        rectTransform.sizeDelta = new Vector2(100.0f, WaterHight);
+        rectTransform.anchoredPosition  = new Vector2(362.0f, posy);
         
     }
 }
