@@ -47,7 +47,7 @@ public class FlowObjectController : ObjectHeightController
     {
         if (!gameCtrl.isProgressed) return;
         UpdatePosition();
-        Debug.Log(flowDir);
+        //Debug.Log(flowDir);
     }
 
     protected override void UpdatePosition()
@@ -57,6 +57,7 @@ public class FlowObjectController : ObjectHeightController
         //なににもぶつかっていないときは親のアップデート実行
         if (!isCollisionStage && !isCollisionStageEdge && !isCollisionPoolWater && flowDir == FlowDir.NON)
         {
+            Debug.Log("FlowObjUpdate");
             FlowObjUpdate();
         }
         //ステージにぶつかってその角度がアレなときは停止
@@ -67,21 +68,25 @@ public class FlowObjectController : ObjectHeightController
         //ステージの側面にぶつかったときも停止
         else if (isCollisionStageEdge)
         {
+            Debug.Log("StageEdgeStop");
             StageEdgeStop();
         }
         //ステージにぶつかってそのステージが傾いていた時はいい感じに移動
         else if (isCollisionStage && (int)angle % 90 != 0)
         {
+            Debug.Log("SlideMove");
             SlideMove();
         }
         //へこみ水に当たったとき
         else if(isCollisionPoolWater)
         {
+            Debug.Log("Pool");
             Pool();
         }
         //水流にぶつかっているとき
         if (IsEnterFlowing())
         {
+            Debug.Log("FlowingMove");
             FlowingMove();
         }
         oldIsDay = dnChanger.isDay;
@@ -112,11 +117,13 @@ public class FlowObjectController : ObjectHeightController
         //上側にぶつかったとき
         if (isCollisionStageUp)
         {
+            Debug.Log("MovwStopUp");
             UpperSideStop();
         }
         //下側にぶつかったとき
         else if (isCollisionStageDown)
         {
+            Debug.Log("MovwStopDown");
             LowerSideStop();
         }
     }
@@ -152,11 +159,11 @@ public class FlowObjectController : ObjectHeightController
 
     private void StageEdgeStop()
     {
-        if (flowDir != FlowDir.NON) return;
+        //if (flowDir != FlowDir.NON) return;
         //Edgeが上なら水面が下に行くとそっちに合わせる
         if(transform.position.y < collisionPosition.y)
         {
-            if (transform.position.y >= contoller.waterHeight)
+            if (transform.position.y < contoller.waterHeight)
             {
                 transform.position = new Vector3(transform.position.x, contoller.waterHeight, transform.position.z);
             }

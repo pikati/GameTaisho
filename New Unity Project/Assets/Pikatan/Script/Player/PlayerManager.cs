@@ -28,6 +28,7 @@ public class PlayerManager : MonoBehaviour
     private float rotationY;
     private float rx;
     private Vector3 startPos;
+    private AudioManager am;
     #endregion
 
     #region propaty
@@ -45,6 +46,8 @@ public class PlayerManager : MonoBehaviour
         gameCtrl = GameObject.Find("GameStateController").GetComponent<GameStateController>();
         sEnd = GameObject.FindGameObjectWithTag("Goal").GetComponent<StageEndJudge>();
         pManager = GetComponent<PlayerInputManager>();
+        am = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        am.PlaySound("Move");
     }
 
     void Update()
@@ -57,6 +60,7 @@ public class PlayerManager : MonoBehaviour
         }
         Move();
         if (transform.position.y < -30.0f) Respawn();
+        am.PlaySound("Move");
     }
 
     private void Move()
