@@ -47,8 +47,7 @@ public class FlowObjectController : ObjectHeightController
     {
         if (!gameCtrl.isProgressed) return;
         UpdatePosition();
-        //Debug.Log(flowDir);
-        Debug.Log(straightAngle);
+        Debug.Log(flowDir);
     }
 
     protected override void UpdatePosition()
@@ -116,7 +115,7 @@ public class FlowObjectController : ObjectHeightController
             UpperSideStop();
         }
         //下側にぶつかったとき
-        if (isCollisionStageDown)
+        else if (isCollisionStageDown)
         {
             LowerSideStop();
         }
@@ -153,6 +152,7 @@ public class FlowObjectController : ObjectHeightController
 
     private void StageEdgeStop()
     {
+        if (flowDir != FlowDir.NON) return;
         //Edgeが上なら水面が下に行くとそっちに合わせる
         if(transform.position.y < collisionPosition.y)
         {
