@@ -25,7 +25,8 @@ public class IceObjectGenerator : MonoBehaviour
     private WaterHeightController wCtrl;
     private bool isCreate;
     private PlayerInputManager pManager;
-    private BoxCollider[] bCollider;
+    private BoxCollider bCollider;
+    private BoxCollider cbCol;
     // Start is called before the first frame update
     void Start()
     {
@@ -76,9 +77,10 @@ public class IceObjectGenerator : MonoBehaviour
             if(pManager.isIceDecide)
             {
                 ctrl.isProgressed = true;
-                bCollider[1].enabled = true;
-                bCollider[0].enabled = true;
+                bCollider.enabled = true;
+                cbCol.enabled = true;
                 bCollider = null;
+                cbCol = null;
                 moveObject = null;
                 pManager.SwitchActionMap("Player");
             }
@@ -93,9 +95,10 @@ public class IceObjectGenerator : MonoBehaviour
         gCtrl.generatableIceQuantity--;
         ctrl.isProgressed = false;
         moveObject = Instantiate(ice, new Vector3(player.transform.position.x, wCtrl.waterHeight, player.transform.position.z), Quaternion.Euler(0.0f, 0.0f, 0.0f));
-        bCollider = moveObject.GetComponents<BoxCollider>();
-        bCollider[0].enabled = false;
-        bCollider[1].enabled = false;
+        bCollider = moveObject.GetComponent<BoxCollider>();
+        bCollider.enabled = false;
+        cbCol = moveObject.transform.GetChild(16).gameObject.GetComponent<BoxCollider>();
+        cbCol.enabled = false;
         isCreate = false;
     }
 

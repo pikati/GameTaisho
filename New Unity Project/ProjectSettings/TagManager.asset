@@ -23,6 +23,7 @@ TagManager:
   - Counter
   - FlowStraight
   - PoolWater
+  - MoveCol
   layers:
   - Default
   - TransparentFX

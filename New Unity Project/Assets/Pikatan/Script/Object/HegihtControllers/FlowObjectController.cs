@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 
@@ -46,7 +47,8 @@ public class FlowObjectController : ObjectHeightController
     {
         if (!gameCtrl.isProgressed) return;
         UpdatePosition();
-        Debug.Log(straightAngle.Count);
+        //Debug.Log(flowDir);
+        Debug.Log(straightAngle);
     }
 
     protected override void UpdatePosition()
@@ -79,7 +81,7 @@ public class FlowObjectController : ObjectHeightController
             Pool();
         }
         //水流にぶつかっているとき
-        else if (IsEnterFlowing())
+        if (IsEnterFlowing())
         {
             FlowingMove();
         }
@@ -123,6 +125,7 @@ public class FlowObjectController : ObjectHeightController
     private void UpperSideStop()
     {
         transform.position = collisionPosition;
+        if (flowDir == FlowDir.UP || flowDir == FlowDir.DOWN) return;
         //水の高さが自身よりも高くなったらそっちに合わせる
         if (contoller.waterHeight >= transform.position.y)
         {
@@ -132,7 +135,15 @@ public class FlowObjectController : ObjectHeightController
 
     private void LowerSideStop()
     {
+        
         transform.position = collisionPosition;
+        if (flowDir == FlowDir.DOWN)
+        {
+            isCollisionStage = false;
+            transform.position -= new Vector3(0.0f, 0.1f, 0.0f);
+            return;
+        }
+        if (flowDir == FlowDir.UP) return;
         //水の高さが自身よりも低くなったらそっちに合わせる
         if (transform.position.y >= contoller.waterHeight)
         {
@@ -185,6 +196,11 @@ public class FlowObjectController : ObjectHeightController
             {
                 a = -0.5f;
             }
+        }
+        //if (flowDir == FlowDir.RIGHT && angle <= 90.0f) n *= -1;
+        if (flowDir == FlowDir.DOWN && angle <= 90.0f)
+        { 
+            n *= -1; 
         }
         transform.position += new Vector3(X * speed * dTime * n, speed * dTime * n + a, 0);
     }
@@ -242,7 +258,7 @@ public class FlowObjectController : ObjectHeightController
         }
         if (oldIsDay != isDay)
         {
-            ResetDirection();
+            ResetDir();
         }
         transform.position += deltaMove;
     }
@@ -250,11 +266,6 @@ public class FlowObjectController : ObjectHeightController
     private bool IsEnterFlowing()
     {
         return flowDir == FlowDir.UP || flowDir == FlowDir.DOWN || flowDir == FlowDir.RIGHT || flowDir == FlowDir.LEFT || flowDir == FlowDir.STRAIGHT;
-    }
-
-    private void ResetDirection()
-    {
-        flowDir = FlowDir.NON;
     }
 
     public void ResetDir()
@@ -440,8 +451,7 @@ public class FlowObjectController : ObjectHeightController
         }
         if(other.CompareTag("FlowStraight"))
         {
-            var endIndex = straightAngle.Count - 1;
-            straightAngle.RemoveAt(endIndex);
+            straightAngle.RemoveAt(0);
         }
         if (!isUp && !isDown && !isLeft && !isRight && straightAngle.Count == 0) flowDir = FlowDir.NON;
     }
