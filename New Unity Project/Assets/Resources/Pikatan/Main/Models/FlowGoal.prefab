@@ -3491,8 +3491,8 @@ GameObject:
   - component: {fileID: 1299716833083564220}
   - component: {fileID: 6778887377073570520}
   m_Layer: 0
-  m_Name: Goal 1
-  m_TagString: Stage
+  m_Name: FlowGoal
+  m_TagString: Move
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

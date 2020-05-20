@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using UnityEngine.SceneManagement;
 //自動でPlayerInputControllerをアタッチしてくれる
 //[RequireComponent(typeof(PlayerInputController))]
 [RequireComponent(typeof(PlayerInput))]
@@ -59,7 +59,7 @@ public class PlayerManager : MonoBehaviour
             return;
         }
         Move();
-        if (transform.position.y < -30.0f) Respawn();
+        if (transform.position.y < -30.0f) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         am.PlaySound("Move");
     }
 
