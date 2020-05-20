@@ -33,6 +33,7 @@ public class PlayerManager : MonoBehaviour
     #region propaty
     public bool canMove { get; set; } = true;   //プレイヤーが動けるかどうか
     public Vector3 position { get; private set; }
+    public bool isMove { get; private set; } = false;
     #endregion
 
     void Start()
@@ -65,6 +66,7 @@ public class PlayerManager : MonoBehaviour
         //入力があるとき
         if (moveDirection.magnitude >= 0.05f)
         {
+            isMove = true;
             //rb.AddForce(moveDirection);
             rb.velocity = moveDirection * speed;
             Turn();
@@ -72,6 +74,7 @@ public class PlayerManager : MonoBehaviour
         //入力がないとき
         else
         {
+            isMove = false;
             //加速度を0にして移動を止める(慣性をなくす)
             Vector3 stop = rb.velocity;
             stop.x = 0;
