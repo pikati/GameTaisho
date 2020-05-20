@@ -14,6 +14,7 @@ public class Sealevel : MonoBehaviour
     private static float posy;               //水のposY
 
     private WaterHeightController whc;
+    private PlayerManager pm;
     private RectTransform rectTransform;
 
     // Start is called before the first frame update
@@ -24,15 +25,15 @@ public class Sealevel : MonoBehaviour
         watermin = whc.GetMinHeight();
 
         //playerの高さを取得
-        playerline = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>().position.y;
+        pm = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
         rectTransform = panel.GetComponent<RectTransform>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
 
+        playerline = pm.position.y;
        
 
         //水面の下限とplayerの高さの距離を取得

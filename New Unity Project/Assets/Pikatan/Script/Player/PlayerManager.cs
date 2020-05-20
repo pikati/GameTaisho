@@ -99,7 +99,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Move"))
+        if (collision.gameObject.CompareTag("MoveCol"))
         {
             transform.parent = collision.transform;
         }
@@ -107,7 +107,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Move"))
+        if (collision.gameObject.CompareTag("MoveCol"))
         {
             transform.parent = null;
         }
