@@ -69,6 +69,11 @@ public class FlowObjectController : ObjectHeightController
         {
             MoveStop();
         }
+        else if (isCollisionPlayerUp)
+        {
+            Debug.Log("Player");
+            MoveColPlayer();
+        }
         //ステージの側面にぶつかったときも停止
         else if (isCollisionStageEdge)
         {
@@ -93,11 +98,7 @@ public class FlowObjectController : ObjectHeightController
             Debug.Log("FlowingMove");
             FlowingMove();
         }
-        else if(isCollisionPlayerUp)
-        {
-            Debug.Log("Player");
-            MoveColPlayer();
-        }
+        
         oldIsDay = dnChanger.isDay;
     }
 
@@ -386,7 +387,7 @@ public class FlowObjectController : ObjectHeightController
         }
         if (other.CompareTag("Player"))
         {
-            if (other.transform.position.y < transform.position.y)
+            if (other.transform.position.y + 3.0f < transform.position.y)
             {
                 isCollisionPlayerUp = true;
                 player = other.gameObject;
