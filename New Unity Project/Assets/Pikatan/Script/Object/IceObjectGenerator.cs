@@ -12,7 +12,6 @@ public class IceObjectGenerator : MonoBehaviour
         NON
     }
 
-
     [SerializeField]
     private GameObject ice;
     [SerializeField]
@@ -37,7 +36,6 @@ public class IceObjectGenerator : MonoBehaviour
         pManager = player.GetComponent<PlayerInputManager>();
         dir = IceDirection.NON;
         isCreate = false;
-        CheckMiss();
     }
 
     // Update is called once per frame
@@ -116,14 +114,6 @@ public class IceObjectGenerator : MonoBehaviour
                 moveValueX = speed * Time.deltaTime * -1;
             }
             moveObject.transform.position += new Vector3(moveValueX, 0, 0);
-        }
-    }
-
-    private void CheckMiss()
-    {
-        if(speed == 0)
-        {
-            Debug.LogError("speed is 0");
         }
     }
 }
