@@ -303,6 +303,7 @@ public class FlowObjectController : ObjectHeightController
 
     private void MoveColPlayer()
     {
+        if()
         transform.position = new Vector3(transform.position.x, player.transform.position.y + 3.5f, transform.position.z);
     }
 
