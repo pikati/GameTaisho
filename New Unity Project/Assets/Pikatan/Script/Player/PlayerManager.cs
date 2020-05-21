@@ -107,6 +107,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (transform.position.y < collision.transform.position.y) return;
         if (collision.gameObject.CompareTag("MoveCol"))
         {
             transform.parent = collision.transform.parent;
@@ -115,6 +116,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
+        if (transform.position.y < collision.transform.position.y) return;
         if (collision.gameObject.CompareTag("MoveCol"))
         {
             transform.parent = null;

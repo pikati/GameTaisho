@@ -302,7 +302,7 @@ public class FlowObjectController : ObjectHeightController
 
     private void MoveColPlayer()
     {
-        transform.position = new Vector3(transform.position.x, player.transform.position.y + 3.4f, transform.position.z);
+        transform.position = new Vector3(transform.position.x, player.transform.position.y + 3.5f, transform.position.z);
     }
 
     private bool IsEnterFlowing()
