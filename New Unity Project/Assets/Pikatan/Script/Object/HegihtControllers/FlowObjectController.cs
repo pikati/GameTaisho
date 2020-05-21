@@ -11,12 +11,15 @@ public class FlowObjectController : ObjectHeightController
     private bool isCollisionStageUp = false;
     private bool isCollisionStageDown = false;
     private bool isCollisionPoolWater = false;
+    private bool isCollisionPlayerUp = false;
+    private GameObject player;
     private float angle = 0;
     private Vector3 collisionPosition;
     private Vector3 colliderPosition;
     private DayNightChanger dnChanger;
     private GameStateController gameCtrl;
     private Buoyancy b;
+    private WaterHeightController whc;
     private bool oldIsDay;  //前フレームが昼か夜かを記憶しておく（昼夜を切り替えたときに足場とステージをほんの少し遠ざけるため）
 
     private float speed;
@@ -37,6 +40,7 @@ public class FlowObjectController : ObjectHeightController
         velocity = new Vector3(0.0f, 0.0f, 0.0f);
         dnChanger = GameObject.Find("DayNightChanger").GetComponent<DayNightChanger>();
         gameCtrl = GameObject.Find("GameStateController").GetComponent<GameStateController>();
+        whc = GameObject.Find("WaterHeightController").GetComponent<WaterHeightController>();
         b = GetComponent<Buoyancy>();
         oldIsDay = true;
         flowDir = FlowDir.NON;
@@ -54,9 +58,8 @@ public class FlowObjectController : ObjectHeightController
     protected override void UpdatePosition()
     {
         isCollisionStage = isCollisionStageDown | isCollisionStageUp;
-        float y = transform.position.y;
         //なににもぶつかっていないときは親のアップデート実行
-        if (!isCollisionStage && !isCollisionStageEdge && !isCollisionPoolWater && flowDir == FlowDir.NON)
+        if (!isCollisionStage && !isCollisionStageEdge && !isCollisionPoolWater && !isCollisionPlayerUp && flowDir == FlowDir.NON)
         {
             Debug.Log("FlowObjUpdate");
             FlowObjUpdate();
@@ -89,6 +92,11 @@ public class FlowObjectController : ObjectHeightController
         {
             Debug.Log("FlowingMove");
             FlowingMove();
+        }
+        else if(isCollisionPlayerUp)
+        {
+            Debug.Log("Player");
+            MoveColPlayer();
         }
         oldIsDay = dnChanger.isDay;
     }
@@ -134,9 +142,9 @@ public class FlowObjectController : ObjectHeightController
         transform.position = collisionPosition;
         if (flowDir == FlowDir.UP || flowDir == FlowDir.DOWN) return;
         //水の高さが自身よりも高くなったらそっちに合わせる
-        if (contoller.waterHeight >= transform.position.y)
+        if (controller.waterHeight >= transform.position.y)
         {
-            transform.position = new Vector3(transform.position.x, contoller.waterHeight, transform.position.z);
+            transform.position = new Vector3(transform.position.x, controller.waterHeight, transform.position.z);
         }
     }
 
@@ -152,9 +160,9 @@ public class FlowObjectController : ObjectHeightController
         }
         if (flowDir == FlowDir.UP) return;
         //水の高さが自身よりも低くなったらそっちに合わせる
-        if (transform.position.y >= contoller.waterHeight)
+        if (transform.position.y >= controller.waterHeight)
         {
-            transform.position = new Vector3(transform.position.x, contoller.waterHeight, transform.position.z);
+            transform.position = new Vector3(transform.position.x, controller.waterHeight, transform.position.z);
         }
     }
 
@@ -164,33 +172,26 @@ public class FlowObjectController : ObjectHeightController
         //Edgeが上なら水面が下に行くとそっちに合わせる
         if(transform.position.y < colliderPosition.y)
         {
-            if (transform.position.y >= contoller.waterHeight)
+            if (transform.position.y >= controller.waterHeight)
             {
-                if (flowDir != FlowDir.NON)
-                {
-                    transform.position = collisionPosition;
-                }
-                else
-                {
-                    transform.position += new Vector3(0.0f, -0.1f, 0.0f);
-                }
+                transform.position += new Vector3(0.0f, -0.01f, 0.0f);
+            }
+            else
+            {
+                transform.position = collisionPosition;
             }
         }
         else
         {
-            if (transform.position.y < contoller.waterHeight)
+            if (transform.position.y < controller.waterHeight)
             {
-                if(flowDir != FlowDir.NON)
-                {
-                    transform.position = collisionPosition;
-                }
-                else
-                {
-                    transform.position += new Vector3(0.0f, 0.1f, 0.0f);
-                }
+                transform.position += new Vector3(0.0f, 0.01f, 0.0f);
+            }
+            else
+            {
+                transform.position = collisionPosition;
             }
         }
-            
     }
 
     private void SlideMove()
@@ -203,7 +204,7 @@ public class FlowObjectController : ObjectHeightController
         }
         float dTime = Time.deltaTime;
         float X = Mathf.Cos(Mathf.Deg2Rad * angle) / Mathf.Sin(Mathf.Deg2Rad * angle);
-        float speed = contoller.GetUpwardSpeed();
+        float speed = controller.GetUpwardSpeed();
         float a = 0;
         //昼夜が切り替わったとき
         if (oldIsDay != isDay)
@@ -224,16 +225,30 @@ public class FlowObjectController : ObjectHeightController
         { 
             n *= -1; 
         }
-        transform.position += new Vector3(X * speed * dTime * n, speed * dTime * n + a, 0);
+        
+        if(flowDir == FlowDir.RIGHT && isCollisionStageUp && isDay)
+        {
+            transform.position += new Vector3(X * speed * dTime * n, speed * dTime * n + a, 0);
+        }
+
+
+        if (transform.position.y > controller.waterHeight)
+        {
+            transform.position -= new Vector3(X * speed * dTime * n, speed * dTime * n + a, 0);
+        }
+        else
+        {
+            transform.position += new Vector3(X * speed * dTime * n, speed * dTime * n + a, 0);
+        }
     }
 
     private void Pool()
     {
         transform.position = new Vector3(transform.position.x, collisionPosition.y, transform.position.z);
         //水の高さが自身よりも高くなったらそっちに合わせる
-        if (contoller.waterHeight >= transform.position.y)
+        if (controller.waterHeight >= transform.position.y)
         {
-            transform.position = new Vector3(transform.position.x, contoller.waterHeight, transform.position.z);
+            transform.position = new Vector3(transform.position.x, controller.waterHeight, transform.position.z);
         }
 
         //float time = Time.deltaTime;
@@ -283,6 +298,11 @@ public class FlowObjectController : ObjectHeightController
             ResetDir();
         }
         transform.position += deltaMove;
+    }
+
+    private void MoveColPlayer()
+    {
+        transform.position = new Vector3(transform.position.x, player.transform.position.y + 3.4f, transform.position.z);
     }
 
     private bool IsEnterFlowing()
@@ -363,6 +383,14 @@ public class FlowObjectController : ObjectHeightController
             flowDir = fw.dir;
             speed = fw.speed;
             straightAngle.Add(fw.angle);
+        }
+        if (other.CompareTag("Player"))
+        {
+            if (other.transform.position.y < transform.position.y)
+            {
+                isCollisionPlayerUp = true;
+                player = other.gameObject;
+            }
         }
     }
 
@@ -479,6 +507,14 @@ public class FlowObjectController : ObjectHeightController
         if(other.CompareTag("FlowStraight"))
         {
             straightAngle.RemoveAt(0);
+        }
+        if (other.CompareTag("Player"))
+        {
+            if (other.transform.position.y < transform.position.y)
+            {
+                isCollisionPlayerUp = false;
+                player = null;
+            }
         }
         if (!isUp && !isDown && !isLeft && !isRight && straightAngle.Count == 0) flowDir = FlowDir.NON;
     }

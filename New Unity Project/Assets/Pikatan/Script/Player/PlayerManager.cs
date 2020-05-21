@@ -46,8 +46,8 @@ public class PlayerManager : MonoBehaviour
         gameCtrl = GameObject.Find("GameStateController").GetComponent<GameStateController>();
         sEnd = GameObject.FindGameObjectWithTag("Goal").GetComponent<StageEndJudge>();
         pManager = GetComponent<PlayerInputManager>();
-        am = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-        am.PlaySound("Move");
+       // am = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        
     }
 
     void Update()
@@ -60,7 +60,8 @@ public class PlayerManager : MonoBehaviour
         }
         Move();
         if (transform.position.y < -30.0f) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        am.PlaySound("Move");
+        //transform.localScale = new Vector3(70.0f, 70.0f, 70.0f);
+        
     }
 
     private void Move()
@@ -108,7 +109,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("MoveCol"))
         {
-            transform.parent = collision.transform;
+            transform.parent = collision.transform.parent;
         }
     }
 
