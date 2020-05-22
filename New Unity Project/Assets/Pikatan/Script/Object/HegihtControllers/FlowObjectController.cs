@@ -307,6 +307,10 @@ public class FlowObjectController : ObjectHeightController
             ResetDir();
         }
         transform.position += deltaMove;
+        if(transform.position.y > controller.waterHeight)
+        {
+            transform.position = new Vector3(transform.position.x, controller.waterHeight, transform.position.z);
+        }
     }
 
     private void MoveColPlayer()
