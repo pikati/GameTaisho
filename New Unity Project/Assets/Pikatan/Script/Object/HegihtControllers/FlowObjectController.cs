@@ -141,7 +141,7 @@ public class FlowObjectController : ObjectHeightController
     private void UpperSideStop()
     {
         transform.position = collisionPosition;
-        if (flowDir == FlowDir.UP || flowDir == FlowDir.DOWN) return;
+        if (flowDir == FlowDir.UP || flowDir == FlowDir.DOWN || flowDir == FlowDir.STRAIGHT) return;
         //水の高さが自身よりも高くなったらそっちに合わせる
         if (controller.waterHeight >= transform.position.y)
         {
