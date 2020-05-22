@@ -145,7 +145,7 @@ public class FlowObjectController : ObjectHeightController
         //水の高さが自身よりも高くなったらそっちに合わせる
         if (controller.waterHeight >= transform.position.y)
         {
-            transform.position += new Vector3(0.0f, 0.05f, 0.0f);
+            transform.position += new Vector3(0.0f, 1.0f, 0.0f);
         }
     }
 
