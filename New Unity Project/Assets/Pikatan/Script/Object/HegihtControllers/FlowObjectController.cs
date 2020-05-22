@@ -69,16 +69,16 @@ public class FlowObjectController : ObjectHeightController
         {
             MoveStop();
         }
-        else if (isCollisionPlayerUp)
-        {
-            Debug.Log("Player");
-            MoveColPlayer();
-        }
         //ステージの側面にぶつかったときも停止
         else if (isCollisionStageEdge)
         {
             Debug.Log("StageEdgeStop");
             StageEdgeStop();
+        }
+        else if (isCollisionPlayerUp)
+        {
+            Debug.Log("Player");
+            MoveColPlayer();
         }
         //ステージにぶつかってそのステージが傾いていた時はいい感じに移動
         else if (isCollisionStage && (int)angle % 90 != 0)
@@ -181,6 +181,7 @@ public class FlowObjectController : ObjectHeightController
             {
                 transform.position = collisionPosition;
             }
+
         }
         else
         {
@@ -190,7 +191,14 @@ public class FlowObjectController : ObjectHeightController
             }
             else
             {
-                transform.position = collisionPosition;
+                if(isCollisionPlayerUp)
+                {
+                    MoveColPlayer();
+                }
+                else
+                {
+                    transform.position = collisionPosition;
+                }
             }
         }
     }
@@ -303,7 +311,7 @@ public class FlowObjectController : ObjectHeightController
 
     private void MoveColPlayer()
     {
-        if()
+        
         transform.position = new Vector3(transform.position.x, player.transform.position.y + 3.5f, transform.position.z);
     }
 
