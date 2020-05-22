@@ -24,6 +24,8 @@ TagManager:
   - FlowStraight
   - PoolWater
   - MoveCol
+  - Sea
+  - Water Volume
   layers:
   - Default
   - TransparentFX
