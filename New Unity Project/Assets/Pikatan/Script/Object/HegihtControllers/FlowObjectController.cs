@@ -14,6 +14,8 @@ public class FlowObjectController : ObjectHeightController
     private bool isCollisionPlayerUp = false;
     private GameObject player;
     private float angle = 0;
+    private float upAngle = 0;
+    private float downAngle = 0;
     private Vector3 collisionPosition;
     private Vector3 colliderPosition;
     private DayNightChanger dnChanger;
@@ -52,6 +54,7 @@ public class FlowObjectController : ObjectHeightController
     {
         if (!gameCtrl.isProgressed) return;
         UpdatePosition();
+        //Debug.Log(transform.position.x);
         //Debug.Log(flowDir);
     }
 
@@ -65,7 +68,7 @@ public class FlowObjectController : ObjectHeightController
             FlowObjUpdate();
         }
         //ステージにぶつかってその角度がアレなときは停止
-        else if (isCollisionStage && (int)angle % 90 == 0)
+        else if (isCollisionStage && ((int)upAngle % 90 == 0 || (int)downAngle % 90 == 0))
         {
             MoveStop();
         }
@@ -131,7 +134,7 @@ public class FlowObjectController : ObjectHeightController
             UpperSideStop();
         }
         //下側にぶつかったとき
-        else if (isCollisionStageDown)
+        if (isCollisionStageDown)
         {
             Debug.Log("MovwStopDown");
             LowerSideStop();
@@ -140,38 +143,68 @@ public class FlowObjectController : ObjectHeightController
 
     private void UpperSideStop()
     {
+        if (isCollisionStageDown && upAngle != downAngle)
+        {
+            if (controller.waterHeight >= transform.position.y)
+            {
+                if(downAngle == 0)
+                {
+                    transform.position += new Vector3(0.0f, 1.0f, 0.0f);
+                }
+            }
+            return;
+        }
         transform.position = collisionPosition;
-        if (flowDir == FlowDir.UP || flowDir == FlowDir.DOWN || flowDir == FlowDir.STRAIGHT) return;
-        //水の高さが自身よりも高くなったらそっちに合わせる
-        if (controller.waterHeight >= transform.position.y)
+        if(upAngle == 0)
         {
-            transform.position += new Vector3(0.0f, 1.0f, 0.0f);
+            if (flowDir == FlowDir.NON)
+            {
+                //水の高さが自身よりも高くなったらそっちに合わせる
+                if (controller.waterHeight >= transform.position.y)
+                {
+                    transform.position += new Vector3(0.0f, 1.0f, 0.0f);
+                }
+            }
         }
-        if(oldIsDay != dnChanger.isDay)
+        if(upAngle == 90.0f)
         {
-            transform.position += new Vector3(-0.25f, 0.0f, 0.0f);
+            transform.position += new Vector3(-0.01f, 0.0f, 0.0f);
+            collisionPosition = transform.position;
         }
-        
     }
 
     private void LowerSideStop()
     {
-        transform.position = collisionPosition;
-        if (flowDir == FlowDir.DOWN)
+        if (isCollisionStageUp && upAngle != downAngle)
         {
-            isCollisionStage = false;
-            transform.position -= new Vector3(0.0f, 0.1f, 0.0f);
+            if (transform.position.y <= controller.waterHeight)
+            {
+                if(upAngle == 0)
+                {
+                    transform.position = new Vector3(transform.position.x, controller.waterHeight, transform.position.z);
+                }
+            }
             return;
         }
-        if (flowDir == FlowDir.UP) return;
-        //水の高さが自身よりも低くなったらそっちに合わせる
-        if (transform.position.y >= controller.waterHeight)
+        transform.position = collisionPosition;
+        if(downAngle == 0)
         {
-            transform.position = new Vector3(transform.position.x, controller.waterHeight, transform.position.z);
+            if (flowDir == FlowDir.DOWN)
+            {
+                transform.position -= new Vector3(0.0f, 0.1f, 0.0f);
+                return;
+            }
+            if (flowDir == FlowDir.UP) return;
+            //水の高さが自身よりも低くなったらそっちに合わせる
+            if (transform.position.y >= controller.waterHeight)
+            {
+                transform.position = new Vector3(transform.position.x, controller.waterHeight, transform.position.z);
+            }
         }
-        if (oldIsDay != dnChanger.isDay)
+        if (downAngle == 90.0f)
         {
-            transform.position += new Vector3(0.25f, 0.0f, 0.0f);
+            transform.position += new Vector3(0.01f, 0.0f, 0.0f);
+            collisionPosition = transform.position;
         }
     }
 
@@ -362,12 +395,7 @@ public class FlowObjectController : ObjectHeightController
         if (other.CompareTag("Stage") || other.CompareTag("Goal"))
         {
             isCollisionStage = true;
-            isCollisionStageEdge = false;
-            isCollisionStageUp = false;
-            isCollisionStageDown = false;
-            isCollisionPoolWater = false;
-            isCollisionPlayerUp = false;
-    angle = other.transform.rotation.eulerAngles.z;
+            angle = other.transform.rotation.eulerAngles.z;
             collisionPosition = transform.position;
             colliderPosition = other.transform.position;
         }
@@ -375,35 +403,20 @@ public class FlowObjectController : ObjectHeightController
         {
             collisionPosition = transform.position;
             isCollisionStageEdge = true;
-            isCollisionStage = false;
-            isCollisionStageUp = false;
-            isCollisionStageDown = false;
-            isCollisionPoolWater = false;
-            isCollisionPlayerUp = false;
             colliderPosition = other.transform.position;
         }
         if (other.CompareTag("StageUp"))
         {
             collisionPosition = transform.position;
-            angle = other.transform.rotation.eulerAngles.z;
+            upAngle = other.transform.rotation.eulerAngles.z;
             isCollisionStageUp = true;
-            isCollisionStage = false;
-            isCollisionStageEdge = false;
-            isCollisionStageDown = false;
-            isCollisionPoolWater = false;
-            isCollisionPlayerUp = false;
             colliderPosition = other.transform.position;
         }
         if (other.CompareTag("StageDown"))
         {
             collisionPosition = transform.position;
-            angle = other.transform.rotation.eulerAngles.z;
+            downAngle = other.transform.rotation.eulerAngles.z;
             isCollisionStageDown = true;
-            isCollisionStage = false;
-            isCollisionStageEdge = false;
-            isCollisionStageUp = false;
-            isCollisionPoolWater = false;
-            isCollisionPlayerUp = false;
             colliderPosition = other.transform.position;
         }
         if (other.CompareTag("PoolWater"))
@@ -510,12 +523,12 @@ public class FlowObjectController : ObjectHeightController
         if (other.CompareTag("StageUp"))
         {
             isCollisionStageUp = false;
-            angle = 0;
+            upAngle = 0;
         }
         if (other.CompareTag("StageDown"))
         {
             isCollisionStageDown = false;
-            angle = 0;
+            downAngle = 0;
         }
         if (other.CompareTag("PoolWater"))
         {
