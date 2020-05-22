@@ -58,7 +58,7 @@ public class FlowingWaterManager : MonoBehaviour
             {
                 GameObject e = flowingWaters[i].transform.GetChild(1).gameObject;
                 float sh = s.transform.position.y;
-                float eh = s.transform.position.y;
+                float eh = e.transform.position.y;
                 height = sh < eh ? eh : sh;
                 if(h >= height)
                 {
