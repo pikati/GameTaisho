@@ -1074,7 +1074,6 @@ GameObject:
   - component: {fileID: 2616274627305856336}
   - component: {fileID: 2616274627305856339}
   - component: {fileID: 2616274627305856338}
-  - component: {fileID: 1431325797443982174}
   m_Layer: 0
   m_Name: Ice
   m_TagString: Stage
@@ -1133,19 +1132,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07386283, y: 0.0038975882, z: 0.04}
   m_Center: {x: -0.00025079132, y: -0.00011183649, z: 0}
---- !u!65 &1431325797443982174
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2616274627305856349}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.07684154, y: 0.0034359884, z: 0.04}
-  m_Center: {x: -0.000107170345, y: 0.004843767, z: 0}
 --- !u!1 &2616274627412760810
 GameObject:
   m_ObjectHideFlags: 0

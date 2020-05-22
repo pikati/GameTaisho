@@ -68,7 +68,7 @@ public class FlowObjectController : ObjectHeightController
             FlowObjUpdate();
         }
         //ステージにぶつかってその角度がアレなときは停止
-        else if (isCollisionStage && ((int)upAngle % 90 == 0 || (int)downAngle % 90 == 0))
+        else if (isCollisionStage && angle % 90 == 0)
         {
             MoveStop();
         }
@@ -412,14 +412,14 @@ public class FlowObjectController : ObjectHeightController
         if (other.CompareTag("StageUp"))
         {
             collisionPosition = transform.position;
-            upAngle = other.transform.rotation.eulerAngles.z;
+            angle = upAngle = other.transform.rotation.eulerAngles.z;
             isCollisionStageUp = true;
             colliderPosition = other.transform.position;
         }
         if (other.CompareTag("StageDown"))
         {
             collisionPosition = transform.position;
-            downAngle = other.transform.rotation.eulerAngles.z;
+            angle = downAngle = other.transform.rotation.eulerAngles.z;
             isCollisionStageDown = true;
             colliderPosition = other.transform.position;
         }
@@ -528,11 +528,13 @@ public class FlowObjectController : ObjectHeightController
         {
             isCollisionStageUp = false;
             upAngle = 0;
+            angle = 0;
         }
         if (other.CompareTag("StageDown"))
         {
             isCollisionStageDown = false;
             downAngle = 0;
+            angle = 0;
         }
         if (other.CompareTag("PoolWater"))
         {
@@ -588,6 +590,8 @@ public class FlowObjectController : ObjectHeightController
             else                                                re = newFd;
             if (isUp && isLeft)     re = FlowDir.LEFT;
             if (isDown && isLeft)   re = FlowDir.DOWN;
+            if (isUp && isRight)    re = FlowDir.UP;
+            if (isDown && isRight)  re = FlowDir.RIGHT;
         }
         //そのままの状態のとき
         else
@@ -598,6 +602,8 @@ public class FlowObjectController : ObjectHeightController
             else                                                    re = newFd;
             if (isUp && isRight)    re = FlowDir.RIGHT;
             if (isDown && isRight)  re = FlowDir.DOWN;
+            if (isUp && isLeft)     re = FlowDir.UP;
+            if (isDown && isLeft)   re = FlowDir.LEFT;
         }
         return re;
     }
