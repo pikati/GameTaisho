@@ -7,3 +7,5 @@ Goal未完成のStageEndJudgeの分割しる
 
 
 Flowを生成するときに背景の氷山を削って音出す
+
+FlowObjectのTrigerEnter2つfalseにする処理書いてないから必要に応じてつけてね

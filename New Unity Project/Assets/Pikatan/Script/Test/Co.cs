@@ -63,16 +63,16 @@ public class Co : MonoBehaviour
     {
 
 
-        if ((waterPlane.transform.position.y - (col.transform.position.y - col.transform.localScale.y / 2)) < col.transform.localScale.y) 
-        {
-            BoxS = col.transform.localScale.x * (waterPlane.transform.position.y - (col.transform.position.y - col.transform.localScale.y / 2)) * col.transform.localScale.z; 
-        }
-        if (((waterPlane.transform.position.y - wprb.size.y) - (col.transform.position.y - col.transform.localScale.y / 2)) >= col.transform.localScale.y)
-        {
-            BoxS = col.transform.localScale.x * col.transform.localScale.y * col.transform.localScale.z;
-        }
-        else { }
-        FP = BoxS * 98;
-        rb.AddForce(0, 1 * (float)FP, 0);
+        //if ((waterPlane.transform.position.y - (col.transform.position.y - col.transform.localScale.y / 2)) < col.transform.localScale.y) 
+        //{
+        //    BoxS = col.transform.localScale.x * (waterPlane.transform.position.y - (col.transform.position.y - col.transform.localScale.y / 2)) * col.transform.localScale.z; 
+        //}
+        //if (((waterPlane.transform.position.y - wprb.size.y) - (col.transform.position.y - col.transform.localScale.y / 2)) >= col.transform.localScale.y)
+        //{
+        //    BoxS = col.transform.localScale.x * col.transform.localScale.y * col.transform.localScale.z;
+        //}
+        //else { }
+        //FP = BoxS * 98;
+        //rb.AddForce(0, 1 * (float)FP, 0);
     }
 }

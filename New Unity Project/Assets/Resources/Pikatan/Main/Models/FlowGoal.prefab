@@ -3490,6 +3490,7 @@ GameObject:
   - component: {fileID: 7326643379679178000}
   - component: {fileID: 1299716833083564220}
   - component: {fileID: 6778887377073570520}
+  - component: {fileID: 2695354130087690227}
   m_Layer: 0
   m_Name: FlowGoal
   m_TagString: Move
@@ -3548,8 +3549,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.07519405, y: 0.008363915, z: 0.04}
-  m_Center: {x: -0.00009784997, y: -0.0008180427, z: 0}
+  m_Size: {x: 0.07519405, y: 0.006438551, z: 0.04}
+  m_Center: {x: -0.00009784997, y: 0.00014463901, z: 0}
 --- !u!114 &1299716833083564220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3576,6 +3577,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f4668a42c6ef043a39f7dd7dd7bf07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &2695354130087690227
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3107662244823339305}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.029280448, y: 0.008808102, z: 0.01}
+  m_Center: {x: 0.003505552, y: 0.0073966957, z: 0}
 --- !u!1 &3146469603362108758
 GameObject:
   m_ObjectHideFlags: 0
