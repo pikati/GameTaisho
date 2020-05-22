@@ -102,6 +102,10 @@ public class FlowObjectController : ObjectHeightController
             FlowingMove();
         }
         
+        if(oldIsDay != dnChanger.isDay)
+        {
+            straightAngle.Clear();
+        }
         oldIsDay = dnChanger.isDay;
     }
 
