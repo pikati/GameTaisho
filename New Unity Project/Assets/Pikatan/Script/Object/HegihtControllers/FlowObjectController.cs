@@ -26,6 +26,7 @@ public class FlowObjectController : ObjectHeightController
 
     private float speed;
     private FlowDir flowDir;
+    private FlowDir oldDir;
     private Vector3 velocity;
 
     private bool isUp = false;
@@ -107,6 +108,7 @@ public class FlowObjectController : ObjectHeightController
             straightAngle.Clear();
         }
         oldIsDay = dnChanger.isDay;
+        oldDir = flowDir;
     }
 
     private void FlowObjUpdate()
@@ -252,9 +254,17 @@ public class FlowObjectController : ObjectHeightController
     {
         bool isDay = dnChanger.isDay;
         int n = 1;
+        float b = 0;
         if (!isDay)
         {
             n = -1;
+            //if(Mathf.Abs(transform.position.y - controller.waterHeight) < 0.1f)
+            //{
+            //    if(isCollisionStageUp)
+            //        b = -0.1f;
+            //    if (isCollisionStageDown)
+            //        b = 0.1f;
+            //}
         }
         float dTime = Time.deltaTime;
         float X = Mathf.Cos(Mathf.Deg2Rad * angle) / Mathf.Sin(Mathf.Deg2Rad * angle);
@@ -263,6 +273,7 @@ public class FlowObjectController : ObjectHeightController
         //昼夜が切り替わったとき
         if (oldIsDay != isDay)
         {
+            //角度に応じて上下の値を変更させようあと値をもう少し大きく
             //昼になったら足場をほんの少し上げてステージと当たらないようにする
             if (isDay)
             {
@@ -274,25 +285,46 @@ public class FlowObjectController : ObjectHeightController
                 a = -0.5f;
             }
         }
-        //if (flowDir == FlowDir.RIGHT && angle <= 90.0f) n *= -1;
-        if (flowDir == FlowDir.DOWN && angle <= 90.0f)
-        { 
-            n *= -1; 
-        }
         
-        if(flowDir == FlowDir.RIGHT && isCollisionStageUp && isDay)
+        if(flowDir == FlowDir.NON)
         {
-            transform.position += new Vector3(X * speed * dTime * n, speed * dTime * n + a, 0);
+            transform.position += new Vector3(X * speed * dTime * n + b, speed * dTime * n + a, 0);
         }
-
-
-        if (transform.position.y > controller.waterHeight)
+        if (oldIsDay != isDay)
         {
-            transform.position -= new Vector3(X * speed * dTime * n, speed * dTime * n + a, 0);
-        }
-        else
-        {
-            transform.position += new Vector3(X * speed * dTime * n, speed * dTime * n + a, 0);
+            if(isCollisionStageUp)
+            {
+                transform.position -= new Vector3(0.6f, 0.0f, 0.0f);
+            }
+            else if(isCollisionStageDown)
+            {
+                transform.position += new Vector3(0.6f, 0.0f, 0.0f);
+            }
+            //if (isDay)
+            //{
+            //    if (transform.position.x < colliderPosition.x)
+            //    {
+            //        transform.position += new Vector3(0.3f, 0.0f, 0.0f);
+            //    }
+            //    else
+            //    {
+            //        transform.position -= new Vector3(0.3f, 0.0f, 0.0f);
+            //    }
+            //}
+            //else
+            //{
+            //    if (transform.position.x < colliderPosition.x)
+            //    {
+            //        if(oldDir != FlowDir.NON)
+            //            transform.position -= new Vector3(0.3f, 0.0f, 0.0f);
+            //    }
+            //    else
+            //    {
+            //        if (oldDir != FlowDir.NON)
+            //            transform.position += new Vector3(0.3f, 0.0f, 0.0f);
+            //    }
+            //}
+            
         }
     }
 
