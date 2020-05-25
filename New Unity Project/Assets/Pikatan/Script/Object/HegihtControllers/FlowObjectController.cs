@@ -263,6 +263,7 @@ public class FlowObjectController : ObjectHeightController
         //昼夜が切り替わったとき
         if (oldIsDay != isDay)
         {
+            //角度に応じて上下の値を変更させようあと値をもう少し大きく
             //昼になったら足場をほんの少し上げてステージと当たらないようにする
             if (isDay)
             {
@@ -275,15 +276,15 @@ public class FlowObjectController : ObjectHeightController
             }
         }
         //if (flowDir == FlowDir.RIGHT && angle <= 90.0f) n *= -1;
-        if (flowDir == FlowDir.DOWN && angle <= 90.0f)
-        { 
-            n *= -1; 
-        }
+        //if (flowDir == FlowDir.DOWN && angle <= 90.0f)
+        //{ 
+        //    n *= -1; 
+        //}
         
-        if(flowDir == FlowDir.RIGHT && isCollisionStageUp && isDay)
-        {
-            transform.position += new Vector3(X * speed * dTime * n, speed * dTime * n + a, 0);
-        }
+        //if(flowDir == FlowDir.RIGHT && isCollisionStageUp && isDay)
+        //{
+        //    transform.position += new Vector3(X * speed * dTime * n, speed * dTime * n + a, 0);
+        //}
 
 
         if (transform.position.y > controller.waterHeight)
@@ -294,6 +295,12 @@ public class FlowObjectController : ObjectHeightController
         {
             transform.position += new Vector3(X * speed * dTime * n, speed * dTime * n + a, 0);
         }
+        
+        if(flowDir != FlowDir.NON)
+        {
+            transform.position = collisionPosition;
+        }
+
     }
 
     private void Pool()
