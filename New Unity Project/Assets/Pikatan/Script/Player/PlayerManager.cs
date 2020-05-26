@@ -75,14 +75,9 @@ public class PlayerManager : MonoBehaviour
         {
             isMove = true;
             //rb.AddForce(moveDirection);
-            if (!isInWater)
-            {
-                rb.velocity = moveDirection * speed;
-            }
-            else
-            {
-                rb.velocity = moveDirection * speed * 0.75f;
-            }
+            
+            rb.velocity = moveDirection * speed;
+            
             Turn();
         }
         //入力がないとき
