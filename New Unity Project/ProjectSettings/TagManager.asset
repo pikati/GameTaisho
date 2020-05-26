@@ -26,6 +26,7 @@ TagManager:
   - MoveCol
   - Sea
   - Water Volume
+  - BabyPenguin
   layers:
   - Default
   - TransparentFX
