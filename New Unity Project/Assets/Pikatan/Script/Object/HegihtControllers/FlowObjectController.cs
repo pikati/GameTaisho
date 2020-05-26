@@ -65,7 +65,7 @@ public class FlowObjectController : ObjectHeightController
         //なににもぶつかっていないときは親のアップデート実行
         if (!isCollisionStage && !isCollisionStageEdge && !isCollisionPoolWater && !isCollisionPlayerUp && flowDir == FlowDir.NON)
         {
-            Debug.Log("FlowObjUpdate");
+            //Debug.Log("FlowObjUpdate");
             FlowObjUpdate();
         }
         //ステージにぶつかってその角度がアレなときは停止
@@ -76,30 +76,30 @@ public class FlowObjectController : ObjectHeightController
         //ステージの側面にぶつかったときも停止
         else if (isCollisionStageEdge)
         {
-            Debug.Log("StageEdgeStop");
+            //Debug.Log("StageEdgeStop");
             StageEdgeStop();
         }
         else if (isCollisionPlayerUp)
         {
-            Debug.Log("Player");
+            //Debug.Log("Player");
             MoveColPlayer();
         }
         //ステージにぶつかってそのステージが傾いていた時はいい感じに移動
         else if (isCollisionStage && (int)angle % 90 != 0)
         {
-            Debug.Log("SlideMove");
+            //Debug.Log("SlideMove");
             SlideMove();
         }
         //へこみ水に当たったとき
         else if(isCollisionPoolWater)
         {
-            Debug.Log("Pool");
+            //Debug.Log("Pool");
             Pool();
         }
         //水流にぶつかっているとき
         else if (IsEnterFlowing())
         {
-            Debug.Log("FlowingMove");
+            //Debug.Log("FlowingMove");
             FlowingMove();
         }
         
@@ -136,13 +136,13 @@ public class FlowObjectController : ObjectHeightController
         //上側にぶつかったとき
         if (isCollisionStageUp)
         {
-            Debug.Log("MovwStopUp");
+            //Debug.Log("MovwStopUp");
             UpperSideStop();
         }
         //下側にぶつかったとき
         if (isCollisionStageDown)
         {
-            Debug.Log("MovwStopDown");
+            //Debug.Log("MovwStopDown");
             LowerSideStop();
         }
     }
