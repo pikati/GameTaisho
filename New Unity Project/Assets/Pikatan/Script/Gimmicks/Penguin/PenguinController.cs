@@ -26,7 +26,9 @@ public class PenguinController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(penguinMax != 0)
+        if (penguinMax > 0)
+        {
             text.text = penguinCount.ToString() + " / " + penguinMax.ToString();
+        }
     }
 }
