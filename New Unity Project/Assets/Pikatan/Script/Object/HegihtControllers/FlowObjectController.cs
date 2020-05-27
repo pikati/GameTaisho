@@ -4,6 +4,8 @@ using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 
+[RequireComponent(typeof(Buoyancy))]
+
 public class FlowObjectController : ObjectHeightController
 {
     private bool isCollisionStage = false;
