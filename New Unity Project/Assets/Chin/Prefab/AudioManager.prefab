@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Theme
-    clip: {fileID: 8300000, guid: dc5042f98ad689e418a4be2c9c9434b9, type: 3}
+    clip: {fileID: 8300000, guid: 167fac1eb9e83ac449a148b9253e501b, type: 3}
     volume: 1
     loop: 0
     source: {fileID: 0}
@@ -76,6 +76,26 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Bear
     clip: {fileID: 8300000, guid: 300d1a770db8049448b5d1f0e1e1c98b, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Penguin
+    clip: {fileID: 8300000, guid: f692d08c2e2d1744e96c3a0142775d48, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Wind
+    clip: {fileID: 8300000, guid: 35981e512d07f9843bdc4dc7f6876804, type: 3}
+    volume: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: Penguin
+    clip: {fileID: 8300000, guid: f692d08c2e2d1744e96c3a0142775d48, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Penguin
+    clip: {fileID: 8300000, guid: f692d08c2e2d1744e96c3a0142775d48, type: 3}
     volume: 1
     loop: 0
     source: {fileID: 0}
