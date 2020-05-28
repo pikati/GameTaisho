@@ -11,7 +11,7 @@ public class InWater : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        sea = GameObject.Find("WaterLarge").transform;
+        sea = GameObject.FindGameObjectWithTag("Sea").transform;
         inWater = transform.Find("InWaterEffect").gameObject;
     }
 
