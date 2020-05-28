@@ -29,6 +29,7 @@ public class PlayerManager : MonoBehaviour
     private Vector3 startPos;
     private AudioManager am;
     private bool isInWater = false;
+    public int penguinNum { get; private set; } = 0;
     #endregion
 
     #region propaty
@@ -160,6 +161,12 @@ public class PlayerManager : MonoBehaviour
     {
         transform.position = startPos;
     }
+
+    public void AddPenguinNum()
+    {
+        penguinNum++;
+    }
+
     #region Input
     //public void OnMove(InputValue inputValue)
     //{
