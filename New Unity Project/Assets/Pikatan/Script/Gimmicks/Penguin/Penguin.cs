@@ -32,6 +32,7 @@ public class Penguin : MonoBehaviour
                 Debug.LogError("PenguinStayPosition is null");
             }
             collision.gameObject.GetComponent<PlayerManager>().AddPenguinNum();
+            Destroy(GetComponent<Rigidbody>());
         }
     }
 }
