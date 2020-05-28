@@ -86,21 +86,21 @@ public class PlayerManager : MonoBehaviour
             isMove = false;
             //加速度を0にして移動を止める(慣性をなくす)
             Vector3 stop = rb.velocity;
-            if(!isInWater)
-            {
+            //if(!isInWater)
+            //{
                 stop.x = 0;
-            }
-            else
-            {
-                stop.x -= stop.x * 0.01f;
-                if(Mathf.Abs(stop.x) < 0.01f)
-                {
-                    stop.x = 0;
-                }
-            }
+            //}
+            //else
+            //{
+            //    stop.x -= stop.x * 0.01f;
+            //    if(Mathf.Abs(stop.x) < 0.01f)
+            //    {
+            //        stop.x = 0;
+            //    }
+            //}
             rb.velocity = stop;
         }
-       
+        Debug.Log(rb.velocity);
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
     }
 
