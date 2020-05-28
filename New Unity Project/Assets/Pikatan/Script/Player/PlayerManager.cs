@@ -63,7 +63,6 @@ public class PlayerManager : MonoBehaviour
         Move();
         if (transform.position.y < whc.GetMinHeight() - 30.0f) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         //transform.localScale = new Vector3(70.0f, 70.0f, 70.0f);
-        Debug.Log(isInWater);
     }
 
     private void Move()
