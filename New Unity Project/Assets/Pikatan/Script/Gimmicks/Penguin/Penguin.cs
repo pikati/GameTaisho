@@ -33,6 +33,7 @@ public class Penguin : MonoBehaviour
             }
             collision.gameObject.GetComponent<PlayerManager>().AddPenguinNum();
             Destroy(GetComponent<Rigidbody>());
+            Destroy(GetComponent<BoxCollider>());
         }
     }
 }
