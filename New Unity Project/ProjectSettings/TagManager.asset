@@ -26,6 +26,8 @@ TagManager:
   - MoveCol
   - Sea
   - Water Volume
+  - icex
+  - warp
   layers:
   - Default
   - TransparentFX
