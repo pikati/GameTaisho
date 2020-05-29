@@ -27,7 +27,7 @@ public class Flying : MonoBehaviour
         {
             if (Keyboard.current.fKey.isPressed)
             {
-                Vector3 force = new Vector3(0.0f, 8.0f, 0.0f);
+                Vector3 force = new Vector3(0.0f, 11.0f, 0.0f);
                 this.rb.AddForce(force, ForceMode.Impulse);
                 //this.Flip(new Vector3(1.0f, 1.0f, 0));
             }

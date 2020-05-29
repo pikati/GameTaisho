@@ -7,6 +7,8 @@ public class AutoFlaying : MonoBehaviour
 
     //Rigidbody rb;
     private Rigidbody rb;
+    public float Tok;
+    public Vector3 For;
     //範囲に入ってるかどうかの確認
     bool FFlag;
     
@@ -26,9 +28,9 @@ public class AutoFlaying : MonoBehaviour
     {
         if (FFlag)
         {
-            if (Sec >= 8.0f)
+            if (Sec >= Tok)
             {
-                Vector3 force = new Vector3(0.0f, 1.0f, 0.0f);
+                Vector3 force = new Vector3(For.x, For.y, For.z);
                 this.rb.AddForce(force, ForceMode.Impulse);
             }
         }
