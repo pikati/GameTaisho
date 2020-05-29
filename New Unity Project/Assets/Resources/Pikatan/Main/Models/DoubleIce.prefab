@@ -186,7 +186,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4809177161574443909}
   - component: {fileID: 4809177161574443908}
-  - component: {fileID: 4809177161574443911}
   - component: {fileID: 4809177161574443910}
   m_Layer: 0
   m_Name: DoubleIce
@@ -231,19 +230,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &4809177161574443911
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4809177161574443907}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 15.074179, y: 1.1909657, z: 1}
-  m_Center: {x: -0.028647423, y: 0.9357319, z: 0}
 --- !u!65 &4809177161574443910
 BoxCollider:
   m_ObjectHideFlags: 0

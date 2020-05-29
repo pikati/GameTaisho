@@ -42,8 +42,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0010684872, y: 0.0047356384, z: 0.01}
-  m_Center: {x: -0.0393477, y: -0.000116494964, z: 0}
+  m_Size: {x: 0.0001603961, y: 0.004102982, z: 0.01}
+  m_Center: {x: -0.037966426, y: -0.000096725074, z: 0}
 --- !u!1 &1342052521909119937
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,8 +86,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.07867734, y: 0.0014243972, z: 0.01}
-  m_Center: {x: 0.00022676587, y: 0.002731899, z: 0}
+  m_Size: {x: 0.07512137, y: 0.0006942624, z: 0.01}
+  m_Center: {x: -0.00030614017, y: 0.002366831, z: 0}
 --- !u!1 &2616274625370582391
 GameObject:
   m_ObjectHideFlags: 0
@@ -1074,7 +1074,6 @@ GameObject:
   - component: {fileID: 2616274627305856336}
   - component: {fileID: 2616274627305856339}
   - component: {fileID: 2616274627305856338}
-  - component: {fileID: 1431325797443982174}
   m_Layer: 0
   m_Name: Ice
   m_TagString: Stage
@@ -1131,21 +1130,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.071981065, y: 0.0040687043, z: 0.04}
-  m_Center: {x: -0.00016777753, y: -0.00028114198, z: 0}
---- !u!65 &1431325797443982174
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2616274627305856349}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.07684154, y: 0.0034359884, z: 0.04}
-  m_Center: {x: -0.000107170345, y: 0.004843767, z: 0}
+  m_Size: {x: 0.07386283, y: 0.0038975882, z: 0.04}
+  m_Center: {x: -0.00025079132, y: -0.00011183649, z: 0}
 --- !u!1 &2616274627412760810
 GameObject:
   m_ObjectHideFlags: 0
@@ -1250,8 +1236,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.07855306, y: 0.0012824297, z: 0.01}
-  m_Center: {x: 0.00020405054, y: -0.0029092047, z: 0}
+  m_Size: {x: 0.075134315, y: 0.00061867054, z: 0.01}
+  m_Center: {x: -0.00028674005, y: -0.0025773244, z: 0}
 --- !u!1 &6289845633271862597
 GameObject:
   m_ObjectHideFlags: 0
@@ -1294,5 +1280,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.0013333607, y: 0.0050764917, z: 0.01}
-  m_Center: {x: 0.039889578, y: -0.00008387588, z: 0}
+  m_Size: {x: 0.0002699709, y: 0.0038902634, z: 0.01}
+  m_Center: {x: 0.03740675, y: -0.00008387655, z: 0}
