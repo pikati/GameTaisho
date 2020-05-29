@@ -100,7 +100,6 @@ public class PlayerManager : MonoBehaviour
             //}
             rb.velocity = stop;
         }
-        Debug.Log(rb.velocity);
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
     }
 
