@@ -84,22 +84,7 @@ public class CameraController : MonoBehaviour
 
     private void InputCamera()
     {
-        //if ((Keyboard.current.upArrowKey.isPressed || Keyboard.current.wKey.isPressed) && Keyboard.current.leftShiftKey.isPressed)
-        //{
-        //    dir = CameraDir.UP;
-        //}
-        //else if ((Keyboard.current.downArrowKey.isPressed || Keyboard.current.sKey.isPressed) && Keyboard.current.leftShiftKey.isPressed)
-        //{
-        //    dir = CameraDir.DOWN;
-        //}
-        //else if ((Keyboard.current.rightArrowKey.isPressed || Keyboard.current.aKey.isPressed) && Keyboard.current.leftShiftKey.isPressed)
-        //{
-        //    dir = CameraDir.RIGHT;
-        //}
-        //else if ((Keyboard.current.leftArrowKey.isPressed || Keyboard.current.dKey.isPressed) && Keyboard.current.leftShiftKey.isPressed)
-        //{
-        //    dir = CameraDir.LEFT;
-        //}
+        if (pManager == null) return;
         if(pManager.cameraDirection.y >= 0.3)
         {
             dir = CameraDir.UP;
