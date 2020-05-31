@@ -7,12 +7,14 @@ public class TitleController : MonoBehaviour
     private TitleCinemachineManager cinemachineManager;
     private TitleTextController title;
     private TitleButtonContorller buttons;
+    private TitlePlayableDirectorManager pdm;
 
     private void Start()
     {
         cinemachineManager = GameObject.Find("CineamchineManager").GetComponent<TitleCinemachineManager>();
         title = GameObject.Find("Title").GetComponent<TitleTextController>();
         buttons = GameObject.Find("Buttons").GetComponent<TitleButtonContorller>();
+        pdm = GameObject.Find("PlayableDirectorManager").GetComponent<TitlePlayableDirectorManager>();
     }
     public void StartGame()
     {
@@ -20,6 +22,7 @@ public class TitleController : MonoBehaviour
         title.isStart = true;
         buttons.ChangeButtonTransition();
         buttons.isStart = true;
+        pdm.StartTimeline();
     }
 
 
