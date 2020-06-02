@@ -29,6 +29,7 @@ public class PlayerManager : MonoBehaviour
     private Vector3 startPos;
     private AudioManager am;
     private bool isInWater = false;
+    private PlayerAnimationController pac;
     public int penguinNum { get; private set; } = 0;
     #endregion
 
@@ -48,8 +49,8 @@ public class PlayerManager : MonoBehaviour
         sEnd = GameObject.FindGameObjectWithTag("Goal").GetComponent<StageEndJudge>();
         pManager = GetComponent<PlayerInputManager>();
         whc = GameObject.Find("WaterHeightController").GetComponent<WaterHeightController>();
-       // am = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-        
+        // am = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        pac = GetComponent<PlayerAnimationController>();
     }
 
     void Update()
@@ -77,8 +78,18 @@ public class PlayerManager : MonoBehaviour
             //rb.AddForce(moveDirection);
             
             rb.velocity = moveDirection * speed;
-            
             Turn();
+            if(Mathf.Abs(moveDirection.x) >= 0.05f)
+            {
+                if (!isInWater)
+                {
+                    pac.StartWalk();
+                }
+                else
+                {
+                    pac.StartSwim();
+                }
+            }
         }
         //入力がないとき
         else
@@ -86,18 +97,14 @@ public class PlayerManager : MonoBehaviour
             isMove = false;
             //加速度を0にして移動を止める(慣性をなくす)
             Vector3 stop = rb.velocity;
-            //if(!isInWater)
-            //{
-                stop.x = 0;
-            //}
-            //else
-            //{
-            //    stop.x -= stop.x * 0.01f;
-            //    if(Mathf.Abs(stop.x) < 0.01f)
-            //    {
-            //        stop.x = 0;
-            //    }
-            //}
+            if (!isInWater)
+            {
+                pac.EndWalk();
+            }
+            else
+            {
+                pac.EndSwim();
+            }
             rb.velocity = stop;
         }
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
@@ -122,6 +129,7 @@ public class PlayerManager : MonoBehaviour
         isInWater = position.y + 2.5f < whc.waterHeight ? true : false;
     }
 
+    #region collision
     private void OnCollisionEnter(Collision collision)
     {
         if (transform.position.y < collision.transform.position.y) return;
@@ -165,6 +173,7 @@ public class PlayerManager : MonoBehaviour
     {
         penguinNum++;
     }
+    #endregion
 
     #region Input
     //public void OnMove(InputValue inputValue)
