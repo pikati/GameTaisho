@@ -10,6 +10,7 @@ public class StageEndJudge : MonoBehaviour
     private SceneController sCtrl;
     private EndText endText;
     private PenguinController pc;
+    private PlayerAnimationController pac;
     public bool isGameClear { get; private set; } = false;
     public bool isGameOver { get; private set; } = false;
 
@@ -20,6 +21,7 @@ public class StageEndJudge : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         endText = GameObject.Find("EndText").GetComponent<EndText>();
         pc = GameObject.Find("PenguinController").GetComponent<PenguinController>();
+        pac = GameObject.Find("sirokuma").GetComponent<PlayerAnimationController>();
     }
 
     //private void Update()
@@ -39,6 +41,7 @@ public class StageEndJudge : MonoBehaviour
             if(pc.penguinMax == player.GetComponent<PlayerManager>().penguinNum)
             {
                 GameClear();
+                pac.Goal();
             }
             else
             {

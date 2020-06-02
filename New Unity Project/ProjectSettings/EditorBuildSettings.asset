@@ -42,9 +42,6 @@ EditorBuildSettings:
     path: Assets/iso/stage/level-c.unity
     guid: 648ffbf1b566ab14bb076228a8c137d8
   - enabled: 1
-    path: Assets/iso/stage/level-d.unity
-    guid: 4e4603b3924036b4fab4a7742a0ea225
-  - enabled: 1
     path: Assets/iso/stage/level-e.unity
     guid: bc4859761dd05384e87b6e78995eb99b
   m_configObjects:
