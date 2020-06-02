@@ -22,7 +22,7 @@ public class TitleSceneManager : MonoBehaviour
 
         if(pd.state != PlayState.Playing)
         {
-            SceneManager.LoadScene("RoadTest");
+            SceneManager.LoadScene("level-tutorial1");
         }
     }
 

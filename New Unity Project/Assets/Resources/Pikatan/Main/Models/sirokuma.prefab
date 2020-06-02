@@ -2015,6 +2015,8 @@ GameObject:
   - component: {fileID: 7746978938156594296}
   - component: {fileID: 7746978938156594297}
   - component: {fileID: 947662606428625325}
+  - component: {fileID: -3241408063978219163}
+  - component: {fileID: -4363789895634673984}
   m_Layer: 0
   m_Name: sirokuma
   m_TagString: Player
@@ -2151,5 +2153,36 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eb8bd62e3108d874ba162943c0f739da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &-3241408063978219163
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8945249560926126511}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8bf4d3a570f7ef5458e6ff5129a55cb0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-4363789895634673984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8945249560926126511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e7c7c7fa82662f4db783492b5f35d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
