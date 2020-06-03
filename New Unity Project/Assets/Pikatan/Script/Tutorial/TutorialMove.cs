@@ -12,7 +12,7 @@ public class TutorialMove : MonoBehaviour
     protected Sprite s1;
     [SerializeField]
     protected Sprite s2;
-    private bool isEnter = true;
+    private bool isEnter = false;
     private float t = 0;
     private float t2;
     private Transform childeTransform;
