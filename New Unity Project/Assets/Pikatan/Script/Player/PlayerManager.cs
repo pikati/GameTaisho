@@ -43,13 +43,11 @@ public class PlayerManager : MonoBehaviour
     {
         startPos = transform.position;
         rb = GetComponent<Rigidbody>();
-        //playerInputController = GetComponent<PlayerInputController>();
         pTest = GetComponent<PlayerInputTest>();
         gameCtrl = GameObject.Find("GameStateController").GetComponent<GameStateController>();
         sEnd = GameObject.FindGameObjectWithTag("Goal").GetComponent<StageEndJudge>();
         pManager = GetComponent<PlayerInputManager>();
         whc = GameObject.Find("WaterHeightController").GetComponent<WaterHeightController>();
-        // am = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         pac = GetComponent<PlayerAnimationController>();
     }
 
@@ -61,12 +59,18 @@ public class PlayerManager : MonoBehaviour
             pac.EndSwim();
             pac.EndWalk();
             rb.velocity = Vector3.zero;
+            if(sEnd.isGameClear)
+            {
+                pac.Goal();
+            }
+            if (sEnd.isGameOver)
+            {
+                pac.Drown();
+            }
             return;
         }
         CheckInWater();
         Move();
-        if (transform.position.y < whc.GetMinHeight() - 30.0f) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        //transform.localScale = new Vector3(70.0f, 70.0f, 70.0f);
     }
 
     private void Move()
@@ -74,7 +78,7 @@ public class PlayerManager : MonoBehaviour
         //moveDirection = new Vector2(pTest.moveDirection, rb.velocity.y / speed);
         moveDirection = new Vector2(pManager.direction.x, rb.velocity.y / speed);
         //入力があるとき
-        if (moveDirection.magnitude >= 0.05f)
+        if (Mathf.Abs(moveDirection.x) >= 0.05f)
         {
             isMove = true;
             //rb.AddForce(moveDirection);
@@ -101,6 +105,14 @@ public class PlayerManager : MonoBehaviour
             pac.EndWalk();
             pac.EndSwim();
             rb.velocity = new Vector3(0.0f, rb.velocity.y, 0.0f);
+        }
+        if(isInWater)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y * 0.99f, rb.velocity.z);
+        }
+        if(sEnd.isGameOver)
+        {
+            rb.velocity = Vector3.zero;
         }
     }
 
