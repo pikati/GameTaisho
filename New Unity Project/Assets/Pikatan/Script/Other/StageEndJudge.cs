@@ -4,35 +4,36 @@ using UnityEngine;
 
 public class StageEndJudge : MonoBehaviour
 {
-    private const float PLAYER_HEGIHT = 1.0f;
-    private WaterHeightController ctrl;
     private GameObject player;
     private SceneController sCtrl;
     private EndText endText;
     private PenguinController pc;
     private PlayerAnimationController pac;
+    private float gameOverHeight;
+
     public bool isGameClear { get; private set; } = false;
     public bool isGameOver { get; private set; } = false;
 
 
     private void Start()
     {
-        ctrl = GameObject.Find("WaterHeightController").GetComponent<WaterHeightController>();
+        gameOverHeight = GameObject.Find("WaterHeightController").GetComponent<WaterHeightController>().GetMinHeight() -10.0f;
         player = GameObject.FindGameObjectWithTag("Player");
         endText = GameObject.Find("EndText").GetComponent<EndText>();
         pc = GameObject.Find("PenguinController").GetComponent<PenguinController>();
         pac = GameObject.Find("sirokuma").GetComponent<PlayerAnimationController>();
     }
 
-    //private void Update()
-    //{
-    //    if(ctrl.waterHeight >= player.transform.position.y + PLAYER_HEGIHT)
-    //    {
-    //        isGameOver = true;
-    //        endText.DisplayGameOver();
-    //        Debug.Log("GameOver");
-    //    }
-    //}
+    private void Update()
+    {
+        if (gameOverHeight >= player.transform.position.y)
+        {
+            if(!isGameOver)
+            {
+                GameOver();
+            }
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -56,6 +57,13 @@ public class StageEndJudge : MonoBehaviour
     {
         isGameClear = true;
         endText.DisplayGameClear();
+        player.GetComponent<PlayerInputManager>().SwitchActionMap("UI");
+    }
+
+    private void GameOver()
+    {
+        isGameOver = true;
+        endText.DisplayGameOver();
         player.GetComponent<PlayerInputManager>().SwitchActionMap("UI");
     }
 
