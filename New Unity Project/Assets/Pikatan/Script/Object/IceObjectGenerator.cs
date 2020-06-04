@@ -72,6 +72,18 @@ public class IceObjectGenerator : MonoBehaviour
                 dir = IceDirection.NON;
             }
 
+            if(pManager.isIceCeancel)
+            {
+                ctrl.isProgressed = true;
+                bCollider.enabled = true;
+                cbCol.enabled = true;
+                bCollider = null;
+                cbCol = null;
+                Destroy(moveObject);
+                moveObject = null;
+                pManager.SwitchActionMap("Player");
+            }
+
             if(pManager.isIceDecide)
             {
                 ctrl.isProgressed = true;
@@ -80,6 +92,7 @@ public class IceObjectGenerator : MonoBehaviour
                 bCollider = null;
                 cbCol = null;
                 moveObject = null;
+                gCtrl.generatableIceQuantity--;
                 pManager.SwitchActionMap("Player");
             }
         }
@@ -88,9 +101,7 @@ public class IceObjectGenerator : MonoBehaviour
     private void Create()
     {
         if (!isCreate) return;
-        
 
-        gCtrl.generatableIceQuantity--;
         ctrl.isProgressed = false;
         moveObject = Instantiate(ice, new Vector3(player.transform.position.x, wCtrl.waterHeight, player.transform.position.z), Quaternion.Euler(0.0f, 0.0f, 0.0f));
         bCollider = moveObject.GetComponent<BoxCollider>();

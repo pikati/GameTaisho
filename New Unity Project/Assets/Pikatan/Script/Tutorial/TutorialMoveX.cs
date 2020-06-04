@@ -22,7 +22,15 @@ public class TutorialMoveX : TutorialMove
 
     private void ChangeSprite()
     {
-        if (pim.isCreate) isMove = false;
+        if (pim.isCreate)
+        {
+            if(!isMove)
+            {
+                isMove = true;
+                return;
+            }
+            isMove = false;
+        }
         if (pim.isIceDecide) isMove = true;
         if(isMove)
         {
