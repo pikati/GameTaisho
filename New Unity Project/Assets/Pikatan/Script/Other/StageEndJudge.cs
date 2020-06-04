@@ -42,9 +42,6 @@ public class StageEndJudge : MonoBehaviour
             if(pc.penguinMax == player.GetComponent<PlayerManager>().penguinNum)
             {
                 GameClear();
-                pac.EndWalk();
-                pac.EndSwim();
-                pac.Goal();
             }
             else
             {

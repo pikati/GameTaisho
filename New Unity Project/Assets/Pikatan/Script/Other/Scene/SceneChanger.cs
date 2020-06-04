@@ -11,6 +11,7 @@ public class SceneChanger : MonoBehaviour
     private string nextSceneName;
     private StageEndJudge sEnd;
     private PlayerInputManager pManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,24 +24,32 @@ public class SceneChanger : MonoBehaviour
     {
         if(Keyboard.current.rKey.isPressed) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
-        if (!sEnd.isGameClear) return;
-        if(nextSceneName == "end")
+        if (sEnd.isGameClear)
         {
-            GameObject obj = GameObject.Find("GameClear");
-            obj.GetComponent<Text>().text = "おしまい 5秒後に終了します";
-            obj.GetComponent<Text>().fontSize = 14;
-            Invoke("Quit", 5);
-            return;
+            //全ステージクリア処理？
+            if (nextSceneName == "end")
+            {
+                GameObject obj = GameObject.Find("GameClear");
+                obj.GetComponent<Text>().text = "おしまい 5秒後に終了します";
+                obj.GetComponent<Text>().fontSize = 14;
+                Invoke("Quit", 5);
+                return;
+            }
+            if (pManager.isDecide)
+            {
+                SceneManager.LoadScene(nextSceneName);
+                pManager.SwitchActionMap("Player");
+            }
         }
-        if(pManager.isDecide)
+        else if(sEnd.isGameOver)
         {
-            SceneManager.LoadScene(nextSceneName);
-            pManager.SwitchActionMap("Player");
-            //if (sEnd.isGameOver)
-            //{
-            //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            //}
+            if (pManager.isDecide)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                pManager.SwitchActionMap("Player");
+            }
         }
+        
         if (Keyboard.current.escapeKey.isPressed)
         {
             Quit();
