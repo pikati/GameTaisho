@@ -15,9 +15,6 @@ EditorBuildSettings:
     path: Assets/Pikatan/Scene/LevelScene/level-tutorial2.unity
     guid: fef1dc673b27fb34abd36403ce4a1158
   - enabled: 1
-    path: Assets/Pikatan/Scene/LevelScene/level-tutorial3.unity
-    guid: a137977c5d167a9469f7edf61f8ed690
-  - enabled: 1
     path: Assets/Pikatan/Scene/LevelScene/level-1.unity
     guid: 122ca695b19c64246afc23aae703fb65
   - enabled: 1
@@ -25,16 +22,13 @@ EditorBuildSettings:
     guid: 57aaa8858594f784dbf29e3190da8abc
   - enabled: 1
     path: Assets/Pikatan/Scene/LevelScene/level-4.unity
-    guid: 846b089a7f2b8ce4ea56b2847d94ddc6
+    guid: 77d689fc1d91ae4469e0166dd235f3a6
   - enabled: 1
     path: Assets/Pikatan/Scene/LevelScene/level-5.unity
-    guid: 77d689fc1d91ae4469e0166dd235f3a6
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+    guid: 846b089a7f2b8ce4ea56b2847d94ddc6
   - enabled: 1
     path: Assets/Pikatan/Scene/LevelScene/level-6.unity
-    guid: a2aebb5b216396c49bff1eab149cad8c
+    guid: 6aa54c76eba9e3a4eba113f480d791f7
   - enabled: 1
     path: Assets/Pikatan/Scene/LevelScene/level-7.unity
     guid: ccdec1c399285084facc186816249101
@@ -47,6 +41,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/iso/stage/level-c.unity
     guid: 648ffbf1b566ab14bb076228a8c137d8
+  - enabled: 1
+    path: Assets/iso/stage/level-d.unity
+    guid: 4e4603b3924036b4fab4a7742a0ea225
   - enabled: 1
     path: Assets/iso/stage/level-e.unity
     guid: bc4859761dd05384e87b6e78995eb99b

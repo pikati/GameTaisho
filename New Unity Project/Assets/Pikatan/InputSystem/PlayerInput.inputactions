@@ -302,6 +302,14 @@
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Cancel",
+                    "type": "Button",
+                    "id": "a5b2169a-6627-4450-9fc0-84baec127680",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -319,7 +327,7 @@
                 {
                     "name": "",
                     "id": "ccbdcfe8-a091-4edc-9bb1-9f85990a7717",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "GamePad",
@@ -392,6 +400,28 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "41f8353f-6ff0-473b-92fa-1d0421c84bef",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fef2f88c-8b37-44e7-8995-05cce9a3e5d6",
+                    "path": "<Keyboard>/backspace",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -401,9 +431,9 @@
             "actions": [
                 {
                     "name": "Decide",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "193cb8f8-c194-489d-82bd-e5cac53790c0",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
@@ -439,7 +469,7 @@
                 {
                     "name": "",
                     "id": "f4cb20d5-366a-4fea-ac22-6e630f60f720",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "GamePad",
@@ -461,7 +491,7 @@
                 {
                     "name": "",
                     "id": "cddeec67-9e06-4b09-861c-3c966ec78b7c",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "GamePad",

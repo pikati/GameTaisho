@@ -121,13 +121,13 @@ public class FlowObjectController : ObjectHeightController
         Vector3 upVelocity = new Vector3(0.0f, t * 0.997f, 0.0f);
         Vector3 downVeelocity = new Vector3(0.0f, -t2 * 0.91f, 0.0f);
         velocity += upVelocity + downVeelocity;
-        if(velocity.y > 3.0f)
+        if(velocity.y > 6.0f)
         {
-            velocity = new Vector3(0.0f, 3.0f, 0.0f);
+            velocity = new Vector3(0.0f, 6.0f, 0.0f);
         }
-        else if(velocity.y < -3.0f)
+        else if(velocity.y < -6.0f)
         {
-            velocity = new Vector3(0.0f, -3.0f, 0.0f);
+            velocity = new Vector3(0.0f, -6.0f, 0.0f);
         }
         transform.position += velocity * Time.deltaTime;
 
@@ -338,22 +338,6 @@ public class FlowObjectController : ObjectHeightController
         {
             transform.position = new Vector3(transform.position.x, controller.waterHeight, transform.position.z);
         }
-
-        //float time = Time.deltaTime;
-        //float t = time * b.buoyancy * 9.8f;
-        //float t2 = time * b.GetPro() * 9.8f;
-        //Vector3 upVelocity = new Vector3(0.0f, t * 0.997f, 0.0f);
-        //Vector3 downVeelocity = new Vector3(0.0f, -t2 * 0.91f, 0.0f);
-        //velocity += upVelocity + downVeelocity;
-        //if (velocity.y > 3.0f)
-        //{
-        //    velocity = new Vector3(0.0f, 3.0f, 0.0f);
-        //}
-        //else if (velocity.y < -3.0f)
-        //{
-        //    velocity = new Vector3(0.0f, -3.0f, 0.0f);
-        //}
-        //transform.position += velocity * Time.deltaTime;
     }
 
     private void FlowingMove()

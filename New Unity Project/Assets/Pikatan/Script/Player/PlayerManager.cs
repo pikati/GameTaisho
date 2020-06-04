@@ -58,6 +58,8 @@ public class PlayerManager : MonoBehaviour
         position = transform.position;
         if (!gameCtrl.isProgressed || sEnd.isGameClear || sEnd.isGameOver)
         {
+            pac.EndSwim();
+            pac.EndWalk();
             rb.velocity = Vector3.zero;
             return;
         }
@@ -96,12 +98,10 @@ public class PlayerManager : MonoBehaviour
         {
             isMove = false;
             //加速度を0にして移動を止める(慣性をなくす)
-            Vector3 stop = rb.velocity;
             pac.EndWalk();
             pac.EndSwim();
-            rb.velocity = stop;
+            rb.velocity = new Vector3(0.0f, rb.velocity.y, 0.0f);
         }
-        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
     }
 
     private void Turn()
