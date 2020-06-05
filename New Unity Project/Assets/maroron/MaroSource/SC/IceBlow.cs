@@ -7,11 +7,14 @@ public class IceBlow : MonoBehaviour
     //Rigidbody rb;
     private Rigidbody rb;
     private bool Jud;
+    private bool TrFa;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GameObject.FindGameObjectWithTag("icex").GetComponent<Rigidbody>();
+        Jud = false;
+        TrFa = false;
     }
 
     // Update is called once per frame
@@ -33,21 +36,44 @@ public class IceBlow : MonoBehaviour
             if(Jud)
             {
                 Destroy(obj);
-                Jud = false;
                 return;
             }
 
         }
     }
 
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    //Playerタグを持つObjectがFlyRangeのもつ
-    //    //Collisionから出たとき
-    //    Debug.Log("LOL");
-    //    //衝突していないことを確認
-    //    Jud = false;
-    //    return;
-    //}
+    private void OnCollisionEnter(Collision collision)
+    {
+        GameObject obj = GameObject.Find("ICEX(Clone)");
+        
+            Debug.Log("当たってる");
+            //衝突してることを確認。
+            TrFa = true;
+
+            if (TrFa)
+            {
+                Destroy(obj);
+                return;
+            }
+
+        
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        Debug.Log("見つからないよ");
+        TrFa = false;
+        return;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        //Playerタグを持つObjectがFlyRangeのもつ
+        //Collisionから出たとき
+        Debug.Log("LOL");
+        //衝突していないことを確認
+        Jud = false;
+        return;
+    }
 
 }

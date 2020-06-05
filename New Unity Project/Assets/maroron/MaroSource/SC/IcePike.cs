@@ -21,10 +21,6 @@ public class IcePike : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        //Debug.Log(Clock);
-        //Debug.Log(TwoClock);
-
         //一つ目のPOP
         Clock += Time.deltaTime;//時間計測
         if (Clock>=Tick)
@@ -35,15 +31,6 @@ public class IcePike : MonoBehaviour
             Clock = 0.0f;
         }
 
-        ////二つ目のPOP
-        //TwoClock += Time.deltaTime;//時間計測
-        //if (TwoClock >= 12.0f)
-        //{//66610
-        //    GameObject ICEX = Instantiate(icexPrefab);
-        //    ICEX.transform.position = new Vector3(Vec2.x, Vec2.y, Vec2.z);
-        //    //経過時間を初期化して再度時間計測を始める
-        //    TwoClock = 0.0f;
-        //}
-
     }
+ 
 }
