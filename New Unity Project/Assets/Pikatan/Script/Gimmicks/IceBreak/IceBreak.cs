@@ -13,10 +13,13 @@ public class IceBreak : MonoBehaviour
     private float taeru = 0;
     private float countTime = 0;
     private int penNum = 0;
+    private IceBreakMaterialController ictrl;
+    private bool isChange = false;
     void Start()
     {
         rb = new Rigidbody[transform.childCount];
         rb = gameObject.GetComponentsInChildren<Rigidbody>();
+        ictrl = GetComponent<IceBreakMaterialController>();
     }
 
     private void Update()
@@ -39,7 +42,14 @@ public class IceBreak : MonoBehaviour
             }
             Destroy(gameObject);
         }
-        
+        if (countTime > taeru / 2.0f)
+        {
+            if (isChange) return;
+            ictrl.ChangeMaterial();
+            isChange = true;
+        }
+        Debug.Log("count:" + countTime + "/" + taeru);
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -61,6 +71,8 @@ public class IceBreak : MonoBehaviour
         {
             isColPlayer = false;
             countTime = 0;
+            ictrl.ResetMaterial();
+            isChange = false;
         }
     }
 }

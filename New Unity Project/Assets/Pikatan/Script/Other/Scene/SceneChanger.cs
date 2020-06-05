@@ -23,6 +23,8 @@ public class SceneChanger : MonoBehaviour
     void Update()
     {
         if(Keyboard.current.rKey.isPressed) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if(Keyboard.current.uKey.isPressed) SceneManager.LoadScene(nextSceneName);
+
 
         if (sEnd.isGameClear)
         {

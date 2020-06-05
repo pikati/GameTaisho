@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5027515999586886939}
   - component: {fileID: 2753550753101077855}
   - component: {fileID: 2753550753101077840}
-  - component: {fileID: 2753550753101077852}
   m_Layer: 0
   m_Name: Ice_ITA1:Ita_Ice1.003
   m_TagString: Untagged
@@ -112,19 +111,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 323483747667672494, guid: e0ee6c5c75a43644684ea3a20eb0691d, type: 3}
---- !u!114 &2753550753101077852
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 326694155204541093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c8bf6ea13b0e3044b7e1a10ee624ff2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  texture: {fileID: 2800000, guid: 30051955c34ae944d86c44fc51449eff, type: 3}
 --- !u!1 &623693966839304435
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,6 +788,7 @@ GameObject:
   - component: {fileID: 7155136911808466960}
   - component: {fileID: 2753550753034923360}
   - component: {fileID: 2753550753034923362}
+  - component: {fileID: 5010862664880333037}
   m_Layer: 0
   m_Name: IceBreak
   m_TagString: Untagged
@@ -858,6 +845,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadCapacity: 0
+  taeru: 0
+--- !u!114 &5010862664880333037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6131508799916728835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c8bf6ea13b0e3044b7e1a10ee624ff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 7f8f7f6e5975b67439a42d3fee87e0dd, type: 2}
 --- !u!1 &7994350352920751731
 GameObject:
   m_ObjectHideFlags: 0
