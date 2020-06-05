@@ -47,6 +47,24 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/iso/stage/level-e.unity
     guid: bc4859761dd05384e87b6e78995eb99b
+  - enabled: 1
+    path: Assets/maroron/MScene/goodstage1.unity
+    guid: 3fdbbd1667ade9741a6b318e35aa36e0
+  - enabled: 1
+    path: Assets/maroron/MScene/goodstage2.unity
+    guid: a2e61c673a03c134cadf0cfe0a1adb36
+  - enabled: 1
+    path: Assets/maroron/MScene/goodstage3.unity
+    guid: b0b97bbc3a02f6940b3e633487a72886
+  - enabled: 1
+    path: Assets/maroron/MScene/goodstage6.unity
+    guid: d73b71032d62aaa4cad9b3348a29bde3
+  - enabled: 1
+    path: Assets/maroron/MScene/goodstage7.unity
+    guid: 93de1c967bca097419fc71468873d39a
+  - enabled: 1
+    path: Assets/maroron/MScene/goodstage8.unity
+    guid: a0f23b2c90b3a9f4eb3855cf85847369
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: c79d7aa44bcccd640a03bbe3228eae54,
       type: 2}

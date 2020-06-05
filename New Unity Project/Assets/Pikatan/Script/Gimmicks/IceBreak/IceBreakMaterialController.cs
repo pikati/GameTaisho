@@ -6,25 +6,32 @@ using UnityEngine.InputSystem;
 public class IceBreakMaterialController : MonoBehaviour
 {
     [SerializeField]
-    private Texture texture;
-    private Renderer renderer;
+    private Material material;
+    private Material defaultMaterial;
+    private MeshRenderer[] renderers = new MeshRenderer[9];
     // Start is called before the first frame update
     void Start()
     {
-        renderer = GetComponent<Renderer>();
-        Debug.Log(renderer);
-        Debug.Log(renderer.material);
-        Debug.Log(renderer.material.GetTexture("_MainTex"));
+        for(int i = 0; i < 9; i++)
+        {
+            renderers[i] = transform.GetChild(i).GetComponent<MeshRenderer>();
+        }
+        defaultMaterial = renderers[0].material;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ChangeMaterial()
     {
-        if(Keyboard.current.lKey.isPressed)
+        for(int i = 0; i < 9; i++)
         {
-            renderer.material.shader = Shader.Find("Legacy Shaders/Diffuse");
-            renderer.material.SetTexture("_MainTex", texture);
-            Debug.Log(renderer.material.GetTexture("_MainTex"));
+            renderers[i].material = material;
+        }
+    }
+
+    public void ResetMaterial()
+    {
+        for (int i = 0; i < 9; i++)
+        {
+            renderers[i].material = defaultMaterial;
         }
     }
 }
