@@ -233,6 +233,7 @@ GameObject:
   - component: {fileID: 3211327516683742097}
   - component: {fileID: 7632011002189043425}
   - component: {fileID: 5754696801815746880}
+  - component: {fileID: 4523084965733720803}
   m_Layer: 0
   m_Name: IceBreak2
   m_TagString: Untagged
@@ -288,7 +289,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4718e6941b1ed84aa6e6a1cd70294c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taeru: 3
+  taeru: 0
+--- !u!114 &4523084965733720803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930835345877358978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c8bf6ea13b0e3044b7e1a10ee624ff2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: 7f8f7f6e5975b67439a42d3fee87e0dd, type: 2}
 --- !u!1 &2390682470638032370
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,7 +982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c8bf6ea13b0e3044b7e1a10ee624ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  texture: {fileID: 2800000, guid: 30051955c34ae944d86c44fc51449eff, type: 3}
+  material: {fileID: 0}
 --- !u!1 &7322835470447465933
 GameObject:
   m_ObjectHideFlags: 0
