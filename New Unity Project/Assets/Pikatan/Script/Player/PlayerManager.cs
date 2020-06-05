@@ -30,6 +30,7 @@ public class PlayerManager : MonoBehaviour
     private AudioManager am;
     private bool isInWater = false;
     private PlayerAnimationController pac;
+    private PoseController poseCtrl;
     public int penguinNum { get; private set; } = 0;
     #endregion
 
@@ -50,12 +51,12 @@ public class PlayerManager : MonoBehaviour
         pManager = GetComponent<PlayerInputManager>();
         whc = GameObject.Find("WaterHeightController").GetComponent<WaterHeightController>();
         pac = GetComponent<PlayerAnimationController>();
+        poseCtrl = GameObject.Find("Pose").GetComponent<PoseController>();
     }
 
     void Update()
     {
-        position = transform.position;
-        if (!gameCtrl.isProgressed || sEnd.isGameClear || sEnd.isGameOver)
+        if (!gameCtrl.isProgressed || sEnd.isGameClear || sEnd.isGameOver || poseCtrl.isPose)
         {
             pac.EndSwim();
             pac.EndWalk();

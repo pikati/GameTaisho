@@ -16,12 +16,16 @@ public class IceBreak : MonoBehaviour
     private IceBreakMaterialController ictrl;
     private bool isChange = false;
     private GameStateController ctrl;
+    private PoseController poseCtrl;
+
+
     void Start()
     {
         rb = new Rigidbody[transform.childCount];
         rb = gameObject.GetComponentsInChildren<Rigidbody>();
         ictrl = GetComponent<IceBreakMaterialController>(); 
         ctrl = GameObject.Find("GameStateController").GetComponent<GameStateController>();
+        poseCtrl = GameObject.Find("Pose").GetComponent<PoseController>();
     }
 
     private void Update()
@@ -33,6 +37,7 @@ public class IceBreak : MonoBehaviour
     {
         if (!isColPlayer) return;
         if (!ctrl.isProgressed) return;
+        if (poseCtrl.isPose) return;
 
         float dTime = Time.deltaTime;
         countTime += dTime + penNum * 0.1f * dTime;
