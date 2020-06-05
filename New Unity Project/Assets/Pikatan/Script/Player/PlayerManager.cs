@@ -37,6 +37,7 @@ public class PlayerManager : MonoBehaviour
     public bool canMove { get; set; } = true;   //プレイヤーが動けるかどうか
     public Vector3 position { get; private set; }
     public bool isMove { get; private set; } = false;
+    public bool isRight { get; private set; } = true;
     #endregion
 
     void Start()
@@ -96,6 +97,7 @@ public class PlayerManager : MonoBehaviour
                     pac.StartSwim();
                 }
             }
+
         }
         //入力がないとき
         else
@@ -120,11 +122,13 @@ public class PlayerManager : MonoBehaviour
     {
         if (moveDirection.x > 0.1f)
         {
-            rotationY = Mathf.Lerp(transform.localEulerAngles.y, RIGHT_ANGLE, 0.1f); 
+            rotationY = Mathf.Lerp(transform.localEulerAngles.y, RIGHT_ANGLE, 0.1f);
+            isRight = true;
         }
         else if(moveDirection.x < -0.1f)
         {
             rotationY = Mathf.Lerp(transform.localEulerAngles.y, LEFT_ANGLE, 0.1f);
+            isRight = false;
         }
 
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, rotationY, 0.0f);

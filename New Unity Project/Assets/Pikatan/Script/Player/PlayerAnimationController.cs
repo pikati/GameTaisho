@@ -32,9 +32,14 @@ public class PlayerAnimationController : MonoBehaviour
         animator.SetBool("swim", false);
     }
 
-    public void Bark()
+    public void StartBark()
     {
         animator.SetBool("bark", true);
+    }
+
+    public void EndBark()
+    {
+        animator.SetBool("bark", false);
     }
 
     public void StartSurprised()
