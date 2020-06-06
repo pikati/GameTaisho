@@ -36,6 +36,7 @@ public class FlowObjectController : ObjectHeightController
     private bool isDown = false;
     private bool isLeft = false;
     private bool isRight = false;
+    private bool isUpdate = true;
 
     private List<float> straightAngle;
 
@@ -117,13 +118,23 @@ public class FlowObjectController : ObjectHeightController
 
     private void FlowObjUpdate()
     {
+        if (transform.position.y >= whc.waterHeight + 0.1f)
+        {
+            transform.position.Set(transform.position.x, whc.waterHeight, transform.position.z);
+            return;
+        }
+        if (!isUpdate)
+        {
+            isUpdate = true;
+            return;
+        }
         float time = Time.deltaTime;
         float t = time * b.buoyancy * 9.8f;
         float t2 = time * b.GetPro() * 9.8f;
         Vector3 upVelocity = new Vector3(0.0f, t * 0.997f, 0.0f);
         Vector3 downVeelocity = new Vector3(0.0f, -t2 * 0.91f, 0.0f);
         velocity += upVelocity + downVeelocity;
-        if(velocity.y > 6.0f)
+        if (velocity.y > 6.0f)
         {
             velocity = new Vector3(0.0f, 6.0f, 0.0f);
         }
@@ -132,6 +143,7 @@ public class FlowObjectController : ObjectHeightController
             velocity = new Vector3(0.0f, -6.0f, 0.0f);
         }
         transform.position += velocity * Time.deltaTime;
+        isUpdate = false;
 
     }
 
