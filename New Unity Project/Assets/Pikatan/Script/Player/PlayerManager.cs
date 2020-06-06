@@ -73,6 +73,7 @@ public class PlayerManager : MonoBehaviour
         }
         CheckInWater();
         Move();
+        position = transform.position;
     }
 
     private void Move()

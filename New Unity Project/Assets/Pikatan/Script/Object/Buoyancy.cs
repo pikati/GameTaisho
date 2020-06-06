@@ -56,7 +56,7 @@ public class Buoyancy : MonoBehaviour
         float proportion = 0;
         if(inWaterCount != 0)
             proportion = inWaterCount / referencePointNum;
-        buoyancy = 2 * 1 * proportion/* * -Physics.gravity.y * density*/;
+        buoyancy = 2 * proportion * density;
     }
 
     public float GetPro()
@@ -64,6 +64,6 @@ public class Buoyancy : MonoBehaviour
         float proportion = 1.0f;
         if (inWaterCount != 0)
             proportion = (referencePointNum - inWaterCount) / inWaterCount;
-        return 2 * 1 * proportion;
+        return 2 * proportion;
     }
 }
