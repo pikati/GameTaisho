@@ -78,7 +78,7 @@ public class IceObjectGenerator : MonoBehaviour
 
             isCreate = true;
             n = player.GetComponent<PlayerManager>().isRight ? 5.0f : -5.0f;
-            playerPosition = new Vector3(player.transform.position.x + n, player.transform.position.y - 0.5f, 0.0f);
+            playerPosition = new Vector3(player.transform.position.x + n, player.transform.position.y - 1.0f, 0.0f);
             bIce.BreakIce();
         }
         

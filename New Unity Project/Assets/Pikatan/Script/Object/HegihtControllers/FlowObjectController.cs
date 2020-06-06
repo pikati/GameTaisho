@@ -118,7 +118,7 @@ public class FlowObjectController : ObjectHeightController
 
     private void FlowObjUpdate()
     {
-        if (transform.position.y >= whc.waterHeight + 0.1f)
+        if (Mathf.Abs(transform.position.y - whc.waterHeight) <= 0.05f)
         {
             transform.position.Set(transform.position.x, whc.waterHeight, transform.position.z);
             return;
