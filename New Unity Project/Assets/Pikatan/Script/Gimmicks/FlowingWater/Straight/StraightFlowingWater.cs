@@ -9,6 +9,7 @@ public class StraightFlowingWater : MonoBehaviour
 
     private DayNightChanger dnChanger;
     private FlowingWaterController fw;
+    private GameObject flow;
 
     public FlowDir dir { get; private set; }
 
@@ -26,5 +27,20 @@ public class StraightFlowingWater : MonoBehaviour
 
         dir = FlowDir.STRAIGHT;
         angle = transform.parent.localEulerAngles.z;
+        //InitFlowEffect();
+    }
+
+    private void InitFlowEffect()
+    {
+        flow = transform.Find("FlowingFlowEffect").gameObject;
+        if(flow == null)
+        {
+            return;
+        }
+        ParticleSystem.MainModule main = flow.GetComponent<ParticleSystem>().main;
+        ParticleSystem.MinMaxCurve mmc = main.startRotation;
+        mmc.constant = Quaternion.Euler(0.0f, 0.0f, 270.0f - transform.rotation.eulerAngles.z).z;
+        main.startRotation = mmc;
+        Debug.Log(mmc.constant);
     }
 }
