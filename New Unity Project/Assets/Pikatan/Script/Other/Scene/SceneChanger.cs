@@ -22,7 +22,6 @@ public class SceneChanger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Keyboard.current.rKey.isPressed) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         if(Keyboard.current.uKey.isPressed) SceneManager.LoadScene(nextSceneName);
 
 
@@ -50,11 +49,6 @@ public class SceneChanger : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 pManager.SwitchActionMap("Player");
             }
-        }
-        
-        if (Keyboard.current.escapeKey.isPressed)
-        {
-            Quit();
         }
     }
 

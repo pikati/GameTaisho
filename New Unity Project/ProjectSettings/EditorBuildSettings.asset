@@ -9,10 +9,10 @@ EditorBuildSettings:
     path: Assets/Pikatan/Scene/Title.unity
     guid: b386f925892650846a9bdda2e7e8f18f
   - enabled: 1
-    path: Assets/Pikatan/Scene/LevelScene/level-tutorial1.unity
+    path: Assets/Pikatan/Scene/LevelScene/Tutorial/level-tutorial1.unity
     guid: 63883ada32046ad4488b2c0297953205
   - enabled: 1
-    path: Assets/Pikatan/Scene/LevelScene/level-tutorial2.unity
+    path: Assets/Pikatan/Scene/LevelScene/Tutorial/level-tutorial2.unity
     guid: fef1dc673b27fb34abd36403ce4a1158
   - enabled: 1
     path: Assets/Pikatan/Scene/LevelScene/level-1.unity
