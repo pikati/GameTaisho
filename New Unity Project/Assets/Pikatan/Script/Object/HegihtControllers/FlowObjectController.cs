@@ -61,7 +61,7 @@ public class FlowObjectController : ObjectHeightController
         if (!gameCtrl.isProgressed || poseCtrl.isPose) return;
         UpdatePosition();
         //Debug.Log(transform.position.x);
-        //Debug.Log(flowDir);
+        Debug.Log(flowDir);
     }
 
     protected override void UpdatePosition()
