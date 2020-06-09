@@ -16,6 +16,8 @@ public class WaterHeightController : MonoBehaviour
     private GameStateController ctrl;
     private StageEndJudge sEnd;
     private DayNightChanger dnChanger;
+    private CameraController cc;
+    private PoseController poseCtrl;
     private bool oldIsDay;
     #endregion
 
@@ -28,13 +30,15 @@ public class WaterHeightController : MonoBehaviour
         ctrl = GameObject.Find("GameStateController").GetComponent<GameStateController>();
         sEnd = GameObject.FindGameObjectWithTag("Goal").GetComponent<StageEndJudge>();
         dnChanger = GameObject.Find("DayNightChanger").GetComponent<DayNightChanger>();
+        cc = GameObject.Find("Main Camera").GetComponent<CameraController>();
+        poseCtrl = GameObject.Find("Pose").GetComponent<PoseController>();
         waterHeight = startHegiht;
     }
 
     void Update()
     {
         bool isDay = dnChanger.isDay;
-        if (!ctrl.isProgressed || sEnd.isGameClear || sEnd.isGameOver) return;
+        if (!ctrl.isProgressed || sEnd.isGameClear || sEnd.isGameOver || !cc.isStart || poseCtrl.isPose) return;
 
         Vector3 pos = new Vector3(transform.position.x, waterHeight, transform.position.z);
         transform.position = pos;
