@@ -29,6 +29,7 @@ public class CameraController : MonoBehaviour
     private bool isNext = false;
     private float time = 0;
     private float skipTime = 0;
+    private bool isAllView = false;
 
     private const float CAMERA_Y = 4.0f;
     private const float CAMERA_Z = -25.0f;
@@ -42,6 +43,7 @@ public class CameraController : MonoBehaviour
         position = new Vector3(0.0f, CAMERA_Y, CAMERA_Z);
         dir = CameraDir.NON;
         GameObject obj = GameObject.Find("Goal");
+        if (obj == null) obj = GameObject.Find("FlowGoal");
         penguinPosition.Add(new Vector3(obj.transform.position.x + 0.5f, obj.transform.position.y + 0.5f, -25.0f));
         GameObject[] babyPenguins = GameObject.FindGameObjectsWithTag("BabyPenguin");
         List<Vector3> bpos = new List<Vector3>();
@@ -151,7 +153,7 @@ public class CameraController : MonoBehaviour
             isStart = true;
         }
         Debug.Log(skipTime);
-        transform.position = Vector3.Lerp(transform.position, penguinPosition[index], Time.deltaTime * 2.0f);
+        transform.position = Vector3.Lerp(transform.position, penguinPosition[index], Time.deltaTime * 3.0f);
         if(Mathf.Abs(transform.position.magnitude - penguinPosition[index].magnitude) <= 0.5f)
         {
             isNext = true;
@@ -159,7 +161,7 @@ public class CameraController : MonoBehaviour
         if(isNext)
         {
             time += Time.deltaTime;
-            if (time >= 2.0f)
+            if (time >= 1.0f)
             {
                 isNext = false;
                 time = 0;

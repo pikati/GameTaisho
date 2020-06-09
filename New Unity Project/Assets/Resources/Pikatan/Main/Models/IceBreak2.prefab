@@ -871,7 +871,6 @@ GameObject:
   - component: {fileID: 727781495393361562}
   - component: {fileID: 7632011002257041118}
   - component: {fileID: 7632011002257041105}
-  - component: {fileID: 7632011002257041117}
   m_Layer: 0
   m_Name: Ice_ITA1:Ita_Ice1.003
   m_TagString: Untagged
@@ -970,19 +969,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 323483747667672494, guid: e0ee6c5c75a43644684ea3a20eb0691d, type: 3}
---- !u!114 &7632011002257041117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5428083135618711844}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c8bf6ea13b0e3044b7e1a10ee624ff2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  material: {fileID: 0}
 --- !u!1 &7322835470447465933
 GameObject:
   m_ObjectHideFlags: 0

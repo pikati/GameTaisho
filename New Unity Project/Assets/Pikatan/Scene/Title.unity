@@ -1155,6 +1155,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &877505516 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5225692189671923890, guid: 21c22dac44b09184a892cb6ab6b16f42,
+    type: 3}
+  m_PrefabInstance: {fileID: 1783574856}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &877505517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877505516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e670ae6ffa5ce4a4bb798306698a97c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &877505518
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877505516}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d75f9ba38d782ce469145f50c8737168, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &905750429
 GameObject:
   m_ObjectHideFlags: 3
@@ -1617,7 +1654,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1102416093}
-  m_LocalRotation: {x: -0.0062688556, y: -0.00000004239533, z: 2.654961e-10, w: -0.9999804}
+  m_LocalRotation: {x: -0.0062688556, y: -0.00000004239533, z: 2.6541427e-10, w: -0.9999804}
   m_LocalPosition: {x: -1.9093814, y: -0.10290146, z: -12.531913}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1924,6 +1961,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1278862763 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8869967354304562502, guid: 91cfc2b0b60a5c843baa2f91abaf7f56,
+    type: 3}
+  m_PrefabInstance: {fileID: 674069437}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1278862764
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278862763}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e11ad68598b468741ab1c0e8ceab19a6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1292520067
 GameObject:
   m_ObjectHideFlags: 0
@@ -2337,7 +2399,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1463132351}
-  m_LocalRotation: {x: -0.0062688556, y: -0.00000004239533, z: 2.654961e-10, w: -0.9999804}
+  m_LocalRotation: {x: -0.0062688556, y: -0.00000004239533, z: 2.6541427e-10, w: -0.9999804}
   m_LocalPosition: {x: 0.43999845, y: 5.31, z: -12.999999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2910,40 +2972,40 @@ MonoBehaviour:
   m_GameObject: {fileID: 1812553166}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
+  m_Script: {fileID: 11500000, guid: 97a078041f57ec64a9bc9c31f494a83f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1812553171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812553166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 0067cacd0c49cd345bc6dba2e94174bd,
+    type: 3}
   m_NotificationBehavior: 0
-  m_MaxPlayerCount: -1
-  m_AllowJoining: 1
-  m_JoinBehavior: 0
-  m_PlayerJoinedEvent:
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_PlayerLeftEvent:
+  m_DeviceRegainedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_JoinAction:
-    m_UseReference: 0
-    m_Action:
-      m_Name: 
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-    m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 0}
-  m_SplitScreen: 0
-  m_MaintainAspectRatioInSplitScreen: 0
-  m_FixedNumberOfSplitScreens: -1
-  m_SplitScreenRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1854245506
 GameObject:
   m_ObjectHideFlags: 0
