@@ -38,6 +38,7 @@ public class SceneChanger : MonoBehaviour
             }
             if (pManager.isDecide)
             {
+                FindObjectOfType<AudioManager>().PlaySound("Clear", 0);
                 SceneManager.LoadScene(nextSceneName);
                 pManager.SwitchActionMap("Player");
             }

@@ -26,16 +26,22 @@ public class TitleController : MonoBehaviour
         buttons.isStart = true;
         pdm.StartTimeline();
         tsm.isEventStart = true;
+
+        FindObjectOfType<AudioManager>().PlaySound("Select", 0);
+        FindObjectOfType<AudioManager>().PlaySound("Penguin",5);
+        FindObjectOfType<AudioManager>().PlaySound("Bear", 18);
     }
 
 
     public void Continue()
     {
         //ステージセレクト画面
+        FindObjectOfType<AudioManager>().PlaySound("Select", 0);
     }
 
     public void ExitGame()
     {
+        FindObjectOfType<AudioManager>().PlaySound("Select", 0);
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #elif UNITY_STANDALONE

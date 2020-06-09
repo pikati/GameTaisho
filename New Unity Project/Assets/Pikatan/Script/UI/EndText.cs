@@ -18,6 +18,7 @@ public class EndText : MonoBehaviour
     public void DisplayGameClear()
     {
         gameClear.SetActive(true);
+        FindObjectOfType<AudioManager>().PlaySound("Penguin", 0);
     }
 
     public void HideGameClear()

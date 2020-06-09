@@ -43,9 +43,13 @@ public class IceObjectGenerator : MonoBehaviour
             Vector3 newPosition = Vector3.Slerp(moveObject.transform.position, playerPosition, Time.deltaTime * speed);
             newPosition.x = player.transform.position.x + n;
             moveObject.transform.position = newPosition;
+            FindObjectOfType<AudioManager>().PlaySound("Bear", 0);
+            FindObjectOfType<AudioManager>().PlaySound("IceburgBreak", 0);
+            FindObjectOfType<AudioManager>().PlaySound("Thema", 0);
             player.GetComponent<PlayerAnimationController>().StartBark();
+           
 
-            if(Mathf.Abs(moveObject.transform.position.z - playerPosition.z) <= 0.1f && Mathf.Abs(moveObject.transform.position.y - playerPosition.y) <= 0.1f)
+            if (Mathf.Abs(moveObject.transform.position.z - playerPosition.z) <= 0.1f && Mathf.Abs(moveObject.transform.position.y - playerPosition.y) <= 0.1f)
             {
                 isCreate = false;
                 ctrl.isProgressed = true;

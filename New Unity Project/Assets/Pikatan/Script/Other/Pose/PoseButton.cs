@@ -14,16 +14,19 @@ public class PoseButton : MonoBehaviour
 
     public void Retry()
     {
+        FindObjectOfType<AudioManager>().PlaySound("Select", 0);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void BackHome()
     {
+        FindObjectOfType<AudioManager>().PlaySound("Select", 0);
         SceneManager.LoadScene("Title");
     }
 
     public void BackGame()
     {
+        FindObjectOfType<AudioManager>().PlaySound("Select", 0);
         pc.DisablePoseMenu();
     }
 }
