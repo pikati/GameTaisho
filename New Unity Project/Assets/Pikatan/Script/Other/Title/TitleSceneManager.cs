@@ -13,6 +13,8 @@ public class TitleSceneManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Fade.SetFade();
+        StartCoroutine("FadeOut");
         pd = GameObject.Find("PenguinNoize").GetComponent<PlayableDirector>();
         pim = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInputManager>();
     }
@@ -23,14 +25,18 @@ public class TitleSceneManager : MonoBehaviour
 
         if(pim.isSkip)
         {
-            SceneManager.LoadScene("level-tutorial1");
+            Fade.FadeIn("level-tutorial1");
         }
 
         if (pd.state != PlayState.Playing)
         {
-            SceneManager.LoadScene("level-tutorial1");
+            Fade.FadeIn("level-tutorial1");
         }
     }
 
-
+    private IEnumerator FadeOut()
+    {
+        yield return new WaitForSeconds(1.0f);
+        Fade.FadeOut();
+    }
 }

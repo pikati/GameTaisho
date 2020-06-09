@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class DayNightFade : MonoBehaviour
+public class Fade : MonoBehaviour
 {
     [SerializeField]
     private float fadeTime;
+    private static string nextSceneName = null;
 
     private static float fTime;
 
@@ -17,6 +19,7 @@ public class DayNightFade : MonoBehaviour
     private static bool isFadeOut;
 
     private static float alpha;
+    public static bool isFading { get; private set; } = false;
 
     public delegate void EndFade();
     public static event EndFade OnEndFade;
@@ -37,16 +40,19 @@ public class DayNightFade : MonoBehaviour
     {
         if (isFadeIn) UpdateFadeIn();
         else if (isFadeOut) UpdateFadeOut();
+        isFading = isFadeIn || isFadeOut;
     }
 
     private static void UpdateFadeIn()
     {
         alpha += Time.deltaTime / fTime;
-
-        if(alpha >= 1.0f)
+        if(nextSceneName != null && alpha >= 1.0f)
+        {
+            SceneManager.LoadScene(nextSceneName);
+        }
+        if(alpha >= 1.2f)
         {
             isFadeIn = false;
-            alpha = 1.0f;
             canvas.enabled = false;
             OnEndFade?.Invoke();//nullチェックして実行
             FadeOut();
@@ -73,13 +79,28 @@ public class DayNightFade : MonoBehaviour
         image.color = Color.clear;
         isFadeIn = true;
         alpha = 0.0f;
-    } 
+    }
+
+    public static void FadeIn(string sceneName)
+    {
+        image.color = Color.clear;
+        isFadeIn = true;
+        alpha = 0.0f;
+        nextSceneName = sceneName;
+    }
 
     public static void FadeOut()
     {
         image.color = Color.black;
         canvas.enabled = true;
         isFadeOut = true;
+        alpha = 1.0f;
+    }
+
+    public static void SetFade()
+    {
+        image.color = Color.black;
+        canvas.enabled = true;
         alpha = 1.0f;
     }
 }

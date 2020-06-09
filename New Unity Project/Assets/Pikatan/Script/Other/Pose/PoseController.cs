@@ -22,6 +22,7 @@ public class PoseController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Fade.isFading) return;
         if(pim.isPose)
         {
             if(canvas.activeInHierarchy)

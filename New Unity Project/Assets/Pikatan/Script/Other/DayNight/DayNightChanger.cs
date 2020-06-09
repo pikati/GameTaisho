@@ -21,7 +21,7 @@ public class DayNightChanger : MonoBehaviour
         ddn = GetComponent<DisplayDayNight>();
         dnLight = GetComponent<DayNightLighting>();
         fwm = GameObject.Find("FlowingWaterManager").GetComponent<FlowingWaterManager>();
-        DayNightFade.OnEndFade += ChangeDayNight;
+        Fade.OnEndFade += ChangeDayNight;
         isDay = isDayTime;
         ddn.ChangeSky(isDay);
     }
@@ -30,7 +30,7 @@ public class DayNightChanger : MonoBehaviour
         if (!isEnable) return;
         if (pManager.isChange)
         {
-            DayNightFade.FadeIn();
+            Fade.FadeIn();
         }
     }
 

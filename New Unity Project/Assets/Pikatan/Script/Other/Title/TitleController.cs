@@ -20,6 +20,7 @@ public class TitleController : MonoBehaviour
     }
     public void StartGame()
     {
+        if (Fade.isFading) return;
         cinemachineManager.StartPrologueEvent();
         title.isStart = true;
         buttons.ChangeButtonTransition();
@@ -28,14 +29,15 @@ public class TitleController : MonoBehaviour
         tsm.isEventStart = true;
     }
 
-
     public void Continue()
     {
+        if (Fade.isFading) return;
         //ステージセレクト画面
     }
 
     public void ExitGame()
     {
+        if (Fade.isFading) return;
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #elif UNITY_STANDALONE
