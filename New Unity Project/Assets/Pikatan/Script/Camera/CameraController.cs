@@ -23,9 +23,16 @@ public class CameraController : MonoBehaviour
     private float max = 5.0f;
     private float min = -5.0f;
 
+    private List<Vector3> penguinPosition = new List<Vector3>();
+    private int index = 0;
+    public bool isStart { get; private set; } = false;
+    private bool isNext = false;
+    private float time = 0;
+    private float skipTime = 0;
+
     private const float CAMERA_Y = 4.0f;
     private const float CAMERA_Z = -25.0f;
-    private const float CAMERA_MOVE_RAITO = 5.0f;
+    private const float CAMERA_MOVE_RAITO = 8.0f;
     private PlayerInputManager pManager;
 
     void Start()
@@ -34,12 +41,42 @@ public class CameraController : MonoBehaviour
         pManager = player.GetComponent<PlayerInputManager>();
         position = new Vector3(0.0f, CAMERA_Y, CAMERA_Z);
         dir = CameraDir.NON;
+        GameObject obj = GameObject.Find("Goal");
+        penguinPosition.Add(new Vector3(obj.transform.position.x + 0.5f, obj.transform.position.y + 0.5f, -25.0f));
+        GameObject[] babyPenguins = GameObject.FindGameObjectsWithTag("BabyPenguin");
+        List<Vector3> bpos = new List<Vector3>();
+        for(int i = 0; i < babyPenguins.Length; i++)
+        {
+            bpos.Add(new Vector3(babyPenguins[i].transform.position.x, babyPenguins[i].transform.position.y, -25.0f));
+        }
+        for(int i = 0; i < bpos.Count - 1; i++)
+        {
+            if(Mathf.Abs(penguinPosition[0].magnitude - bpos[i].magnitude) > Mathf.Abs(penguinPosition[0].magnitude - bpos[i + 1].magnitude))
+            {
+                Vector3 tmp = bpos[i];
+                bpos[i] = bpos[i + 1];
+                bpos[i + 1] = tmp; 
+            }
+        }
+
+        for (int i = 0; i < bpos.Count; i++)
+        {
+            penguinPosition.Add(bpos[i]);
+        }
+        penguinPosition.Add(new Vector3(player.transform.position.x, player.transform.position.y + 4.0f, -25.0f));
     }
 
     void Update()
     {
-        InputCamera();
-        UpdatePosition();
+        if (isStart)
+        {
+            InputCamera();
+            UpdatePosition();
+        }
+        else
+        {
+            DispPenguin();
+        }
     }
 
     
@@ -104,6 +141,34 @@ public class CameraController : MonoBehaviour
         else
         {
             dir = CameraDir.NON;
+        }
+    }
+
+    private void DispPenguin()
+    {
+        if(pManager.isSkip)
+        {
+            isStart = true;
+        }
+        Debug.Log(skipTime);
+        transform.position = Vector3.Lerp(transform.position, penguinPosition[index], Time.deltaTime * 2.0f);
+        if(Mathf.Abs(transform.position.magnitude - penguinPosition[index].magnitude) <= 0.5f)
+        {
+            isNext = true;
+        }
+        if(isNext)
+        {
+            time += Time.deltaTime;
+            if (time >= 2.0f)
+            {
+                isNext = false;
+                time = 0;
+                index++;
+                if(index >= penguinPosition.Count)
+                {
+                    isStart = true;
+                }
+            }
         }
     }
 }
