@@ -10,8 +10,6 @@ public class IceBreak2 : MonoBehaviour
     private int taeru = 0;
 
     private int taerumoto = 0;
-    private float countTime = 0;
-    private int penNum = 0;
     private IceBreakMaterialController ictrl;
     private bool isChange = false;
     private GameStateController ctrl;

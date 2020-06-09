@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerInputManager : MonoBehaviour
 {
-    private InputAction move, cameraCtrl, ChangeDayNight, Create, iceDecide, iceCancel, iceMove, decide, cancel, Pose, Skip;
+    private InputAction move, cameraCtrl, ChangeDayNight, Create, iceDecide, iceCancel, iceMove, decide, cancel, Pose, Skip, allView;
     private PlayerInput input;
     #region Player
     public Vector2 direction { get; private set; }
@@ -15,6 +15,7 @@ public class PlayerInputManager : MonoBehaviour
     public bool isCreate { get; private set; }
     public bool isPose { get; private set; }
     public bool isSkip { get; private set; }
+    public bool isAllView { get; private set; }
     #endregion
 
     #region Ice
@@ -38,6 +39,7 @@ public class PlayerInputManager : MonoBehaviour
         Create = actionMap["Create"];
         Pose = actionMap["Pose"];
         Skip = actionMap["Skip"];
+        allView = actionMap["ViewAll"];
         SwitchActionMap("Ice");
         actionMap = input.currentActionMap;
         iceDecide = actionMap["Decide"];
@@ -59,6 +61,7 @@ public class PlayerInputManager : MonoBehaviour
         isCreate = Create.triggered;
         isPose = Pose.triggered;
         isSkip = Skip.triggered;
+        isAllView = allView.triggered;
         isIceDecide = iceDecide.triggered;
         isIceCeancel = iceCancel.triggered;
         iceDirection = iceMove.ReadValue<Vector2>();
