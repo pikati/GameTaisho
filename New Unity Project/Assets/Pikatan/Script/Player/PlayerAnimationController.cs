@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour
 {
-
+    public AudioSource footStep;
     private Animator animator;
     // Start is called before the first frame update
     void Start()
@@ -15,10 +15,14 @@ public class PlayerAnimationController : MonoBehaviour
     public void StartWalk()
     {
         animator.SetBool("walk", true);
+        footStep.enabled = true;
+        footStep.loop = true;
     }
 
     public void EndWalk()
     {
+        footStep.enabled = false;
+        footStep.loop = false;
         animator.SetBool("walk", false);
     }
 

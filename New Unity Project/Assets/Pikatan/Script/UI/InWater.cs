@@ -21,7 +21,6 @@ public class InWater : MonoBehaviour
         if (player.position.y + 4.1f < sea.position.y)
         {
             inWater.SetActive(true);
-            FindObjectOfType<AudioManager>().PlaySound("InWater", 0);
         }
         else inWater.SetActive(false);
     }
