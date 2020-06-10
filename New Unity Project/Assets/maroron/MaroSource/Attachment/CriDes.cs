@@ -30,12 +30,13 @@ public class CriDes : MonoBehaviour
             Debug.Log(Counter);
             Destroy(OBJ);
         }
-        
-        if(Counter==0)
+        if (Counter == 0)
         {
             transform.position = new Vector3(pos.x, pos.y, pos.z);
-            Counter = 3;
+            Counter = 4;
         }
+
     }
+
 
 }
