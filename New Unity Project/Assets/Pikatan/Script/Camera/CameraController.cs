@@ -38,6 +38,8 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
+        Fade.SetFade();
+        Fade.FadeOut();
         player = GameObject.FindGameObjectWithTag("Player");
         pManager = player.GetComponent<PlayerInputManager>();
         position = new Vector3(0.0f, CAMERA_Y, CAMERA_Z);
@@ -152,7 +154,7 @@ public class CameraController : MonoBehaviour
         {
             isStart = true;
         }
-        Debug.Log(skipTime);
+
         transform.position = Vector3.Lerp(transform.position, penguinPosition[index], Time.deltaTime * 3.0f);
         if(Mathf.Abs(transform.position.magnitude - penguinPosition[index].magnitude) <= 0.5f)
         {
@@ -161,14 +163,30 @@ public class CameraController : MonoBehaviour
         if(isNext)
         {
             time += Time.deltaTime;
-            if (time >= 1.0f)
+            if(index == 0)
             {
-                isNext = false;
-                time = 0;
-                index++;
-                if(index >= penguinPosition.Count)
+                if (time >= 2.0f)
                 {
-                    isStart = true;
+                    isNext = false;
+                    time = 0;
+                    index++;
+                    if (index >= penguinPosition.Count)
+                    {
+                        isStart = true;
+                    }
+                }
+            }
+            else
+            {
+                if (time >= 1.0f)
+                {
+                    isNext = false;
+                    time = 0;
+                    index++;
+                    if (index >= penguinPosition.Count)
+                    {
+                        isStart = true;
+                    }
                 }
             }
         }

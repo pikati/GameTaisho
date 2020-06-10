@@ -9,6 +9,7 @@ public class PoseController : MonoBehaviour
 
     private GameObject canvas;
     private PlayerInputManager pim;
+    private CameraController cc;
     public bool isPose { get; private set; } = false;
     
     // Start is called before the first frame update
@@ -17,11 +18,13 @@ public class PoseController : MonoBehaviour
         canvas = GameObject.Find("PoseMenu");
         DisablePoseMenu();
         pim = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInputManager>();
+        cc = GameObject.Find("Main Camera").GetComponent<CameraController>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!cc.isStart) return;
         if(pim.isPose)
         {
             if(canvas.activeInHierarchy)

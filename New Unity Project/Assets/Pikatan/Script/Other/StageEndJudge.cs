@@ -53,15 +53,11 @@ public class StageEndJudge : MonoBehaviour
     private void GameClear()
     {
         isGameClear = true;
-        endText.DisplayGameClear();
-        player.GetComponent<PlayerInputManager>().SwitchActionMap("UI");
     }
 
     private void GameOver()
     {
         isGameOver = true;
-        endText.DisplayGameOver();
-        player.GetComponent<PlayerInputManager>().SwitchActionMap("UI");
     }
 
     private void DisplayRemainingPenguin()

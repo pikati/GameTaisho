@@ -29,6 +29,7 @@ public class TitleController : MonoBehaviour
 
     public void StartGame()
     {
+        if (Fade.isFading) return;
         cinemachineManager.StartPrologueEvent();
         title.isStart = true;
         buttons.ChangeButtonTransition();
@@ -41,15 +42,16 @@ public class TitleController : MonoBehaviour
         FindObjectOfType<AudioManager>().PlaySound("Bear", 18);
     }
 
-
     public void Continue()
     {
+        if (Fade.isFading) return;
         //ステージセレクト画面
         FindObjectOfType<AudioManager>().PlaySound("Select", 0);
     }
 
     public void ExitGame()
     {
+        if (Fade.isFading) return;
         FindObjectOfType<AudioManager>().PlaySound("Select", 0);
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;

@@ -60,6 +60,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.33333334, g: 0.33333334, b: 0.33333334, a: 0}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -87,7 +88,7 @@ GameObject:
   - component: {fileID: 3687081235679150408}
   - component: {fileID: 3687081235679150423}
   m_Layer: 5
-  m_Name: DayNightFade
+  m_Name: Fade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -185,4 +186,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa32d51dcf485144b972057285f0e4be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeTime: 0.5
+  fadeTime: 0.4

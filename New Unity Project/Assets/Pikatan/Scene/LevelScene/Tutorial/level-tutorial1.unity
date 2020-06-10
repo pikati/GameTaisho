@@ -1751,7 +1751,7 @@ PrefabInstance:
     - target: {fileID: 3687081235679150422, guid: 9fbb5f6b4e1b8ab429c547f62e724d24,
         type: 3}
       propertyPath: m_Name
-      value: DayNightFade
+      value: Fade
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9fbb5f6b4e1b8ab429c547f62e724d24, type: 3}
