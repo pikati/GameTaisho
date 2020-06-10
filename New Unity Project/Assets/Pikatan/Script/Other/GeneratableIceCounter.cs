@@ -11,5 +11,6 @@ public class GeneratableIceCounter : MonoBehaviour
     private void Start()
     {
         generatableIceQuantity = iceNum;
+        if (generatableIceQuantity == 0) GameObject.Find("IceGauge").SetActive(false);
     }
 }

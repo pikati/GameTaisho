@@ -12,6 +12,7 @@ public class SceneChanger : MonoBehaviour
     private StageEndJudge sEnd;
     private PlayerInputManager pManager;
     private bool isChange = false;
+    private bool isSpundPlay = false;
 
     // Start is called before the first frame update
     void Start()
@@ -26,10 +27,15 @@ public class SceneChanger : MonoBehaviour
         if (isChange) return;
 
         if (Keyboard.current.uKey.isPressed) SceneManager.LoadScene(nextSceneName);
-
+        if (Keyboard.current.iKey.isPressed) Fade.FadeIn(nextSceneName);
 
         if (sEnd.isGameClear)
         {
+            if(!isSpundPlay)
+            {
+                FindObjectOfType<AudioManager>().PlaySound("Clear", 0);
+                isSpundPlay = true;
+            }
             //全ステージクリア処理？
             if (nextSceneName == "end")
             {
@@ -40,8 +46,6 @@ public class SceneChanger : MonoBehaviour
                 return;
             }
             StartCoroutine(SceneChange(true));
-            FindObjectOfType<AudioManager>().PlaySound("Clear", 0);
-            SceneManager.LoadScene(nextSceneName);
             pManager.SwitchActionMap("Player");
         }
         else if(sEnd.isGameOver)
@@ -52,7 +56,7 @@ public class SceneChanger : MonoBehaviour
 
     private IEnumerator SceneChange(bool b)
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(1.5f);
         if (b)
         {
             Fade.FadeIn(nextSceneName);
