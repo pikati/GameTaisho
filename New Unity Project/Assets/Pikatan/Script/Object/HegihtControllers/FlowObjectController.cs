@@ -139,6 +139,11 @@ public class FlowObjectController : ObjectHeightController
         {
             velocity.y = -6.0f;
         }
+        if (Mathf.Abs(transform.position.y - whc.waterHeight) <= 0.05f)
+        {
+            velocity = Vector3.zero;
+            transform.position.Set(transform.position.x, whc.waterHeight, transform.position.z);
+        }
         transform.position += velocity * Time.deltaTime;
         isUpdate = false;
 
