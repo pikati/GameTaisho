@@ -39,7 +39,7 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         Fade.SetFade();
-        Fade.FadeOut();
+        StartCoroutine(Fadeout());
         player = GameObject.FindGameObjectWithTag("Player");
         pManager = player.GetComponent<PlayerInputManager>();
         position = new Vector3(0.0f, CAMERA_Y, CAMERA_Z);
@@ -190,5 +190,11 @@ public class CameraController : MonoBehaviour
                 }
             }
         }
+    }
+
+    private IEnumerator Fadeout()
+    {
+        yield return new WaitForSeconds(1.0f);
+        Fade.FadeOut();
     }
 }

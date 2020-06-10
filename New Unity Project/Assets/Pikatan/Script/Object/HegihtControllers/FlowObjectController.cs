@@ -24,12 +24,10 @@ public class FlowObjectController : ObjectHeightController
     private GameStateController gameCtrl;
     private Buoyancy b;
     private WaterHeightController whc;
-    private PoseController poseCtrl;
     private bool oldIsDay;  //前フレームが昼か夜かを記憶しておく（昼夜を切り替えたときに足場とステージをほんの少し遠ざけるため）
 
     private float speed;
     private FlowDir flowDir;
-    private FlowDir oldDir;
     private Vector3 velocity;
 
     private bool isUp = false;
@@ -113,7 +111,6 @@ public class FlowObjectController : ObjectHeightController
             straightAngle.Clear();
         }
         oldIsDay = dnChanger.isDay;
-        oldDir = flowDir;
     }
 
     private void FlowObjUpdate()
@@ -316,30 +313,6 @@ public class FlowObjectController : ObjectHeightController
             {
                 transform.position += new Vector3(0.6f, 0.0f, 0.0f);
             }
-            //if (isDay)
-            //{
-            //    if (transform.position.x < colliderPosition.x)
-            //    {
-            //        transform.position += new Vector3(0.3f, 0.0f, 0.0f);
-            //    }
-            //    else
-            //    {
-            //        transform.position -= new Vector3(0.3f, 0.0f, 0.0f);
-            //    }
-            //}
-            //else
-            //{
-            //    if (transform.position.x < colliderPosition.x)
-            //    {
-            //        if(oldDir != FlowDir.NON)
-            //            transform.position -= new Vector3(0.3f, 0.0f, 0.0f);
-            //    }
-            //    else
-            //    {
-            //        if (oldDir != FlowDir.NON)
-            //            transform.position += new Vector3(0.3f, 0.0f, 0.0f);
-            //    }
-            //}
             
         }
     }

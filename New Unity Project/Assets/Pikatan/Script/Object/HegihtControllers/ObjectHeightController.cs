@@ -7,7 +7,7 @@ public class ObjectHeightController : MonoBehaviour
 
     protected WaterHeightController controller;    //水面の高さコントローラー
     private Vector3 position;   //オブジェクトの座標
-    private PoseController poseCtrl;
+    protected PoseController poseCtrl;
     protected void Init()
     {
         controller = GameObject.Find("WaterHeightController").GetComponent<WaterHeightController>();
