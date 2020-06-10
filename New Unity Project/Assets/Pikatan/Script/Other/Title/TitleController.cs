@@ -18,6 +18,15 @@ public class TitleController : MonoBehaviour
         pdm = GameObject.Find("PlayableDirectorManager").GetComponent<TitlePlayableDirectorManager>();
         tsm = GameObject.Find("TitleSceneManager").GetComponent<TitleSceneManager>();
     }
+
+    private void Update()
+    {
+        if(Input.GetAxis("Vertical") != 0.0f)
+        {
+            FindObjectOfType<AudioManager>().PlaySound("Button", 0);
+        }
+    }
+
     public void StartGame()
     {
         cinemachineManager.StartPrologueEvent();
