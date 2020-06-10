@@ -34,6 +34,7 @@ public class SceneChanger : MonoBehaviour
             if(!isSpundPlay)
             {
                 FindObjectOfType<AudioManager>().PlaySound("Clear", 0);
+                StartCoroutine(SceneChange(true));
                 isSpundPlay = true;
             }
             //全ステージクリア処理？
@@ -45,7 +46,6 @@ public class SceneChanger : MonoBehaviour
                 Invoke("Quit", 5);
                 return;
             }
-            StartCoroutine(SceneChange(true));
             pManager.SwitchActionMap("Player");
         }
         else if(sEnd.isGameOver)
