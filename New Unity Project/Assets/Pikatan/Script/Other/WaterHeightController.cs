@@ -37,7 +37,6 @@ public class WaterHeightController : MonoBehaviour
 
     void Update()
     {
-        if (Fade.isFading) return;
         bool isDay = dnChanger.isDay;
         if (!ctrl.isProgressed || sEnd.isGameClear || sEnd.isGameOver || !cc.isStart || poseCtrl.isPose) return;
 

@@ -58,7 +58,6 @@ public class PlayerManager : MonoBehaviour
 
     void Update()
     {
-        if (Fade.isFading) return;
         if (!gameCtrl.isProgressed || sEnd.isGameClear || sEnd.isGameOver || poseCtrl.isPose || !cc.isStart)
         {
             pac.EndSwim();

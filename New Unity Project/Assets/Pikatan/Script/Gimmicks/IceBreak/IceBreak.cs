@@ -1,31 +1,37 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class IceBreak : MonoBehaviour
 {
-    [SerializeField]
-    private int loadCapacity;
     Rigidbody[] rb;
+    MeshCollider[] mc;
     private bool isColPlayer = false;
-    [SerializeField]
-    private float taeru = 0;
     private float countTime = 0;
-    private int penNum = 0;
     private IceBreakMaterialController ictrl;
-    private bool isChange = false;
     private GameStateController ctrl;
     private PoseController poseCtrl;
+    private const float TAERU = 3.0f;
+    private ParticleSystem particle;
+    private bool isChange = false;
 
 
     void Start()
     {
-        rb = new Rigidbody[transform.childCount];
+        rb = new Rigidbody[transform.childCount - 1];
         rb = gameObject.GetComponentsInChildren<Rigidbody>();
+        mc = new MeshCollider[transform.childCount - 1];
+        mc = gameObject.GetComponentsInChildren<MeshCollider>();
         ictrl = GetComponent<IceBreakMaterialController>(); 
         ctrl = GameObject.Find("GameStateController").GetComponent<GameStateController>();
         poseCtrl = GameObject.Find("Pose").GetComponent<PoseController>();
+        particle = transform.Find("BreakEffect").GetComponent<ParticleSystem>();
+        for(int i = 0; i < transform.childCount - 1; i++)
+        {
+            mc[i].enabled = false;
+        }
     }
 
     private void Update()
@@ -35,25 +41,29 @@ public class IceBreak : MonoBehaviour
 
     private void BreakIce()
     {
+
         if (!isColPlayer) return;
         if (!ctrl.isProgressed) return;
         if (poseCtrl.isPose) return;
 
-        float dTime = Time.deltaTime;
-        countTime += dTime + penNum * 0.1f * dTime;
-        if(countTime > taeru)
+        countTime += Time.deltaTime;
+        if(countTime > TAERU)
         {
+            for (int i = 0; i < transform.childCount - 1; i++)
+            {
+                mc[i].enabled = true;
+            }
             foreach (Rigidbody r in rb)
             {
                 r.isKinematic = false;
                 r.transform.SetParent(null);
                 Destroy(r.gameObject, 2.0f);
             }
+            
             Destroy(gameObject);
         }
-        if (countTime > taeru / 2.0f)
+        if(!isChange)
         {
-            if (isChange) return;
             ictrl.ChangeMaterial();
             isChange = true;
         }
@@ -63,12 +73,9 @@ public class IceBreak : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            penNum = collision.gameObject.GetComponent<PlayerManager>().penguinNum;
-            //if (penNum > loadCapacity)
-            //{
-            //    isColPlayer = true;
-            //}
+            particle.Play();
             isColPlayer = true;
+            Debug.Log("as");
         }
     }
 
@@ -77,9 +84,7 @@ public class IceBreak : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             isColPlayer = false;
-            countTime = 0;
-            ictrl.ResetMaterial();
-            isChange = false;
+            particle.Stop();
         }
     }
 }

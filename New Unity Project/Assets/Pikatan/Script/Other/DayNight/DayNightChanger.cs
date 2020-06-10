@@ -10,6 +10,8 @@ public class DayNightChanger : MonoBehaviour
     private DisplayDayNight ddn;
     private DayNightLighting dnLight;
     private FlowingWaterManager fwm;
+    private PoseController poseCtrl;
+    private CameraController cc;
     [SerializeField]
     private bool isEnable;
     [SerializeField]
@@ -21,16 +23,18 @@ public class DayNightChanger : MonoBehaviour
         ddn = GetComponent<DisplayDayNight>();
         dnLight = GetComponent<DayNightLighting>();
         fwm = GameObject.Find("FlowingWaterManager").GetComponent<FlowingWaterManager>();
+        poseCtrl = GameObject.Find("Pose").GetComponent<PoseController>();
+        cc = GameObject.Find("Main Camera").GetComponent<CameraController>();
         Fade.OnEndFade += ChangeDayNight;
-        isDay = isDayTime;
+    isDay = isDayTime;
         ddn.ChangeSky(isDay);
     }
     void Update()
     {
-        if (!isEnable) return;
+        if (!isEnable || poseCtrl.isPose || !cc.isStart) return;
         if (pManager.isChange)
         {
-            Fade.FadeIn();
+            Fade.FadeIn(null);
         }
     }
 
