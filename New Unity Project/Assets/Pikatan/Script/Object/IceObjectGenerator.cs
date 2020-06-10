@@ -44,8 +44,9 @@ public class IceObjectGenerator : MonoBehaviour
             newPosition.x = player.transform.position.x + n;
             moveObject.transform.position = newPosition;
             player.GetComponent<PlayerAnimationController>().StartBark();
+           
 
-            if(Mathf.Abs(moveObject.transform.position.z - playerPosition.z) <= 0.1f && Mathf.Abs(moveObject.transform.position.y - playerPosition.y) <= 0.1f)
+            if (Mathf.Abs(moveObject.transform.position.z - playerPosition.z) <= 0.1f && Mathf.Abs(moveObject.transform.position.y - playerPosition.y) <= 0.1f)
             {
                 isCreate = false;
                 ctrl.isProgressed = true;

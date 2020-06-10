@@ -27,6 +27,7 @@ public class PenguinPosition : MonoBehaviour
             if(!isPenguin[i])
             {
                 isPenguin[i] = true;
+                FindObjectOfType<AudioManager>().PlaySound("Button", 0);
                 pc.penguinCount++;
                 return penguinPos[i];
             }

@@ -34,6 +34,8 @@ public class DayNightChanger : MonoBehaviour
         if (!isEnable || poseCtrl.isPose || !cc.isStart) return;
         if (pManager.isChange)
         {
+            FindObjectOfType<AudioManager>().PlaySound("DayNight", 0);
+            FindObjectOfType<AudioManager>().PlaySound("Thema", 0);
             Fade.FadeIn(null);
         }
     }

@@ -29,7 +29,13 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlaySound(string name)
+    void Start()
+    {
+        PlaySound("Theme",0);
+        PlaySound("Sea",0);
+    }
+
+    public void PlaySound(string name,int sec)
     {
         SoundManager s = Array.Find(sounds, item => item.name == name);
         if (s == null)
@@ -40,7 +46,7 @@ public class AudioManager : MonoBehaviour
 
         s.source.volume = s.volume;
 
-        s.source.Play();
+        s.source.PlayDelayed(sec);
     }
 
 }

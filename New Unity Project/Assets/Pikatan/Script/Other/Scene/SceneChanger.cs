@@ -40,6 +40,9 @@ public class SceneChanger : MonoBehaviour
                 return;
             }
             StartCoroutine(SceneChange(true));
+            FindObjectOfType<AudioManager>().PlaySound("Clear", 0);
+            SceneManager.LoadScene(nextSceneName);
+            pManager.SwitchActionMap("Player");
         }
         else if(sEnd.isGameOver)
         {
