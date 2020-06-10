@@ -27,6 +27,7 @@ public class BreakBackGroundIce : MonoBehaviour
         FindObjectOfType<AudioManager>().PlaySound("Bear", 0);
         FindObjectOfType<AudioManager>().PlaySound("IceburgBreak", 0);
         FindObjectOfType<AudioManager>().PlaySound("Thema", 0);
+        FindObjectOfType<AudioManager>().PlaySound("Splash", 3);
         Destroy(breakIces[breakIceIndex].gameObject, 10.0f);
         breakIceIndex++;
         if(breakIceIndex == 8)

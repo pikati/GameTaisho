@@ -22,8 +22,8 @@ public class PlayerAnimationController : MonoBehaviour
 
     public void EndWalk()
     {
-        footStep.enabled = false;
         footStep.loop = false;
+        footStep.enabled = false;
         animator.SetBool("walk", false);
     }
 
@@ -36,8 +36,8 @@ public class PlayerAnimationController : MonoBehaviour
 
     public void EndSwim()
     {
-        swimSound.enabled = false;
         swimSound.loop = false;
+        swimSound.enabled = false;
         animator.SetBool("swim", false);
     }
 
@@ -74,6 +74,7 @@ public class PlayerAnimationController : MonoBehaviour
     public void Drown()
     {
         animator.SetBool("drown", true);
+        FindObjectOfType<AudioManager>().PlaySound("Dead", 0);
     }
 
     public void Sleep()

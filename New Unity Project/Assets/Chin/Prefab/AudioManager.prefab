@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: Theme
+  - name: Main
     clip: {fileID: 8300000, guid: 167fac1eb9e83ac449a148b9253e501b, type: 3}
     volume: 1
     loop: 1
@@ -69,9 +69,9 @@ MonoBehaviour:
     volume: 1
     loop: 0
     source: {fileID: 0}
-  - name: Move
-    clip: {fileID: 8300000, guid: 8f3ba41ded2689740bf461de501ddcca, type: 3}
-    volume: 1
+  - name: Pick
+    clip: {fileID: 8300000, guid: 0d502d0c46fd58a498f3baa903f4ba90, type: 3}
+    volume: 0.5
     loop: 0
     source: {fileID: 0}
   - name: Bear
@@ -84,10 +84,10 @@ MonoBehaviour:
     volume: 1
     loop: 0
     source: {fileID: 0}
-  - name: Wind
-    clip: {fileID: 8300000, guid: 35981e512d07f9843bdc4dc7f6876804, type: 3}
+  - name: Dead
+    clip: {fileID: 8300000, guid: 85afa21a3d4b2a14c9ad4a857461b29f, type: 3}
     volume: 1
-    loop: 1
+    loop: 0
     source: {fileID: 0}
   - name: Button
     clip: {fileID: 8300000, guid: 0f6d2e399445ac44fb482a6ab2dc90cf, type: 3}

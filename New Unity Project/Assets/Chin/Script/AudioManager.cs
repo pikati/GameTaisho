@@ -31,7 +31,7 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        PlaySound("Theme",0);
+        PlaySound("Main",0);
         PlaySound("Sea",0);
     }
 
