@@ -38,8 +38,6 @@ public class TitleController : MonoBehaviour
         tsm.isEventStart = true;
 
         FindObjectOfType<AudioManager>().PlaySound("Select", 0);
-        FindObjectOfType<AudioManager>().PlaySound("Penguin",5);
-        FindObjectOfType<AudioManager>().PlaySound("Bear", 18);
     }
 
     public void Continue()
