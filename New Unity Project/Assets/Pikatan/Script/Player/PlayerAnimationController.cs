@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAnimationController : MonoBehaviour
 {
     public AudioSource footStep;
+    public AudioSource swimSound;
     private Animator animator;
     // Start is called before the first frame update
     void Start()
@@ -29,10 +30,14 @@ public class PlayerAnimationController : MonoBehaviour
     public void StartSwim()
     {
         animator.SetBool("swim", true);
+        swimSound.enabled = true;
+        swimSound.loop = true;
     }
 
     public void EndSwim()
     {
+        swimSound.enabled = false;
+        swimSound.loop = false;
         animator.SetBool("swim", false);
     }
 
