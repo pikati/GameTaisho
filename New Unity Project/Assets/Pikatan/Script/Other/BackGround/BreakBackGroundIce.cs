@@ -24,6 +24,9 @@ public class BreakBackGroundIce : MonoBehaviour
         breakIces[breakIceIndex].AddComponent<BoxCollider>();
         breakIces[breakIceIndex].AddComponent<Rigidbody>();
         breakIces[breakIceIndex].transform.parent = null;
+        FindObjectOfType<AudioManager>().PlaySound("Bear", 0);
+        FindObjectOfType<AudioManager>().PlaySound("IceburgBreak", 0);
+        FindObjectOfType<AudioManager>().PlaySound("Thema", 0);
         Destroy(breakIces[breakIceIndex].gameObject, 10.0f);
         breakIceIndex++;
         if(breakIceIndex == 8)

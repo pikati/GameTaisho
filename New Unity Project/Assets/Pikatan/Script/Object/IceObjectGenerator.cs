@@ -43,9 +43,6 @@ public class IceObjectGenerator : MonoBehaviour
             Vector3 newPosition = Vector3.Slerp(moveObject.transform.position, playerPosition, Time.deltaTime * speed);
             newPosition.x = player.transform.position.x + n;
             moveObject.transform.position = newPosition;
-            FindObjectOfType<AudioManager>().PlaySound("Bear", 0);
-            FindObjectOfType<AudioManager>().PlaySound("IceburgBreak", 0);
-            FindObjectOfType<AudioManager>().PlaySound("Thema", 0);
             player.GetComponent<PlayerAnimationController>().StartBark();
            
 
