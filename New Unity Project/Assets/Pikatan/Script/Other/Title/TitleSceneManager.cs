@@ -28,7 +28,7 @@ public class TitleSceneManager : MonoBehaviour
             Fade.FadeIn("level-tutorial1");
         }
 
-        if (pd.state != PlayState.Playing)
+        if (pd.state != PlayState.Paused)
         {
             Fade.FadeIn("level-tutorial1");
         }
