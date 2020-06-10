@@ -22,13 +22,12 @@ public class TitleSceneManager : MonoBehaviour
     void Update()
     {
         if (!isEventStart) return;
-
         if(pim.isSkip)
         {
             Fade.FadeIn("level-tutorial1");
         }
 
-        if (pd.state != PlayState.Paused)
+        if (pd.state == PlayState.Paused)
         {
             Fade.FadeIn("level-tutorial1");
         }
