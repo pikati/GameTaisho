@@ -12,7 +12,7 @@ public class IceBlow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GameObject.FindGameObjectWithTag("icex").GetComponent<Rigidbody>();
+        //rb = GameObject.FindGameObjectWithTag("icex").GetComponent<Rigidbody>();
         Jud = false;
         TrFa = false;
     }
