@@ -10,6 +10,7 @@ public class PoseController : MonoBehaviour
     private GameObject canvas;
     private PlayerInputManager pim;
     private CameraController cc;
+    private float moveStick;
     public bool isPose { get; private set; } = false;
     
     // Start is called before the first frame update
@@ -19,15 +20,20 @@ public class PoseController : MonoBehaviour
         DisablePoseMenu();
         pim = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInputManager>();
         cc = GameObject.Find("Main Camera").GetComponent<CameraController>();
+        moveStick = 0.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        moveStick = Input.GetAxis("Vertical");
+
         if (!cc.isStart) return;
         if(pim.isPose)
         {
-            if(canvas.activeInHierarchy)
+            FindObjectOfType<AudioManager>().PlaySound("Button", 0);
+
+            if (canvas.activeInHierarchy)
             {
                 DisablePoseMenu();
             }
@@ -35,6 +41,11 @@ public class PoseController : MonoBehaviour
             {
                 EnablePoseMenu();
             }
+        }
+
+        if(isPose && (moveStick != 0.0f))
+        {
+            FindObjectOfType<AudioManager>().PlaySound("Button", 0);
         }
     }
 

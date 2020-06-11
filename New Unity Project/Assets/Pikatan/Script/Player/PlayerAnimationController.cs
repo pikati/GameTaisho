@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour
 {
-
+    public AudioSource footStep;
+    public AudioSource swimSound;
     private Animator animator;
     // Start is called before the first frame update
     void Start()
@@ -15,20 +16,28 @@ public class PlayerAnimationController : MonoBehaviour
     public void StartWalk()
     {
         animator.SetBool("walk", true);
+        footStep.enabled = true;
+        footStep.loop = true;
     }
 
     public void EndWalk()
     {
+        footStep.loop = false;
+        footStep.enabled = false;
         animator.SetBool("walk", false);
     }
 
     public void StartSwim()
     {
         animator.SetBool("swim", true);
+        swimSound.enabled = true;
+        swimSound.loop = true;
     }
 
     public void EndSwim()
     {
+        swimSound.loop = false;
+        swimSound.enabled = false;
         animator.SetBool("swim", false);
     }
 

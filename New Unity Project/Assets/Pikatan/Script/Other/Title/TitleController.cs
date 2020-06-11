@@ -9,6 +9,7 @@ public class TitleController : MonoBehaviour
     private TitleButtonContorller buttons;
     private TitlePlayableDirectorManager pdm;
     private TitleSceneManager tsm;
+    private float moveStick;
 
     private void Start()
     {
@@ -17,11 +18,14 @@ public class TitleController : MonoBehaviour
         buttons = GameObject.Find("Buttons").GetComponent<TitleButtonContorller>();
         pdm = GameObject.Find("PlayableDirectorManager").GetComponent<TitlePlayableDirectorManager>();
         tsm = GameObject.Find("TitleSceneManager").GetComponent<TitleSceneManager>();
+        moveStick = 0.0f;
     }
 
     private void Update()
     {
-        if(Input.GetAxis("Vertical") != 0.0f)
+        moveStick = Input.GetAxis("Vertical");
+
+        if (moveStick != 0.0f)
         {
             FindObjectOfType<AudioManager>().PlaySound("Button", 0);
         }

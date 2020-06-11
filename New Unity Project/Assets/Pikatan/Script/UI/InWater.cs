@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class InWater : MonoBehaviour
 {
+    public AudioSource bubbleSound;
     private Transform player;
     private Transform sea;
     private GameObject inWater;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +23,14 @@ public class InWater : MonoBehaviour
         if (player.position.y + 4.1f < sea.position.y)
         {
             inWater.SetActive(true);
-            FindObjectOfType<AudioManager>().PlaySound("InWater", 0);
+            bubbleSound.enabled = true;
+            bubbleSound.loop = true;
         }
-        else inWater.SetActive(false);
+        else
+        {
+            bubbleSound.loop = false;
+            bubbleSound.enabled = false;
+            inWater.SetActive(false);
+        }
     }
 }

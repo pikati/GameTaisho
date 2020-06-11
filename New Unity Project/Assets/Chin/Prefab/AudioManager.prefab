@@ -44,10 +44,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: Theme
+  - name: Main
     clip: {fileID: 8300000, guid: 167fac1eb9e83ac449a148b9253e501b, type: 3}
     volume: 1
-    loop: 0
+    loop: 1
     source: {fileID: 0}
   - name: Sea
     clip: {fileID: 8300000, guid: 140a32006bc05aa40bc0501982da036c, type: 3}
@@ -69,9 +69,9 @@ MonoBehaviour:
     volume: 1
     loop: 0
     source: {fileID: 0}
-  - name: Move
-    clip: {fileID: 8300000, guid: 8f3ba41ded2689740bf461de501ddcca, type: 3}
-    volume: 1
+  - name: Pick
+    clip: {fileID: 8300000, guid: 0d502d0c46fd58a498f3baa903f4ba90, type: 3}
+    volume: 0.5
     loop: 0
     source: {fileID: 0}
   - name: Bear
@@ -84,10 +84,10 @@ MonoBehaviour:
     volume: 1
     loop: 0
     source: {fileID: 0}
-  - name: Wind
-    clip: {fileID: 8300000, guid: 35981e512d07f9843bdc4dc7f6876804, type: 3}
+  - name: Dead
+    clip: {fileID: 8300000, guid: 85afa21a3d4b2a14c9ad4a857461b29f, type: 3}
     volume: 1
-    loop: 1
+    loop: 0
     source: {fileID: 0}
   - name: Button
     clip: {fileID: 8300000, guid: 0f6d2e399445ac44fb482a6ab2dc90cf, type: 3}
@@ -99,8 +99,8 @@ MonoBehaviour:
     volume: 1
     loop: 0
     source: {fileID: 0}
-  - name: Slash
-    clip: {fileID: 8300000, guid: 012d19eb24e0fea4eb114f8b63b76c2a, type: 3}
+  - name: Splash
+    clip: {fileID: 8300000, guid: 486738e080e4b3c4d9fa83bd471e2e84, type: 3}
     volume: 1
     loop: 0
     source: {fileID: 0}
@@ -115,7 +115,7 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: InWater
-    clip: {fileID: 8300000, guid: 89393cb9b76483f4ca01e27c6e042df2, type: 3}
+    clip: {fileID: 8300000, guid: 1b8eac42ef7a6774c89d5c3dd6b05c43, type: 3}
     volume: 1
     loop: 0
     source: {fileID: 0}
