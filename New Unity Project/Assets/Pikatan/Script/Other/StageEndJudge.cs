@@ -58,6 +58,7 @@ public class StageEndJudge : MonoBehaviour
     private void GameOver()
     {
         isGameOver = true;
+        FindObjectOfType<AudioManager>().PlaySound("Dead", 1);
     }
 
     private void DisplayRemainingPenguin()

@@ -73,7 +73,6 @@ public class PlayerAnimationController : MonoBehaviour
 
     public void Drown()
     {
-        FindObjectOfType<AudioManager>().PlaySound("Dead", 0);
         animator.SetBool("drown", true);
     }
 
