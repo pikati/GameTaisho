@@ -47,6 +47,7 @@ public class TitleController : MonoBehaviour
     public void Continue()
     {
         if (Fade.isFading) return;
+        Fade.FadeIn("LevelSelect");
         //ステージセレクト画面
         FindObjectOfType<AudioManager>().PlaySound("Select", 0);
     }

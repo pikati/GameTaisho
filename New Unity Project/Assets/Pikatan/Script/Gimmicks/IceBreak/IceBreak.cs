@@ -74,7 +74,6 @@ public class IceBreak : MonoBehaviour
         if(collision.gameObject.CompareTag("Player"))
         {
             particle.Play();
-            FindObjectOfType<AudioManager>().PlaySound("IceBreak", 2);
             isColPlayer = true;
             Debug.Log("as");
         }

@@ -30,12 +30,12 @@ public class TitleSceneManager : MonoBehaviour
         if (!isEventStart) return;
         if(pim.isSkip)
         {
-            Fade.FadeIn("level-tutorial1");
+            Fade.FadeIn("level-1");
         }
 
         if (pd.state == PlayState.Paused)
         {
-            Fade.FadeIn("level-tutorial1");
+            Fade.FadeIn("level-1");
             isEventStart = false;
         }
     }

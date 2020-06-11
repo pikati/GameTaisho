@@ -11,8 +11,6 @@ public class PlayerAnimationController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-
-        footStep.pitch = 0.85f;
     }
 
     public void StartWalk()
