@@ -27,6 +27,8 @@ TagManager:
   - Sea
   - Water Volume
   - BabyPenguin
+  - breakwall
+  - BabyDrill
   layers:
   - Default
   - TransparentFX
