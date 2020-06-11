@@ -22,7 +22,6 @@ public class FlowObjectController : ObjectHeightController
     private Vector3 colliderPosition;
     private DayNightChanger dnChanger;
     private GameStateController gameCtrl;
-    private Buoyancy b;
     private WaterHeightController whc;
     private bool oldIsDay;  //前フレームが昼か夜かを記憶しておく（昼夜を切り替えたときに足場とステージをほんの少し遠ざけるため）
 
@@ -47,7 +46,6 @@ public class FlowObjectController : ObjectHeightController
         gameCtrl = GameObject.Find("GameStateController").GetComponent<GameStateController>();
         whc = GameObject.Find("WaterHeightController").GetComponent<WaterHeightController>();
         poseCtrl = GameObject.Find("Pose").GetComponent<PoseController>();
-        b = GetComponent<Buoyancy>();
         oldIsDay = true;
         flowDir = FlowDir.NON;
         speed = 1.0f;

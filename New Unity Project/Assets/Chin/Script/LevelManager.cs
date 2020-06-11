@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class LevelManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class LevelManager : MonoBehaviour
         public bool IsInteractable;
     }
 
+
     public GameObject levelButton;
 
     public Transform Content;
@@ -23,6 +25,7 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Fade.FadeOut();
         FillList();
     }
 
@@ -44,6 +47,7 @@ public class LevelManager : MonoBehaviour
         {
             GameObject newButton = Instantiate(levelButton) as GameObject;
             LevelButton button = newButton.GetComponent<LevelButton>();
+            Button bu = button.GetComponent<Button>();
             button.LevelText.text = level.LevelText;
 
             if(PlayerPrefs.GetInt("level-" + button.LevelText.text) == 1)
@@ -53,14 +57,19 @@ public class LevelManager : MonoBehaviour
             }
 
             button.unlocked = level.Unlocked;
-            button.GetComponent<Button>().interactable = level.IsInteractable;
-            button.GetComponent<Button>().onClick.AddListener(() => LoadLevel("level-" + button.LevelText.text));
+            bu.interactable = level.IsInteractable;
+            bu.onClick.AddListener(() => LoadLevel("level-" + button.LevelText.text));
 
 
             newButton.transform.SetParent(Content);
+            bu.transition = Selectable.Transition.Animation;
+            Animator animator = newButton.AddComponent<Animator>();
+            animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Pikatan/ButtonStageSelect");
         }
 
         SaveAll();
+        GameObject b = GameObject.Find("Contant").transform.GetChild(0).gameObject;
+        EventSystem.current.SetSelectedGameObject(b);
     }
 
     void SaveAll()
@@ -81,6 +90,6 @@ public class LevelManager : MonoBehaviour
 
     void LoadLevel(string text)
     {
-        SceneManager.LoadScene(text);
+        Fade.FadeIn(text);
     }
 }

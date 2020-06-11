@@ -1,5 +1,28 @@
 tutorial1->1
 level-1  ->2
-lecel-3  ->後半2
-tutorial2->後半1
+level-4  ->3
+level-a  ->4
+tutorialb->5
+g1       ->6
+t-flow2  ->7
+level-b  ->8
+level-6  ->9
+level-e  ->10
+tutorial2->11
+lecel-3  ->12
+level-5  ->13
+g2       ->14
+g12		 ->15
+level-c  ->ex1
+g7		 ->ex2
+g6		 ->ex3
+g8		 ->ex4
+g9		 ->ex5
+g10		 ->ex6
+g11		 ->ex7
 level-tutorialFlow3は氷設置があるから後半
+level-7  ->無採用
+g3tutorialbと被るので無採用？
+g4意味わかんないので無採用
+g5意味わかんないので無採用
+level-3見送り
