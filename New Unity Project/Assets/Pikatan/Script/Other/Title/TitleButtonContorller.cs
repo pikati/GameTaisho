@@ -7,7 +7,6 @@ public class TitleButtonContorller : MonoBehaviour
 {
     public bool isStart { get; set; } = false;
     private Button[] buttons = new Button[3];
-    private Text[] texts = new Text[3];
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +14,7 @@ public class TitleButtonContorller : MonoBehaviour
         {
             GameObject obj = transform.GetChild(i).gameObject;
             buttons[i] = obj.GetComponent<Button>();
-            texts[i] = obj.transform.GetChild(0).gameObject.GetComponent<Text>();
+
         }
     }
 
@@ -29,10 +28,10 @@ public class TitleButtonContorller : MonoBehaviour
             {
                 ColorBlock cb = buttons[i].colors;
                 cb.normalColor -= new Color(0, 0, 0, speed * Time.deltaTime);
+                cb.selectedColor -= new Color(0, 0, 0, speed * Time.deltaTime);
                 buttons[i].colors = cb;
-                texts[i].color -= new Color(0, 0, 0, speed * Time.deltaTime);
             }
-            if (texts[2].color.a < 0)
+            if (buttons[2].colors.normalColor.a < 0)
             {
                 gameObject.SetActive(false);
             }

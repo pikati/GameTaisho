@@ -5,7 +5,7 @@ using UnityEngine;
 public class TitleController : MonoBehaviour
 {
     private TitleCinemachineManager cinemachineManager;
-    private TitleTextController title;
+    private TitleImageController title;
     private TitleButtonContorller buttons;
     private TitlePlayableDirectorManager pdm;
     private TitleSceneManager tsm;
@@ -14,7 +14,7 @@ public class TitleController : MonoBehaviour
     private void Start()
     {
         cinemachineManager = GameObject.Find("CineamchineManager").GetComponent<TitleCinemachineManager>();
-        title = GameObject.Find("Title").GetComponent<TitleTextController>();
+        title = GameObject.Find("Title").GetComponent<TitleImageController>();
         buttons = GameObject.Find("Buttons").GetComponent<TitleButtonContorller>();
         pdm = GameObject.Find("PlayableDirectorManager").GetComponent<TitlePlayableDirectorManager>();
         tsm = GameObject.Find("TitleSceneManager").GetComponent<TitleSceneManager>();

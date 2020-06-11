@@ -20,7 +20,11 @@ public class LevelManager : MonoBehaviour
 
     public Transform Content;
 
+    [SerializeField]
+    private Sprite sprite;
+
     public List<Level> LevelList;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -65,6 +69,7 @@ public class LevelManager : MonoBehaviour
             bu.transition = Selectable.Transition.Animation;
             Animator animator = newButton.AddComponent<Animator>();
             animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>("Pikatan/ButtonStageSelect");
+            newButton.GetComponent<Image>().sprite = sprite;
         }
 
         SaveAll();
