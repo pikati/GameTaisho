@@ -26,7 +26,7 @@ public class DayNightChanger : MonoBehaviour
         poseCtrl = GameObject.Find("Pose").GetComponent<PoseController>();
         cc = GameObject.Find("Main Camera").GetComponent<CameraController>();
         Fade.OnEndFade += ChangeDayNight;
-    isDay = isDayTime;
+        isDay = isDayTime;
         ddn.ChangeSky(isDay);
     }
     void Update()
@@ -36,7 +36,7 @@ public class DayNightChanger : MonoBehaviour
         {
             FindObjectOfType<AudioManager>().PlaySound("DayNight", 0);
             FindObjectOfType<AudioManager>().PlaySound("Thema", 0);
-            Fade.FadeIn(null);
+            Fade.FadeIn(2.0f);
         }
     }
 

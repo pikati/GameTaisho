@@ -19,6 +19,7 @@ public class Fade : MonoBehaviour
     private static bool isFadeOut;
 
     private static float alpha;
+    private static float speed = 1.0f;
     public static bool isFading { get; private set; } = false;
 
     public delegate void EndFade();
@@ -45,7 +46,7 @@ public class Fade : MonoBehaviour
 
     private static void UpdateFadeIn()
     {
-        alpha += Time.deltaTime / fTime;
+        alpha += Time.deltaTime / fTime * speed;
         if(nextSceneName != null && alpha >= 1.0f)
         {
             SceneManager.LoadScene(nextSceneName);
@@ -63,7 +64,7 @@ public class Fade : MonoBehaviour
 
     private static void UpdateFadeOut()
     {
-        alpha -= Time.deltaTime / fTime;
+        alpha -= Time.deltaTime / fTime * speed;
 
         if (alpha <= 0.0f)
         {
@@ -79,6 +80,7 @@ public class Fade : MonoBehaviour
         image.color = Color.clear;
         isFadeIn = true;
         alpha = 0.0f;
+        speed = 1.0f;
     }
 
     public static void FadeIn(string sceneName)
@@ -87,6 +89,16 @@ public class Fade : MonoBehaviour
         isFadeIn = true;
         alpha = 0.0f;
         nextSceneName = sceneName;
+        speed = 1.0f;
+    }
+
+    public static void FadeIn(float spd)
+    {
+        image.color = Color.clear;
+        isFadeIn = true;
+        alpha = 0.0f;
+        nextSceneName = null;
+        speed = spd;
     }
 
     public static void FadeOut()
