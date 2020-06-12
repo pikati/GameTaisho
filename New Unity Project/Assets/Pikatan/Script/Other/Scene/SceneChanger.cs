@@ -34,7 +34,7 @@ public class SceneChanger : MonoBehaviour
             if(!isSpundPlay)
             {
                 FindObjectOfType<AudioManager>().PlaySound("Clear", 0);
-                StartCoroutine(SceneChange(true));
+                StartCoroutine(SceneChangeClear());
                 isSpundPlay = true;
             }
             //全ステージクリア処理？
@@ -50,23 +50,22 @@ public class SceneChanger : MonoBehaviour
         }
         else if(sEnd.isGameOver)
         {
-            StartCoroutine(SceneChange(false));
+            StartCoroutine(SceneCbangeGameOver());
         }
     }
 
-    private IEnumerator SceneChange(bool b)
+    private IEnumerator SceneChangeClear()
     {
         yield return new WaitForSeconds(2.0f);
-        if (b)
-        {
-            Fade.FadeIn(nextSceneName);
-            isChange = true;
-        }
-        else
-        {
-            Fade.FadeIn(SceneManager.GetActiveScene().name);
-            isChange = true;
-        }
+        Fade.FadeIn(nextSceneName);
+        isChange = true;
+    }
+
+    private IEnumerator SceneCbangeGameOver()
+    {
+        yield return new WaitForSeconds(1.0f);
+        Fade.FadeIn(SceneManager.GetActiveScene().name, 0.5f);
+        isChange = true;
     }
 
     private void Quit()

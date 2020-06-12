@@ -101,6 +101,15 @@ public class Fade : MonoBehaviour
         speed = spd;
     }
 
+    public static void FadeIn(string sceneName, float spd)
+    {
+        image.color = Color.clear;
+        isFadeIn = true;
+        alpha = 0.0f;
+        nextSceneName = sceneName;
+        speed = spd;
+    }
+
     public static void FadeOut()
     {
         image.color = Color.black;
