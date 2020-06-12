@@ -32,6 +32,8 @@ public class PlayerManager : MonoBehaviour
     private PlayerAnimationController pac;
     private PoseController poseCtrl;
     private CameraController cc;
+    private float stoptime;
+    private bool flag=false;
     public int penguinNum { get; private set; } = 0;
     #endregion
 
@@ -85,6 +87,8 @@ public class PlayerManager : MonoBehaviour
         //入力があるとき
         if (Mathf.Abs(moveDirection.x) >= 0.05f)
         {
+            pac.EndSleep();
+            flag = false;
             isMove = true;
             //rb.AddForce(moveDirection);
             
@@ -111,7 +115,17 @@ public class PlayerManager : MonoBehaviour
             pac.EndWalk();
             pac.EndSwim();
             rb.velocity = new Vector3(0.0f, rb.velocity.y, 0.0f);
+            if (!flag)
+            {
+                stoptime = Time.time;
+                flag = true;
+            }
+            if (Time.time - stoptime > 5.0f)
+            {
+                pac.Sleep();
+            }
         }
+
         if(isInWater)
         {
             rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y * 0.99f, rb.velocity.z);

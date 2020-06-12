@@ -80,4 +80,9 @@ public class PlayerAnimationController : MonoBehaviour
     {
         animator.SetBool("sleep", true);
     }
+
+    public void EndSleep()
+    {
+        animator.SetBool("sleep", false);
+    }
 }
