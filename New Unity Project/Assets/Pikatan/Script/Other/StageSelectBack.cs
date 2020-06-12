@@ -1,24 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class StageSelectBack : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject obj;
     private PlayerInputManager pim;
+    private EventSystem e;
     // Start is called before the first frame update
     void Start()
     {
-        pim = obj.GetComponent<PlayerInputManager>();
+        pim = GameObject.Find("sirokuma").GetComponent<PlayerInputManager>();
+        e = GameObject.Find("EventSystem").GetComponent<EventSystem>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(pim.isCancel);
-        if(pim.isCancel)
+        Debug.Log(pim.isPCancel);
+        if(pim.isPCancel)
         {
+            e.SetSelectedGameObject(null);
             Fade.FadeIn("Title");
         }
     }

@@ -81,12 +81,12 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Penguin
     clip: {fileID: 8300000, guid: f692d08c2e2d1744e96c3a0142775d48, type: 3}
-    volume: 1
+    volume: 0.4
     loop: 0
     source: {fileID: 0}
   - name: Dead
     clip: {fileID: 8300000, guid: 85afa21a3d4b2a14c9ad4a857461b29f, type: 3}
-    volume: 1
+    volume: 0.8
     loop: 0
     source: {fileID: 0}
   - name: Button
@@ -106,7 +106,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Clear
     clip: {fileID: 8300000, guid: 65bfbbb67e7cf46408d6e556f2c55f56, type: 3}
-    volume: 1
+    volume: 0.7
     loop: 0
     source: {fileID: 0}
   - name: Thema
@@ -116,6 +116,6 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: InWater
     clip: {fileID: 8300000, guid: 1b8eac42ef7a6774c89d5c3dd6b05c43, type: 3}
-    volume: 1
+    volume: 0.5
     loop: 0
     source: {fileID: 0}

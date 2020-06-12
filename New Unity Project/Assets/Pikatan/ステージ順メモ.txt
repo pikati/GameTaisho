@@ -7,14 +7,14 @@ g1       ->6
 t-flow2  ->7
 level-b  ->8
 level-6  ->9
-level-e  ->10
-tutorial2->11
-lecel-3  ->12
-level-5  ->13
-g2       ->14
-g12		 ->15
-level-c  ->ex1
-level-d  ->17?
+level-e  ->17
+tutorial2->10
+lecel-3  ->11
+level-5  ->12
+g2       ->13
+g12		 ->14
+level-c  ->15
+level-d  ->16
 g7		 ->ex2
 g6		 ->ex3
 g8		 ->ex4
