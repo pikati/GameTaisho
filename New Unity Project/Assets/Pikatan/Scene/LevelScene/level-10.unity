@@ -14141,7 +14141,7 @@ PrefabInstance:
     - target: {fileID: 3786025524600516377, guid: 30a97bfc158931844a00dfc1ea1ad564,
         type: 3}
       propertyPath: iceNum
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3786025524632492037, guid: 30a97bfc158931844a00dfc1ea1ad564,
         type: 3}

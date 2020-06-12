@@ -148,7 +148,9 @@ public class FlowObjectController : ObjectHeightController
         //        transform.position.Set(transform.position.x, whc.waterHeight, transform.position.z);
         //    }
         //}
-        base.UpdatePosition();
+        Vector3 position = transform.position;
+        position.y = 3.0f * Time.deltaTime;
+        transform.position = position;
         //transform.position += velocity * Time.deltaTime;
         isUpdate = false;
 
