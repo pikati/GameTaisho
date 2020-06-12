@@ -107,11 +107,11 @@ public class cameramieteru : MonoBehaviour
         if (angle <= 45.0f && angle >= -45.0f)
         {
             vector3.x = 360.0f;
-            vector3.y = angle * 2.0f * 160.0f / 90.0f;
+            vector3.y = angle * 2.0f * 125.0f / 90.0f;
         }
         else if (angle >= 45.0f && angle <= 135.0f)
         {
-            vector3.y = 160.0f;
+            vector3.y = 125.0f;
             vector3.x = 360.0f - (angle - 45.0f) * 720.0f / 90.0f;
         }
         else if ((angle >= 135.0f && angle <= 180.0f) || (angle <= -135.0f && angle >= -180.0f))
@@ -119,18 +119,18 @@ public class cameramieteru : MonoBehaviour
             vector3.x = -360.0f;
             if (angle >= 135.0f && angle <= 180.0f)
             {
-                vector3.y = (180.0f - angle) * 2.0f * 160.0f / 90.0f;
+                vector3.y = (180.0f - angle) * 2.0f * 125.0f / 90.0f;
             }
             else if (angle <= -135.0f && angle >= -180.0f)
             {
-                vector3.y = (-180 - angle) * 2.0f * 160.0f / 90.0f;
+                vector3.y = (-180 - angle) * 2.0f * 125.0f / 90.0f;
             }
 
         }
         else if (angle <= -45.0f && angle >= -135.0f)
         {
-            vector3.y = -160.0f;
-            vector3.x = 360.0f - (angle + 45.0f) * 720.0f / 90.0f;
+            vector3.y = -125.0f;
+            vector3.x = 360.0f + (angle + 45.0f) * 720.0f / 90.0f;
         }
         else
         {
@@ -145,7 +145,7 @@ public class cameramieteru : MonoBehaviour
     private bool CameraIn(int i)
     {
         if (Mathf.Abs(Pman.position.x - posData[i].position.x) > 30.0f ||
-            Mathf.Abs(Pman.position.y - posData[i].position.y) > 19.8f)
+            Mathf.Abs(Pman.position.y - posData[i].position.y) > 19.5f)
         {
             return false;
         }
