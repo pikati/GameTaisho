@@ -951,6 +951,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7079845287653376462}
+  - component: {fileID: 1098571673071003722}
   m_Layer: 5
   m_Name: Penguin
   m_TagString: Untagged
@@ -981,6 +982,31 @@ RectTransform:
   m_AnchoredPosition: {x: 328.5, y: -174.7}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1098571673071003722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7079845287653376463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea8d50e7293dd664198cce2a6eb2deb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  i1: {fileID: 1416261826072608936}
+  i2: {fileID: 8306077083260640819}
+  sprites:
+  - {fileID: 21300000, guid: 5864dabf4460d594da31e14074af4849, type: 3}
+  - {fileID: 21300000, guid: d52aab3cda79c014db22cae5b9330495, type: 3}
+  - {fileID: 21300000, guid: 3110215af16ee3a45a707d5d494a2afc, type: 3}
+  - {fileID: 21300000, guid: 0df9b7baa994b9e4baabbc4f30256258, type: 3}
+  - {fileID: 21300000, guid: 0f4470ccb1cee4142b4862a3700f1ea4, type: 3}
+  - {fileID: 21300000, guid: d6bf4b74dd7b0af448cb1bd1972fcaf2, type: 3}
+  - {fileID: 21300000, guid: 7eaa7a1668bcab949a9c7cce491a2fc8, type: 3}
+  - {fileID: 21300000, guid: ec0d30fd607ca3e4395383fc0460f9ec, type: 3}
+  - {fileID: 21300000, guid: 93f32a274713a39439858fc09bdcebb8, type: 3}
+  - {fileID: 21300000, guid: 95a3494e0b1a81b4ab881bb5214e42e0, type: 3}
 --- !u!1 &7079845287716050876
 GameObject:
   m_ObjectHideFlags: 0
