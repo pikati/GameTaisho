@@ -1268,11 +1268,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_ShowDebugText: 0
   m_Loop: 0
-  m_ChildCameras:
-  - {fileID: 1775701634}
-  - {fileID: 565520538}
-  - {fileID: 1993808927}
-  - {fileID: 1714522148}
+  m_ChildCameras: []
   m_Instructions:
   - m_VirtualCamera: {fileID: 1775701634}
     m_Hold: 8
@@ -1973,7 +1969,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1102416093}
-  m_LocalRotation: {x: 0.0062688757, y: 0.000000076811624, z: -4.8135346e-10, w: 0.9999804}
+  m_LocalRotation: {x: 0.0062688757, y: 0.000000076811624, z: -4.81352e-10, w: 0.9999804}
   m_LocalPosition: {x: 0.43999845, y: 5.31, z: -12.999999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2727,7 +2723,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1463132351}
-  m_LocalRotation: {x: 0.0062688757, y: 0.000000076811624, z: -4.8135346e-10, w: 0.9999804}
+  m_LocalRotation: {x: 0.0062688757, y: 0.000000076811624, z: -4.81352e-10, w: 0.9999804}
   m_LocalPosition: {x: 0.43999845, y: 5.31, z: -12.999999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3667,7 +3663,7 @@ MonoBehaviour:
   m_ActionsAsset: {fileID: -944628639613478452, guid: 0067cacd0c49cd345bc6dba2e94174bd,
     type: 3}
   m_PointAction: {fileID: 0}
-  m_MoveAction: {fileID: -2250188739719683950, guid: 0067cacd0c49cd345bc6dba2e94174bd,
+  m_MoveAction: {fileID: -1246895598473198080, guid: 0067cacd0c49cd345bc6dba2e94174bd,
     type: 3}
   m_SubmitAction: {fileID: 6914299467133291591, guid: 0067cacd0c49cd345bc6dba2e94174bd,
     type: 3}

@@ -60,6 +60,22 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Submit",
+                    "type": "Button",
+                    "id": "3a58bac0-f28d-4b89-b117-bd8f8e27ab16",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Cancel",
+                    "type": "Button",
+                    "id": "85acfa6b-35c2-49ee-9bd8-942a4a1e42c7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -370,6 +386,50 @@
                     "action": "ViewAll",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d6f07f6c-9fc5-482a-9785-13b9fc88b6c9",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "GamePad",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f05970b7-f849-4805-b10e-88608cb3955e",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyborad&Mouse",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cf1a2f1e-1a52-478b-bca9-adb78d7ec81a",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "GamePad",
+                    "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "117fdd10-994d-44cd-8ac4-1393c73a5798",
+                    "path": "<Keyboard>/backspace",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyborad&Mouse",
+                    "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -528,7 +588,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Cancel",
+                    "name": "UCancel",
                     "type": "Button",
                     "id": "d0966ad7-74d1-4a7f-88fb-de87a7ee8c31",
                     "expectedControlType": "",
@@ -574,7 +634,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyborad&Mouse",
-                    "action": "Cancel",
+                    "action": "UCancel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -585,7 +645,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "GamePad",
-                    "action": "Cancel",
+                    "action": "UCancel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

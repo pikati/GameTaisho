@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerInputManager : MonoBehaviour
 {
-    private InputAction move, cameraCtrl, ChangeDayNight, Create, iceDecide, iceCancel, iceMove, decide, cancel, Pose, Skip, allView;
+    private InputAction move, cameraCtrl, ChangeDayNight, Create, iceDecide, iceCancel, iceMove, decide, cancel, Pose, Skip, allView, submit, pCancel;
     private PlayerInput input;
     #region Player
     public Vector2 direction { get; private set; }
@@ -16,6 +16,8 @@ public class PlayerInputManager : MonoBehaviour
     public bool isPose { get; private set; }
     public bool isSkip { get; private set; }
     public bool isAllView { get; private set; }
+    public bool isSubmit { get; private set; }
+    public bool isPCancel { get; private set; }
     #endregion
 
     #region Ice
@@ -40,6 +42,8 @@ public class PlayerInputManager : MonoBehaviour
         Pose = actionMap["Pose"];
         Skip = actionMap["Skip"];
         allView = actionMap["ViewAll"];
+        submit = actionMap["Submit"];
+        pCancel = actionMap["Cancel"];
         SwitchActionMap("Ice");
         actionMap = input.currentActionMap;
         iceDecide = actionMap["Decide"];
@@ -48,7 +52,7 @@ public class PlayerInputManager : MonoBehaviour
         SwitchActionMap("UI");
         actionMap = input.currentActionMap;
         decide = actionMap["Decide"];
-        cancel = actionMap["Cancel"];
+        cancel = actionMap["UCancel"];
         SwitchActionMap("Player");
     }
 
@@ -62,6 +66,8 @@ public class PlayerInputManager : MonoBehaviour
         isPose = Pose.triggered;
         isSkip = Skip.triggered;
         isAllView = allView.triggered;
+        isSubmit = submit.triggered;
+        isPCancel = pCancel.triggered;
         isIceDecide = iceDecide.triggered;
         isIceCeancel = iceCancel.triggered;
         iceDirection = iceMove.ReadValue<Vector2>();

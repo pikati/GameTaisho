@@ -24,17 +24,21 @@ public class LevelManager : MonoBehaviour
     private Sprite sprite;
 
     public List<Level> LevelList;
-    
 
+    bool isInit = false;
     // Start is called before the first frame update
     void Start()
     {
         Fade.FadeOut();
-        FillList();
     }
 
     private void Update()
     {
+        if(!isInit)
+        {
+            FillList();
+            isInit = true;
+        }
         if (Input.GetKey(KeyCode.Space))
         {
             DeleteAll();
