@@ -113,36 +113,43 @@ public class FlowObjectController : ObjectHeightController
 
     private void FlowObjUpdate()
     {
-        if (Mathf.Abs(transform.position.y - whc.waterHeight) <= 0.05f)
-        {
-            transform.position.Set(transform.position.x, whc.waterHeight, transform.position.z);
-            return;
-        }
-        if (!isUpdate)
-        {
-            isUpdate = true;
-            return;
-        }
-        //float time = Time.deltaTime;
-        //float t = time * b.buoyancy * 9.8f;
-        //float t2 = time * b.GetPro() * 9.8f;
-        //Vector3 upVelocity = new Vector3(0.0f, t * 0.997f, 0.0f);
-        //Vector3 downVeelocity = new Vector3(0.0f, -t2 * 0.91f, 0.0f);
-        //velocity += upVelocity + downVeelocity;
-        if(transform.position.y < whc.waterHeight)
-        {
-            velocity.y = 6.0f;
-        }
-        else
-        {
-            velocity.y = -6.0f;
-        }
-        if (Mathf.Abs(transform.position.y - whc.waterHeight) <= 0.05f)
-        {
-            velocity = Vector3.zero;
-            transform.position.Set(transform.position.x, whc.waterHeight, transform.position.z);
-        }
-        transform.position += velocity * Time.deltaTime;
+        //if (Mathf.Abs(transform.position.y - whc.waterHeight) <= 0.05f)
+        //{
+        //    velocity = Vector3.zero;
+        //    transform.position.Set(transform.position.x, whc.waterHeight, transform.position.z);
+        //    return;
+        //}
+        //if (!isUpdate)
+        //{
+        //    isUpdate = true;
+        //    return;
+        //}
+        ////float time = Time.deltaTime;
+        ////float t = time * b.buoyancy * 9.8f;
+        ////float t2 = time * b.GetPro() * 9.8f;
+        ////Vector3 upVelocity = new Vector3(0.0f, t * 0.997f, 0.0f);
+        ////Vector3 downVeelocity = new Vector3(0.0f, -t2 * 0.91f, 0.0f);
+        ////velocity += upVelocity + downVeelocity;
+        //if(transform.position.y < whc.waterHeight)
+        //{
+        //    velocity.y = 6.0f;
+        //    transform.position += new Vector3(0.0f, velocity.y * Time.deltaTime, 0.0f);
+        //    if(transform.position.y > whc.waterHeight)
+        //    {
+        //        transform.position.Set(transform.position.x, whc.waterHeight, transform.position.z);
+        //    }
+        //}
+        //else
+        //{
+        //    velocity.y = -6.0f;
+        //    transform.position += new Vector3(0.0f, velocity.y * Time.deltaTime, 0.0f);
+        //    if (transform.position.y < whc.waterHeight)
+        //    {
+        //        transform.position.Set(transform.position.x, whc.waterHeight, transform.position.z);
+        //    }
+        //}
+        base.UpdatePosition();
+        //transform.position += velocity * Time.deltaTime;
         isUpdate = false;
 
     }
