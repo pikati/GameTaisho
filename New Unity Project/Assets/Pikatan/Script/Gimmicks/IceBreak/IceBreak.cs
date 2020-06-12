@@ -16,22 +16,24 @@ public class IceBreak : MonoBehaviour
     private const float TAERU = 3.0f;
     private ParticleSystem particle;
     private bool isChange = false;
-
-
+    private Transform tr;
+    private int num;
     void Start()
     {
         rb = new Rigidbody[transform.childCount - 1];
         rb = gameObject.GetComponentsInChildren<Rigidbody>();
         mc = new MeshCollider[transform.childCount - 1];
         mc = gameObject.GetComponentsInChildren<MeshCollider>();
-        ictrl = GetComponent<IceBreakMaterialController>(); 
+        ictrl = GetComponent<IceBreakMaterialController>();
         ctrl = GameObject.Find("GameStateController").GetComponent<GameStateController>();
         poseCtrl = GameObject.Find("Pose").GetComponent<PoseController>();
         particle = transform.Find("BreakEffect").GetComponent<ParticleSystem>();
-        for(int i = 0; i < transform.childCount - 1; i++)
+        for (int i = 0; i < transform.childCount - 1; i++)
         {
             mc[i].enabled = false;
         }
+        tr = transform;
+        num = 0;
     }
 
     private void Update()
@@ -39,15 +41,33 @@ public class IceBreak : MonoBehaviour
         BreakIce();
     }
 
+    private void FixedUpdate()
+    {
+        if (num == 0)
+        {
+            tr.position = new Vector3(tr.position.x + countTime / 3.0f, tr.position.y, tr.position.z);
+            num++;
+        }
+        else
+        {
+            tr.position = new Vector3(tr.position.x - countTime / 3.0f, tr.position.y, tr.position.z);
+            num = 0;
+        }
+    }
+
     private void BreakIce()
     {
+
 
         if (!isColPlayer) return;
         if (!ctrl.isProgressed) return;
         if (poseCtrl.isPose) return;
 
         countTime += Time.deltaTime;
-        if(countTime > TAERU)
+
+
+
+        if (countTime > TAERU)
         {
             for (int i = 0; i < transform.childCount - 1; i++)
             {
@@ -59,10 +79,10 @@ public class IceBreak : MonoBehaviour
                 r.transform.SetParent(null);
                 Destroy(r.gameObject, 2.0f);
             }
-            
+
             Destroy(gameObject);
         }
-        if(!isChange)
+        if (!isChange)
         {
             ictrl.ChangeMaterial();
             isChange = true;
@@ -71,7 +91,7 @@ public class IceBreak : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             particle.Play();
             isColPlayer = true;
