@@ -12,6 +12,7 @@ public class DayNightChanger : MonoBehaviour
     private FlowingWaterManager fwm;
     private PoseController poseCtrl;
     private CameraController cc;
+    private StageEndJudge sEnd;
     [SerializeField]
     private bool isEnable;
     [SerializeField]
@@ -28,10 +29,11 @@ public class DayNightChanger : MonoBehaviour
         Fade.OnEndFade += ChangeDayNight;
         isDay = isDayTime;
         ddn.ChangeSky(isDay);
+        sEnd = GameObject.FindGameObjectWithTag("Goal").GetComponent<StageEndJudge>();
     }
     void Update()
     {
-        if (!isEnable || poseCtrl.isPose || !cc.isStart) return;
+        if (!isEnable || poseCtrl.isPose || !cc.isStart || sEnd.isGameClear || sEnd.isGameOver) return;
         if (pManager.isChange)
         {
             FindObjectOfType<AudioManager>().PlaySound("DayNight", 0);
