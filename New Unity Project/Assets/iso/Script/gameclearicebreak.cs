@@ -47,7 +47,7 @@ public class gameclearicebreak : MonoBehaviour
                
                 //Debug.Log(animators[i]);
                 
-                tr.position = new Vector3(Pman.position.x - 4.0f, Pman.position.y + 6.2f, -18.0f);
+                tr.position = new Vector3(Pman.position.x - 4.0f, Pman.position.y + 5.2f, -18.0f);
                 flag = true;
             }
 
