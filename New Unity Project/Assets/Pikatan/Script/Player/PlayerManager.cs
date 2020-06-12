@@ -34,6 +34,8 @@ public class PlayerManager : MonoBehaviour
     private CameraController cc;
     private float stoptime;
     private bool flag=false;
+    private bool sleep = false;
+    private Animator anim;
     public int penguinNum { get; private set; } = 0;
     #endregion
 
@@ -56,6 +58,7 @@ public class PlayerManager : MonoBehaviour
         pac = GetComponent<PlayerAnimationController>();
         poseCtrl = GameObject.Find("Pose").GetComponent<PoseController>();
         cc = GameObject.Find("Main Camera").GetComponent<CameraController>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -89,23 +92,28 @@ public class PlayerManager : MonoBehaviour
         {
             pac.EndSleep();
             flag = false;
-            isMove = true;
-            //rb.AddForce(moveDirection);
             
-            rb.velocity = moveDirection * speed;
-            Turn();
-            if(Mathf.Abs(moveDirection.x) >= 0.05f)
+            if (sleep&&anim.GetCurrentAnimatorStateInfo(0).IsName("待機"))
             {
-                if (!isInWater)
+                sleep = false;
+            }
+            //rb.AddForce(moveDirection);
+            if (!sleep) {
+                isMove = true;
+                rb.velocity = moveDirection * speed;
+                Turn();
+                if (Mathf.Abs(moveDirection.x) >= 0.05f)
                 {
-                    pac.StartWalk();
-                }
-                else
-                {
-                    pac.StartSwim();
+                    if (!isInWater)
+                    {
+                        pac.StartWalk();
+                    }
+                    else
+                    {
+                        pac.StartSwim();
+                    }
                 }
             }
-
         }
         //入力がないとき
         else
@@ -120,8 +128,9 @@ public class PlayerManager : MonoBehaviour
                 stoptime = Time.time;
                 flag = true;
             }
-            if (Time.time - stoptime > 5.0f)
+            if (Time.time - stoptime > 60.0f)
             {
+                sleep = true;
                 pac.Sleep();
             }
         }

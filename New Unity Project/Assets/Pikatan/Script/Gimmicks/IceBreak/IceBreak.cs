@@ -17,6 +17,7 @@ public class IceBreak : MonoBehaviour
     private ParticleSystem particle;
     private bool isChange = false;
     private Transform tr;
+    private Vector3 vec3;
     private int num;
     void Start()
     {
@@ -43,16 +44,30 @@ public class IceBreak : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         if (num == 0)
         {
-            tr.position = new Vector3(tr.position.x + countTime / 3.0f, tr.position.y, tr.position.z);
-            num++;
+            vec3 = tr.position;
         }
-        else
+
+        if (countTime < 2.95f)
         {
-            tr.position = new Vector3(tr.position.x - countTime / 3.0f, tr.position.y, tr.position.z);
-            num = 0;
+            if (num % 2 == 0)
+            {
+                tr.position = new Vector3(tr.position.x + countTime / 3.0f, tr.position.y, tr.position.z);
+                num++;
+            }
+            else
+            {
+                tr.position = new Vector3(tr.position.x - countTime / 3.0f, tr.position.y, tr.position.z);
+                num++;
+            }
         }
+        else if (countTime >= 2.95f)
+        {
+            tr.position = vec3;
+        }
+
     }
 
     private void BreakIce()
