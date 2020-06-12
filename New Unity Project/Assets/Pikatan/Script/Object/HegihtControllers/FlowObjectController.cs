@@ -149,7 +149,22 @@ public class FlowObjectController : ObjectHeightController
         //    }
         //}
         Vector3 position = transform.position;
-        position.y = 3.0f * Time.deltaTime;
+        if (transform.position.y < whc.waterHeight)
+        {
+            position.y += 4.0f * Time.deltaTime;
+            if (position.y > whc.waterHeight)
+            {
+                position.y = whc.waterHeight;
+            }
+        }
+        else if (transform.position.y > whc.waterHeight)
+        {
+            position.y -= 4.0f * Time.deltaTime;
+            if (position.y < whc.waterHeight)
+            {
+                position.y = whc.waterHeight;
+            }
+        }
         transform.position = position;
         //transform.position += velocity * Time.deltaTime;
         isUpdate = false;
