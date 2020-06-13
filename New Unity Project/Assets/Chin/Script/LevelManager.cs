@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class LevelManager : MonoBehaviour
 {
@@ -15,28 +16,20 @@ public class LevelManager : MonoBehaviour
         public bool IsInteractable;
     }
 
-
     public GameObject levelButton;
-
     public Transform Content;
 
     [SerializeField]
     private Sprite sprite;
 
     public List<Level> LevelList;
-
     private bool isInit = false;
-
-    private float moveStickH;
-    private float moveStickV;
     private bool isMove;
 
     // Start is called before the first frame update
     void Start()
     {
         Fade.FadeOut();
-        moveStickH = 0.0f;
-        moveStickV = 0.0f;
         isMove = false;
     }
     private void Update()
@@ -47,25 +40,35 @@ public class LevelManager : MonoBehaviour
             isInit = true;
         }
 
-        moveStickH = Input.GetAxis("Horizontal");
-        moveStickV = Input.GetAxis("Vertical");
-
-        if (!isMove && moveStickH != 0.0f)
+        if (!isMove && Gamepad.current.leftStick.x.IsActuated())
         {
             isMove = true;
             FindObjectOfType<AudioManager>().PlaySound("Button", 0);
             isMove = false;
         }
-        if (!isMove && moveStickV != 0.0f)
+        if (!isMove && Gamepad.current.leftStick.y.IsActuated())
         {
             isMove = true;
             FindObjectOfType<AudioManager>().PlaySound("Button", 0);
             isMove = false;
         }
 
-        if(Input.GetKey(KeyCode.JoystickButton1))
+        if (!isMove && Gamepad.current.dpad.x.IsActuated())
         {
-            FindObjectOfType<AudioManager>().PlaySound("Select", 0);
+            isMove = true;
+            FindObjectOfType<AudioManager>().PlaySound("Button", 0);
+            isMove = false;
+        }
+        if (!isMove && Gamepad.current.dpad.y.IsActuated())
+        {
+            isMove = true;
+            FindObjectOfType<AudioManager>().PlaySound("Button", 0);
+            isMove = false;
+        }
+
+        if (Input.GetKey(KeyCode.JoystickButton1))
+        {
+            FindObjectOfType<AudioManager>().PlaySound("Button", 0);
         }
 
         if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.JoystickButton7))

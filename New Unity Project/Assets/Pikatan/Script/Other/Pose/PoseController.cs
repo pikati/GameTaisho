@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class PoseController : MonoBehaviour
 {
@@ -11,7 +12,6 @@ public class PoseController : MonoBehaviour
     private GameObject canvas;
     private PlayerInputManager pim;
     private CameraController cc;
-    private float moveStick;
     private bool isMove;
     public bool isPose { get; private set; } = false;
     [SerializeField]
@@ -24,7 +24,6 @@ public class PoseController : MonoBehaviour
         canvas = GameObject.Find("PoseMenu");
         pim = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInputManager>();
         cc = GameObject.Find("Main Camera").GetComponent<CameraController>();
-        moveStick = 0.0f;
         isMove = false;
         image[0] = transform.Find("PoseMenu/Buttons/Retry").GetComponent<Image>();
         image[1] = transform.Find("PoseMenu/Buttons/BackGame").GetComponent<Image>();
@@ -35,8 +34,6 @@ public class PoseController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveStick = Input.GetAxis("Vertical");
-
         if (!cc.isStart) return;
         if(pim.isPose)
         {
@@ -52,7 +49,14 @@ public class PoseController : MonoBehaviour
             }
         }
 
-        if(isPose && !isMove && (moveStick != 0.0f))
+        if (isPose && !isMove && Gamepad.current.leftStick.y.IsActuated())
+        {
+            isMove = true;
+            FindObjectOfType<AudioManager>().PlaySound("Button", 0);
+            isMove = false;
+        }
+
+        if (isPose && !isMove && Gamepad.current.dpad.y.IsActuated())
         {
             isMove = true;
             FindObjectOfType<AudioManager>().PlaySound("Button", 0);

@@ -1973,7 +1973,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1102416093}
-  m_LocalRotation: {x: 0.0062688757, y: 0.000000076811624, z: -4.813444e-10, w: 0.9999804}
+  m_LocalRotation: {x: 0.0062688757, y: 0.000000076811624, z: -4.813439e-10, w: 0.9999804}
   m_LocalPosition: {x: 0.43999845, y: 5.31, z: -12.999999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2727,7 +2727,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1463132351}
-  m_LocalRotation: {x: 0.0062688757, y: 0.000000076811624, z: -4.813444e-10, w: 0.9999804}
+  m_LocalRotation: {x: 0.0062688757, y: 0.000000076811624, z: -4.813439e-10, w: 0.9999804}
   m_LocalPosition: {x: 0.43999845, y: 5.31, z: -12.999999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3067,6 +3067,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WaterSurface
+      objectReference: {fileID: 0}
+    - target: {fileID: 9219490641364596780, guid: 9f28f1b4c2a7418429b9edaea5db335f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 9219490641364596780, guid: 9f28f1b4c2a7418429b9edaea5db335f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 60
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9219490640606926286, guid: 9f28f1b4c2a7418429b9edaea5db335f, type: 3}

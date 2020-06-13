@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TitleController : MonoBehaviour
 {
@@ -9,7 +10,6 @@ public class TitleController : MonoBehaviour
     private TitleButtonContorller buttons;
     private TitlePlayableDirectorManager pdm;
     private TitleSceneManager tsm;
-    private float moveStick;
     private bool isMove;
     private void Start()
     {
@@ -18,15 +18,19 @@ public class TitleController : MonoBehaviour
         buttons = GameObject.Find("Buttons").GetComponent<TitleButtonContorller>();
         pdm = GameObject.Find("PlayableDirectorManager").GetComponent<TitlePlayableDirectorManager>();
         tsm = GameObject.Find("TitleSceneManager").GetComponent<TitleSceneManager>();
-        moveStick = 0.0f;
         isMove = false;
     }
 
     private void Update()
     {
-        moveStick = Input.GetAxis("Vertical");
+        if (!isMove && Gamepad.current.leftStick.y.IsActuated())
+        {
+            isMove = true;
+            FindObjectOfType<AudioManager>().PlaySound("Button", 0);
+            isMove = false;
+        }
 
-        if (!isMove && moveStick != 0.0f)
+      if (!isMove && Gamepad.current.dpad.y.IsActuated())
         {
             isMove = true;
             FindObjectOfType<AudioManager>().PlaySound("Button", 0);

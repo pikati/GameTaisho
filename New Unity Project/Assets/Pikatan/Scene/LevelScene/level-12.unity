@@ -1445,6 +1445,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaterSurface
       objectReference: {fileID: 0}
+    - target: {fileID: 9219490641364596780, guid: 9f28f1b4c2a7418429b9edaea5db335f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 9219490641364596780, guid: 9f28f1b4c2a7418429b9edaea5db335f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f28f1b4c2a7418429b9edaea5db335f, type: 3}
 --- !u!1001 &1083186401
