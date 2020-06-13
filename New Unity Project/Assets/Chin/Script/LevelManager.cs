@@ -71,7 +71,7 @@ public class LevelManager : MonoBehaviour
             FindObjectOfType<AudioManager>().PlaySound("Button", 0);
         }
 
-        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.JoystickButton7))
+        if (Gamepad.current.leftTrigger.IsActuated() && Gamepad.current.rightTrigger.IsActuated() && Input.GetKey(KeyCode.JoystickButton7))
         {
             DeleteAll();
             FindObjectOfType<AudioManager>().PlaySound("Clear", 0);
