@@ -17,6 +17,9 @@ public class SceneController : MonoBehaviour
         Debug.Log(sID);
 
         PlayerPrefs.SetInt("level-" + sID, 1);
+
+        FindObjectOfType<AudioManager>().StopSound("DayNight");
+        FindObjectOfType<AudioManager>().StopSound("Thema");
     }
 
     public void ChengeScene(string sceneName)

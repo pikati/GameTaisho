@@ -27,6 +27,7 @@ public class AudioManager : MonoBehaviour
             s.source.loop = s.loop;
 
         }
+
     }
 
     void Start()
@@ -47,6 +48,18 @@ public class AudioManager : MonoBehaviour
         s.source.volume = s.volume;
 
         s.source.PlayDelayed(sec);
+    }
+
+    public void StopSound(string name)
+    {
+        SoundManager s = Array.Find(sounds, item => item.name == name);
+        if (s == null)
+        {
+            Debug.LogWarning("Sound: " + name + " not found!");
+            return;
+        }
+
+        s.source.Stop();
     }
 
 }
