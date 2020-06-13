@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Pikatan/Scene/Title.unity
     guid: b386f925892650846a9bdda2e7e8f18f
   - enabled: 1
-    path: Assets/Pikatan/Scene/LevelScene/Tutorial/level-1.unity
+    path: Assets/Pikatan/Scene/LevelScene/level-1.unity
     guid: 63883ada32046ad4488b2c0297953205
   - enabled: 1
     path: Assets/Pikatan/Scene/LevelScene/level-2.unity
@@ -21,13 +21,13 @@ EditorBuildSettings:
     path: Assets/Pikatan/Scene/LevelScene/level-4.unity
     guid: 48152e4fbcf1428428ce24919ff7b1f9
   - enabled: 1
-    path: Assets/Pikatan/Scene/LevelScene/Tutorial/Break/level-5.unity
+    path: Assets/Pikatan/Scene/LevelScene/level-5.unity
     guid: 03b169f5a99e7a64faa315bec79baaef
   - enabled: 1
     path: Assets/Pikatan/Scene/LevelScene/level-6.unity
     guid: 4e2688f25469aa2488bdcfb6c104cd1d
   - enabled: 1
-    path: Assets/Pikatan/Scene/LevelScene/Tutorial/Flow/level-7.unity
+    path: Assets/Pikatan/Scene/LevelScene/level-7.unity
     guid: e35b7bcd9a9926047b5c502a4161be69
   - enabled: 1
     path: Assets/Pikatan/Scene/LevelScene/level-8.unity
@@ -36,7 +36,7 @@ EditorBuildSettings:
     path: Assets/Pikatan/Scene/LevelScene/level-9.unity
     guid: 53eb56d025bdef743b2d94ce2cf1f175
   - enabled: 1
-    path: Assets/Pikatan/Scene/LevelScene/Tutorial/level-10.unity
+    path: Assets/Pikatan/Scene/LevelScene/level-10.unity
     guid: fef1dc673b27fb34abd36403ce4a1158
   - enabled: 0
     path: 
