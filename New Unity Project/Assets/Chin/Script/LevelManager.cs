@@ -63,9 +63,15 @@ public class LevelManager : MonoBehaviour
             isMove = false;
         }
 
-        if (Input.GetKey(KeyCode.Space))
+        if(Input.GetKey(KeyCode.JoystickButton1))
+        {
+            FindObjectOfType<AudioManager>().PlaySound("Select", 0);
+        }
+
+        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.JoystickButton7))
         {
             DeleteAll();
+            FindObjectOfType<AudioManager>().PlaySound("Clear", 0);
 
             Scene loadScene = SceneManager.GetActiveScene();
 
