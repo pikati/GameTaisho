@@ -25,13 +25,20 @@ public class LevelManager : MonoBehaviour
 
     public List<Level> LevelList;
 
-    bool isInit = false;
+    private bool isInit = false;
+
+    private float moveStickH;
+    private float moveStickV;
+    private bool isMove;
+
     // Start is called before the first frame update
     void Start()
     {
         Fade.FadeOut();
+        moveStickH = 0.0f;
+        moveStickV = 0.0f;
+        isMove = false;
     }
-
     private void Update()
     {
         if(!isInit)
@@ -39,6 +46,23 @@ public class LevelManager : MonoBehaviour
             FillList();
             isInit = true;
         }
+
+        moveStickH = Input.GetAxis("Horizontal");
+        moveStickV = Input.GetAxis("Vertical");
+
+        if (!isMove && moveStickH != 0.0f)
+        {
+            isMove = true;
+            FindObjectOfType<AudioManager>().PlaySound("Button", 0);
+            isMove = false;
+        }
+        if (!isMove && moveStickV != 0.0f)
+        {
+            isMove = true;
+            FindObjectOfType<AudioManager>().PlaySound("Button", 0);
+            isMove = false;
+        }
+
         if (Input.GetKey(KeyCode.Space))
         {
             DeleteAll();
@@ -99,6 +123,7 @@ public class LevelManager : MonoBehaviour
 
     void LoadLevel(string text)
     {
+        FindObjectOfType<AudioManager>().PlaySound("Select", 0);
         Fade.FadeIn(text);
     }
 }

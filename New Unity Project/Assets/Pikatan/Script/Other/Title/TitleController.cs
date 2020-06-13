@@ -10,7 +10,7 @@ public class TitleController : MonoBehaviour
     private TitlePlayableDirectorManager pdm;
     private TitleSceneManager tsm;
     private float moveStick;
-
+    private bool isMove;
     private void Start()
     {
         cinemachineManager = GameObject.Find("CineamchineManager").GetComponent<TitleCinemachineManager>();
@@ -19,15 +19,18 @@ public class TitleController : MonoBehaviour
         pdm = GameObject.Find("PlayableDirectorManager").GetComponent<TitlePlayableDirectorManager>();
         tsm = GameObject.Find("TitleSceneManager").GetComponent<TitleSceneManager>();
         moveStick = 0.0f;
+        isMove = false;
     }
 
     private void Update()
     {
         moveStick = Input.GetAxis("Vertical");
 
-        if (moveStick != 0.0f)
+        if (!isMove && moveStick != 0.0f)
         {
+            isMove = true;
             FindObjectOfType<AudioManager>().PlaySound("Button", 0);
+            isMove = false;
         }
     }
 
