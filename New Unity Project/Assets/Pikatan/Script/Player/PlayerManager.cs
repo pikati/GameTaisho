@@ -36,6 +36,7 @@ public class PlayerManager : MonoBehaviour
     private bool flag=false;
     private bool sleep = false;
     private Animator anim;
+    private PenguinController pc;
     public int penguinNum { get; private set; } = 0;
     #endregion
 
@@ -59,6 +60,7 @@ public class PlayerManager : MonoBehaviour
         poseCtrl = GameObject.Find("Pose").GetComponent<PoseController>();
         cc = GameObject.Find("Main Camera").GetComponent<CameraController>();
         anim = GetComponent<Animator>();
+        pc = GameObject.Find("PenguinController").GetComponent<PenguinController>();
     }
 
     void Update()
@@ -123,15 +125,20 @@ public class PlayerManager : MonoBehaviour
             pac.EndWalk();
             pac.EndSwim();
             rb.velocity = new Vector3(0.0f, rb.velocity.y, 0.0f);
-            if (!flag)
+            if (!flag&& pc.penguinCount==0)
             {
                 stoptime = Time.time;
                 flag = true;
             }
-            if (Time.time - stoptime > 60.0f)
+            if (Time.time - stoptime > 60.0f && pc.penguinCount == 0)
             {
                 sleep = true;
                 pac.Sleep();
+            }
+
+            if(pc.penguinCount > 0)
+            {
+                pac.EndSleep();
             }
         }
 
