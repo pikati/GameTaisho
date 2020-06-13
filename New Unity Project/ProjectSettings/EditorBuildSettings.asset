@@ -27,10 +27,10 @@ EditorBuildSettings:
     path: Assets/Pikatan/Scene/LevelScene/level-6.unity
     guid: 4e2688f25469aa2488bdcfb6c104cd1d
   - enabled: 1
-    path: Assets/Pikatan/Scene/LevelScene/level-7.unity
+    path: Assets/Pikatan/Scene/LevelScene/level-8.unity
     guid: e35b7bcd9a9926047b5c502a4161be69
   - enabled: 1
-    path: Assets/Pikatan/Scene/LevelScene/level-8.unity
+    path: Assets/Pikatan/Scene/LevelScene/level-7.unity
     guid: 6aa54c76eba9e3a4eba113f480d791f7
   - enabled: 1
     path: Assets/Pikatan/Scene/LevelScene/level-9.unity
@@ -38,27 +38,27 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Pikatan/Scene/LevelScene/level-10.unity
     guid: fef1dc673b27fb34abd36403ce4a1158
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Pikatan/Scene/LevelScene/level-11.unity
+    guid: 8667d5c27baa8ba44916e90af78a4404
+  - enabled: 1
+    path: Assets/Pikatan/Scene/LevelScene/level-12.unity
+    guid: 3b7a3a94454d64f448d4d83bbea46bed
+  - enabled: 1
+    path: Assets/Pikatan/Scene/LevelScene/level-13.unity
+    guid: 2c1c86aebded1e047ae187db094756fa
+  - enabled: 1
+    path: Assets/Pikatan/Scene/LevelScene/level-14.unity
+    guid: 1219a0c6a8d91af4c847243cc1f85e22
+  - enabled: 1
+    path: Assets/Pikatan/Scene/LevelScene/level-15.unity
+    guid: 3128228bab54ff044bcf18363d58c369
+  - enabled: 1
+    path: Assets/Pikatan/Scene/LevelScene/level-16.unity
+    guid: 177ce189803c0484893724e61cfe9328
   - enabled: 1
     path: Assets/Pikatan/Scene/LevelScene/level-17.unity
-    guid: 4476a649815806e4a9e6accdeaa695b9
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+    guid: 8ab678e37fabe26428f79a2fd419583e
   - enabled: 1
     path: Assets/Pikatan/Scene/LevelScene/level-18.unity
     guid: 4df79d93a2da3514d83243d7f15e270c
