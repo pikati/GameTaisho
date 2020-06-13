@@ -2,16 +2,16 @@ tutorial1->1
 level-1  ->2
 level-4  ->3
 level-a  ->4
-tutorialb->5
-g1       ->6
-t-flow2  ->7
-level-b  ->8
-level-6  ->9
+tutorialb->6
+g1       ->7
+t-flow2  ->8
+level-b  ->9
+level-6  ->10
 level-e  ->17
-tutorial2->10
-lecel-3  ->11
-level-5  ->12
-g2       ->13
+tutorial2->11
+lecel-3  ->12
+level-5  ->13
+g2       ->5
 g12		 ->14
 level-c  ->15
 level-d  ->16

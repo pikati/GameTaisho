@@ -402,6 +402,7 @@ GameObject:
   - component: {fileID: 8725730413886732365}
   - component: {fileID: 8725730413886732366}
   - component: {fileID: 8115955501160210946}
+  - component: {fileID: 4802093680087014532}
   m_Layer: 0
   m_Name: FlowGoal
   m_TagString: Move
@@ -498,6 +499,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 008a7b14cd3d7f74cb2045a40e3b4fcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &4802093680087014532
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8725730413886732367}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.7325437
+  m_Height: 4.0179877
+  m_Direction: 1
+  m_Center: {x: 1.9296451, y: 2.3957202, z: 0}
 --- !u!1 &8725730413999886641
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,15 +917,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4909336b87b38e847b15624c805685d4, type: 3}
---- !u!4 &8310630059336140335 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6913809073985217474, guid: 4909336b87b38e847b15624c805685d4,
-    type: 3}
-  m_PrefabInstance: {fileID: 3217684190559004141}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8310630059336140332 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6913809073985217473, guid: 4909336b87b38e847b15624c805685d4,
+    type: 3}
+  m_PrefabInstance: {fileID: 3217684190559004141}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8310630059336140335 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6913809073985217474, guid: 4909336b87b38e847b15624c805685d4,
     type: 3}
   m_PrefabInstance: {fileID: 3217684190559004141}
   m_PrefabAsset: {fileID: 0}
