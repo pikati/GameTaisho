@@ -54,12 +54,18 @@ public class IceBreak : MonoBehaviour
         {
             if (num % 2 == 0)
             {
-                tr.position = new Vector3(tr.position.x + countTime / 3.0f, tr.position.y, tr.position.z);
+              // float x=tr.localEulerAngles.z;
+
+
+                tr.position = new Vector3(tr.position.x + countTime / 3.0f*Mathf.Cos(anglechenge(tr.localEulerAngles.z)),
+                    tr.position.y + countTime / 3.0f * Mathf.Sin(anglechenge(tr.localEulerAngles.z)),
+                    tr.position.z);
                 num++;
             }
             else
             {
-                tr.position = new Vector3(tr.position.x - countTime / 3.0f, tr.position.y, tr.position.z);
+                tr.position = new Vector3(tr.position.x - countTime / 3.0f * Mathf.Cos(anglechenge(tr.localEulerAngles.z)),
+                    tr.position.y - countTime / 3.0f * Mathf.Sin(anglechenge(tr.localEulerAngles.z)), tr.position.z);
                 num++;
             }
         }
@@ -123,5 +129,11 @@ public class IceBreak : MonoBehaviour
             isColPlayer = false;
             particle.Stop();
         }
+    }
+
+    private float anglechenge(float angle)
+    {
+        float rad = angle * Mathf.PI / 180.0f;
+        return rad;
     }
 }
