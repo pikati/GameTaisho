@@ -71,7 +71,17 @@ public class LevelManager : MonoBehaviour
             FindObjectOfType<AudioManager>().PlaySound("Button", 0);
         }
 
-        if (Gamepad.current.leftTrigger.IsActuated() && Gamepad.current.rightTrigger.IsActuated() && Input.GetKey(KeyCode.JoystickButton7))
+        if (Gamepad.current.leftTrigger.IsActuated() && Gamepad.current.rightTrigger.IsActuated() && Input.GetKey(KeyCode.JoystickButton0))
+        {
+            DeleteAll();
+            FindObjectOfType<AudioManager>().PlaySound("Clear", 0);
+
+            Scene loadScene = SceneManager.GetActiveScene();
+
+            SceneManager.LoadScene(loadScene.name);
+        }
+
+        if (Input.GetKey(KeyCode.R) && Input.GetKey(KeyCode.Space))
         {
             DeleteAll();
             FindObjectOfType<AudioManager>().PlaySound("Clear", 0);
