@@ -84,7 +84,7 @@ public class IceBreak : MonoBehaviour
 
         if (countTime > TAERU)
         {
-            FindObjectOfType<AudioManager>().PlaySound("Button", 0);
+            FindObjectOfType<AudioManager>().PlaySound("IceBreak", 0);
 
             for (int i = 0; i < transform.childCount - 1; i++)
             {
