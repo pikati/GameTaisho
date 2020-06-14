@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class EndScene : MonoBehaviour
 {
+    private bool isInput = false;
+    private bool isFade = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +21,13 @@ public class EndScene : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKey(KeyCode.JoystickButton0) || Input.GetKey(KeyCode.JoystickButton1))
+        if (isInput) return;
+        if(!isFade)
+        {
+            Fade.FadeOut();
+            isFade = true;
+        }
+        if (Input.GetKey(KeyCode.JoystickButton0) || Input.GetKey(KeyCode.JoystickButton1))
         {
             FindObjectOfType<AudioManager>().StopSound("Bear");
             FindObjectOfType<AudioManager>().StopSound("Penguin");
@@ -30,7 +38,8 @@ public class EndScene : MonoBehaviour
             FindObjectOfType<AudioManager>().PlaySound("Main", 0);
             FindObjectOfType<AudioManager>().PlaySound("Sea", 0);
 
-            SceneManager.LoadScene("Title");
+            Fade.FadeIn("Title");
+            isInput = true;
         }
     }
 }
